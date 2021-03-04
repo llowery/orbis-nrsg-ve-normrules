@@ -1,0 +1,34 @@
+rule "Primo VE - Identifier 020"
+	when
+		MARC is "020"."a"
+	then
+		set TEMP"1" to MARC "020"."a"
+		add prefix (TEMP"1","$$CISBN$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Prima Display - ISBN 776"
+	when
+        MARC is "776"."z"
+    then
+		set TEMP"1" to MARC "776"."z"
+		add prefix (TEMP"1","$$CISBN$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Primo VE - Identifier 022"
+	when
+		MARC is "022"."a"
+	then
+		set TEMP"1" to MARC "022"."a"
+		add prefix (TEMP"1","$$CISSN$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+rule "Prima Display - ISSN 776"
+	when
+        MARC is "776"."x"
+	then
+		set TEMP"1" to MARC "776"."x"
+		add prefix (TEMP"1","$$CISSN$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end

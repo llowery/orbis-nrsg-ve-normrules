@@ -1,0 +1,89 @@
+rule "Primo VE - Format 300"
+	when
+		MARC is "300"
+	then
+	    set TEMP"1" to MARC."300" excluding num subfields without sort
+	    add prefix (TEMP"1","300 ")
+		create pnx."display"."format" with TEMP"1"
+end
+
+rule "Primo VE - Format 340"
+	when
+		MARC is "340"
+	then
+	    set TEMP"1" to MARC."340" excluding num subfields without sort
+	    add prefix (TEMP"1","340 ")
+		create pnx."display"."format" with TEMP"1"
+end
+
+rule "Primo VE - Format 254"
+	when
+		MARC is "254"
+	then
+	    set TEMP"1" to MARC."254" excluding num subfields without sort
+	    add prefix (TEMP"1","254 ")
+		create pnx."display"."format" with TEMP"1"
+end
+
+rule "Primo VE - Format 255"
+	when
+		MARC is "255"
+	then
+	    set TEMP"1" to MARC."255" excluding num subfields without sort
+	    add prefix (TEMP"1","255 ")
+		create pnx."display"."format" with TEMP"1"
+end
+
+rule "Primo VE - Format 256"
+	when
+		MARC is "256"
+	then
+	    set TEMP"1" to MARC."256" excluding num subfields without sort
+	    add prefix (TEMP"1","256 ")
+		create pnx."display"."format" with TEMP"1"
+end
+
+rule "Primo VE - Format 258"
+	when
+		MARC is "258"
+	then
+	    set TEMP"1" to MARC."258" excluding num subfields without sort
+	    add prefix (TEMP"1","258 ")
+		create pnx."display"."format" with TEMP"1"
+end
+
+rule "Primo VE - Format 346"
+	when
+		MARC is "346"
+	then
+	    set TEMP"1" to MARC."346" excluding num subfields without sort
+	    add prefix (TEMP"1","346 ")
+		create pnx."display"."format" with TEMP"1"
+end
+
+rule "Primo VE - Format 347"
+	when
+		MARC is "347"
+	then
+	    set TEMP"1" to MARC."347" excluding num subfields without sort
+	    add prefix (TEMP"1","347 ")
+		create pnx."display"."format" with TEMP"1"
+end
+
+rule "Primo VE - Format 351"
+	when
+		MARC is "351"
+	then
+	    set TEMP"1" to MARC."351" excluding num subfields without sort
+	    add prefix (TEMP"1","351 ")
+		create pnx."display"."format" with TEMP"1"
+end
+
+rule "Primo VE - Format 507"
+	when
+		MARC is "507"
+	then
+	    set TEMP"1" to MARC."507" excluding num subfields without sort
+	    add prefix (TEMP"1","507 ")
+		create pnx."display"."format" with TEMP"1"
+end
