@@ -3,7 +3,8 @@ A repository of normalization rules created for Primo VE by the Orbis Cascade Al
 
 Naming conventions for files in repository:
 
- -Pre-indexed field, Ex Libris rule: OTB_Display_AddedTitles.txt
- -Pre-indexed field, NRSG rule: Display_AddedTitles.txt
- -Local field: NRSG rule: Display_lf01_DOI.txt
+	Pre-indexed field, Ex Libris rule: OTB_Display_AddedTitles.txt
 
+	Pre-indexed field, NRSG rule: Display_AddedTitles.txt
+
+	Local field: NRSG rule: Display_lf01_DOI.txt
