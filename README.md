@@ -3,10 +3,13 @@ A repository of normalization rules created for Primo VE by the Orbis Cascade Al
 
 Naming conventions for files in repository:
 
-	•	Ex Libris rules are prefixed with "OTB_".
-	•	Rule "section" (Display, Search, Facet) is given.
-	•	Pre-indexed fields have the field name shown.
-	•	Local fields have their number shown (e.g., lf01, lf53, lf100) and a label showing the purpose of the field (e.g., DOI, reproduction note, etc.).
+• Ex Libris rules are prefixed with "OTB_".
+
+• Rule "section" (Display, Search, Facet) is given.
+
+• Pre-indexed fields have the field name shown.
+
+• Local fields have their number shown (e.g., lf01, lf53, lf100) and a label showing the purpose of the field (e.g., DOI, reproduction note, etc.).
 
 Examples include:
 
