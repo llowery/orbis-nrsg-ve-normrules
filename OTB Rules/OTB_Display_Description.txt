@@ -1,0 +1,21 @@
+rule "Primo VE - Description 500"
+	when
+        MARC is "500"
+	then
+        create pnx."display"."description" with MARC."500" excluding num subfields without sort
+end
+
+rule "Primo VE - Description 520"
+	when
+        MARC is "520"
+	then
+        create pnx."display"."description" with MARC."520" excluding num subfields without sort
+end
+
+rule "Primo VE - Description 880-520"
+	when
+        MARC is "880" AND
+        MARC."880"."6" match "520-.*"
+	then
+        create pnx."display"."description" with MARC."880" excluding num subfields without sort
+end
