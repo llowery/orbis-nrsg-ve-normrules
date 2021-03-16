@@ -54,7 +54,7 @@ priority 30
 end
 
 rule "Primo VE Display - alternate creator 880-100 Block 1&2"
-priority 10
+priority 9
 	when
 		MARC."880" has any "a,b,c,d,e,j,q,u" AND
 		MARC."880"."6" match "110-.*" AND
@@ -73,7 +73,7 @@ priority 10
 end
 
 rule "Primo VE Display - alternate creator 880-110 Block 3 & 4"
-priority 20
+priority 19
 	when
 		MARC."880" has any "a,b,c,d,e,n" AND
 		MARC."880"."6" match "110-.*" AND
@@ -92,7 +92,7 @@ priority 20
 end
 
 rule "Primo VE Display - alternate creator 880-111"
-priority 30
+priority 29
 	when
 		MARC."880" has any "a,c,d,e,n,j,q" AND
 		MARC."880"."6" match "111-.*"
