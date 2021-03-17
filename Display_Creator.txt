@@ -60,21 +60,10 @@ priority 9
 		MARC."880"."6" match "100-.*" AND
 		MARC is "100"
 	then
-<<<<<<< HEAD
 		set TEMP"1" to MARC."880" sub without sort "d"
-=======
-		set TEMP"1" to MARC."880" sub without sort "a,b,c,d,e,j,q,u"
-		set TEMP"2" to MARC."880" sub without sort "a,b,c,d,j,q"
-		set TEMP"3" to MARC."880" sub without sort "d"
-		remove string (TEMP"1",";@@^")
-		remove string (TEMP"2",";()?*@@^")
-		remove substring using regex (TEMP"2","[.,/=]+$")
-		add prefix (TEMP"2","$$Q")
-		concatenate with delimiter (TEMP"1",TEMP"2","")
->>>>>>> f0befa9abe656fb4d78f8c0436868a05f8c0ac3b
 		set TEMP"3" to multilingual by "880" "Creator" "display"
 		concatenate with delimiter (TEMP"1",TEMP"3","")
-		set pnx."display"."alternate_creator" to TEMP"3"
+		set pnx."display"."alternate_creator" to TEMP"1"
 end
 
 rule "Primo VE Display - alternate creator 880-110 Block 3 & 4"
