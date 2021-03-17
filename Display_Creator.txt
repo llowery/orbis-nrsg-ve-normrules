@@ -56,7 +56,7 @@ end
 rule "Primo VE Display - alternate creator 880-100 Block 1&2"
 priority 9
 	when
-		MARC."880" has any "a,b,c,d,e,j,q,u" AND
+		MARC."880" has any "d" AND
 		MARC."880"."6" match "100-.*" AND
 		MARC is "100"
 	then
