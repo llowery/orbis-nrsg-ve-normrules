@@ -1,14 +1,34 @@
-rule "Primo VE - Complete Edition 250"
-	when
-		MARC."250" has any "3,a,b"
-	then
-		create pnx."display"."edition" with MARC."250" sub without sort "3,a,b"
-end
-
 rule "Primo VE - Complete Edition 880-250"
 	when
-		MARC."880" has any "3,a,b" AND
+		MARC is "250" AND
+		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "250-.*"
 	then
-		create pnx."display"."edition" with MARC."880" sub without sort "3,a,b"
+		set TEMP"1" to MARC."880" subfields "a-b"
+        	set TEMP"2" to MARC."250" subfields "a-b"
+        	concatenate with delimiter (TEMP"1",TEMP"2",";")
+		create pnx."display"."edition" with MARC."TEMP1"
+end
+
+rule "Primo VE - Complete Edition 250"
+	when
+		MARC."250" has any "a,b" AND NOT
+        	MARC."880" has any "a,b" AND
+        	MARC."880"."6" match "250-.*"
+	then
+		create pnx."display"."edition" with MARC."250" sub without sort "a,b"
+end
+
+rule "Primo VE - Edition 251"
+    	when
+        	MARC."251" has any "a"
+    	then
+        	create pnx."display"."edition" with MARC "251" subfields "a"
+end
+
+rule "Primo VE - Edition 254"
+    	when
+        	MARC."254" has any "a"
+    	then
+        	create pnx."display"."edition" with MARC "254" subfields "a"
 end
