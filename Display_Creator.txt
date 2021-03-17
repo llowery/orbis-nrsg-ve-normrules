@@ -60,13 +60,7 @@ priority 9
 		MARC."880"."6" match "100-.*" AND
 		MARC is "100"
 	then
-		set TEMP"1" to MARC."880" sub without sort "a,b,c,d,e,j,q,u"
-		set TEMP"2" to MARC."880" sub without sort "a,b,c,d,j,q"
-		remove string (TEMP"1",";@@^")
-		remove string (TEMP"2",";()?*@@^")
-		remove substring using regex (TEMP"2","[.,/=]+$")
-		add prefix (TEMP"2","$$Q")
-		concatenate with delimiter (TEMP"1",TEMP"2","")
+		set TEMP"1" to MARC."880" sub without sort "d"
 		set TEMP"3" to multilingual by "880" "Creator" "display"
 		concatenate with delimiter (TEMP"1",TEMP"3","")
 		set pnx."display"."alternate_creator" to TEMP"1"
