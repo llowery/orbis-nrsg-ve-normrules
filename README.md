@@ -1,7 +1,7 @@
 # orbis-nrsg-ve-normrules
 A repository of normalization rules created for Primo VE by the Orbis Cascade Alliance's Normalization Rules Standing Group.
 
-Naming conventions for files in repository:
+# Naming conventions for files in repository:
 
 • Ex Libris rules are prefixed with "OTB_".
 
@@ -18,6 +18,10 @@ Examples include:
 	Pre-indexed field, NRSG rule: Display_AddedTitles.txt
 
 	Local field: NRSG rule: Display_lf01_DOI.txt
+	
+# Rules that we did not customize (i.e., we are using the OTB rules)
+
+• OTB_Title
 
 
 ## For Github demonstration on 3/11/2021 -KL
