@@ -1,0 +1,47 @@
+rule "Primo VE - Uniform Title 130"
+priority 10
+	when
+		MARC is "130"
+	then
+		set TEMP"1" to MARC."130" subfields "a,d,f,g,k,l,m,n,o,p,r,s"
+		remove string (TEMP"1","<<")
+        remove string (TEMP"1",">>")
+        kormarc remove nonfiling brackets MARC."130" sourcetag "130" from TEMP"1"
+		set pnx."display"."unititle" to TEMP"1"
+end
+
+rule "Primo VE - Uniform Title 240"
+priority 20
+	when
+		MARC is "240"
+	then
+		set TEMP"1" to MARC."240" subfields "a,d,f,g,k,l,m,n,o,p,r,s"
+		remove string (TEMP"1","<<")
+        remove string (TEMP"1",">>")
+        kormarc remove nonfiling brackets MARC."240" sourcetag "240" from TEMP"1"
+        set pnx."display"."unititle" to TEMP"1"
+end
+
+rule "Primo VE - Alternate Uniform Title 880-130"
+priority 10
+	when
+		MARC is "880" AND
+		MARC."880"."6" match "130-.*"
+	then
+		set TEMP"1" to MARC."880" subfields "a,d,f,g,k,l,m,n,o,p,r,s"
+		remove string (TEMP"1","<<")
+        remove string (TEMP"1",">>")
+		set pnx."display"."alternate_uniform_title" to TEMP"1"
+end
+
+rule "Primo VE - Alternate Uniform Title 880-240"
+priority 20
+	when
+		MARC is "880" AND
+		MARC."880"."6" match "240-.*"
+	then
+		set TEMP"1" to MARC."880" subfields "a,d,f,g,k,l,m,n,o,p,r,s"
+		remove string (TEMP"1","<<")
+        remove string (TEMP"1",">>")
+        set pnx."display"."alternate_uniform_title" to TEMP"1"
+end
