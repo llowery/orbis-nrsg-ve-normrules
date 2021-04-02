@@ -21,7 +21,7 @@ Examples include:
 	
 # Rules that we did not customize (i.e., we are using the OTB rules)
 
-• OTB_Title
+• OTB_Display_Title
 
 
 ## For Github demonstration on 3/11/2021 -KL
