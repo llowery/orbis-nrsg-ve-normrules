@@ -15,7 +15,8 @@ rule "Primo VE - publisher 502"
 		set TEMP"3" to MARC."502.g"
 		add prefix (TEMP"1","Thesis(")
 		add suffix (TEMP"1",")")
-		concatenate with delimiter (TEMP"1",TEMP"2",TEMP"3","--")
+		concatenate with delimiter (TEMP"1",TEMP"2","--")
+		concatenate with delimiter (TEMP"1",TEMP"3","--")
 		create pnx."display"."publisher" with TEMP"1"	
 end
 
