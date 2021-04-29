@@ -12,8 +12,8 @@ rule "Primo VE - Complete Edition 880-250"
 		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "250-.*"
 	then
-		set TEMP"1" to MARC."880" subfields "a-b"
-        	set TEMP"2" to MARC."250" subfields "a-b"
+		set TEMP"1" to MARC."250" subfields "a-b"
+        	set TEMP"2" to MARC."880" subfields "a-b"
         	concatenate with delimiter (TEMP"1",TEMP"2",";")
 		create pnx."display"."edition" with TEMP"1"
 end
