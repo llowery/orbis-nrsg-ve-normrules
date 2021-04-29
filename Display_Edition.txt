@@ -9,6 +9,7 @@ end
 
 rule "Primo VE - Complete Edition 880-250"
 	when
+                MARC is "250" AND	
 		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "250-.*"
 	then
