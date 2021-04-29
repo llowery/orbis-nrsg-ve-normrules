@@ -18,10 +18,3 @@ Examples include:
 	Pre-indexed field, NRSG rule: Display_AddedTitles.txt
 
 	Local field: NRSG rule: Display_lf01_DOI.txt
-	
-# Rules that we did not customize (i.e., we are using the OTB rules)
-
-• OTB_Display_Title
-
-
-## For Github demonstration on 3/11/2021 -KL
