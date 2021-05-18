@@ -1,4 +1,4 @@
-rule "Primo VE - publisher 502"
+rule "Primo VE - publisher 502a"
 	when 
 		MARC."502" has any "a"
 	then 
