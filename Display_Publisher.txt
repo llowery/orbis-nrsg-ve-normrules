@@ -5,10 +5,10 @@ rule "Primo VE - publisher 502"
 		create pnx."display"."publisher" with MARC."502" subfields "a"
 end
 
-rule "Primo VE - publisher 502b"
+rule "Primo VE - publisher 502b,c,g"
 	when 
 		MARC."502" has any "b,c,g" AND NOT
-		MARC."502.g" match "*thesis*"
+		MARC."502"."g" match "thesis.*"
 	then	
 		set TEMP"1" to MARC."502.b"
 		add prefix (TEMP"1","Thesis(")
