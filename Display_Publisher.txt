@@ -10,11 +10,11 @@ rule "Primo VE - publisher 502b,c,g"
 		MARC."502" has any "b,c,g" AND NOT
 		MARC."502"."g" match "thesis.*"
 	then	
-		set TEMP"1" to MARC."502.b"
+		set TEMP"1" to MARC."502" subfields "b"
 		add prefix (TEMP"1","Thesis(")
 		add suffix (TEMP"1",")")
-		set TEMP"2" to MARC."502.c" 
-		set TEMP"3" to MARC."502.g"
+		set TEMP"2" to MARC."502" subfields "c" 
+		set TEMP"3" to MARC."502" subfields "g"
 		concatenate with delimiter (TEMP"1",TEMP"2","--")
 		concatenate with delimiter (TEMP"1",TEMP"3","--")
 		create pnx."display"."publisher" with TEMP"1"	
