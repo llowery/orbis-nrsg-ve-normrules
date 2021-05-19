@@ -8,7 +8,7 @@ end
 rule "Primo VE - publisher 502b,c,g"
 	when 
 		MARC."502" has any "b,c,g" AND NOT
-		MARC."502"."g" match "thesis.*"
+		MARC."502"."g" match "Thesis.*"
 	then	
 		set TEMP"1" to MARC."502" subfields "b"
 		add prefix (TEMP"1","Thesis(")
@@ -20,8 +20,20 @@ rule "Primo VE - publisher 502b,c,g"
 		create pnx."display"."publisher" with TEMP"1"	
 end
 
+rule "Primo VE - publisher 502b,c"
+	when 
+		MARC."502" has any "b,c,g" AND 
+		MARC."502"."g" match "Thesis.*"
+	then	
+		set TEMP"1" to MARC."502" subfields "b"
+		add prefix (TEMP"1","Thesis(")
+		add suffix (TEMP"1",")")
+		set TEMP"2" to MARC."502" subfields "c" 
+		concatenate with delimiter (TEMP"1",TEMP"2","--")
+		create pnx."display"."publisher" with TEMP"1"	
+end
+
 rule "Primo VE - publisher 260/3"
-priority 10
 	when
 		MARC."260" has any "a,b" AND
 		MARC."260".ind"1"  equals "3"
@@ -40,7 +52,6 @@ priority 10
 end
 
 rule "Primo VE - publisher 264/3/1"
-priority 20
 	when
 		MARC."264" has any "a,b" AND
 		MARC."264".ind"1"  equals "3" AND
@@ -60,7 +71,6 @@ priority 20
 end
 
 rule "Primo VE - publisher 260"
-priority 30
 	when
 		MARC."260" has any "a,b"
 	then
@@ -78,7 +88,6 @@ priority 30
 end
 
 rule "Primo VE - publisher 264"
-priority 40
 	when
 		MARC."264" has any "a,b"
 	then
@@ -96,7 +105,6 @@ priority 40
 end
 
 rule "Primo VE - Alternate Publisher 880-260/3"
-priority 10
 	when
 		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "260-.*" AND
@@ -115,7 +123,6 @@ priority 10
 end
 
 rule "Primo VE - Alternate Publisher 880-264/3/1"
-priority 20
 	when
 		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "264-.*" AND
@@ -135,7 +142,6 @@ priority 20
 end
 
 rule "Primo VE - Alternate Publisher 880-260"
-priority 30
 	when
 		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "260-.*"
@@ -153,7 +159,6 @@ priority 30
 end
 
 rule "Primo VE - Alternate Publisher 880-264"
-priority 40
 	when
 		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "264-.*"
