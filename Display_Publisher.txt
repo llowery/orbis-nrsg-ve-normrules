@@ -37,7 +37,7 @@ rule "Primo VE - publisher 260/3"
 	when
 		MARC."260" has any "a,b" AND
 		MARC."260".ind"1"  equals "3" AND NOT
-		MARC."502" has any"a,b,c,d,g"
+		MARC."502" has any "a,b,c,d,g"
 	then
 	    set TEMP"1" to MARC."260" sub without sort "a,b"
 	    remove string (TEMP"1","<<")
@@ -57,7 +57,7 @@ rule "Primo VE - publisher 264/3/1"
 		MARC."264" has any "a,b" AND
 		MARC."264".ind"1"  equals "3" AND
 		MARC."264".ind"2"  equals "1" AND NOT
-		MARC."502" has any"a,b,c,d,g"
+		MARC."502" has any "a,b,c,d,g"
 	then
 	    set TEMP"1" to MARC."264" sub without sort "a,b"
 	    remove string (TEMP"1","<<")
@@ -75,7 +75,7 @@ end
 rule "Primo VE - publisher 260"
 	when
 		MARC."260" has any "a,b" AND NOT
-		MARC."502" has any"a,b,c,d,g"
+		MARC."502" has any "a,b,c,d,g"
 	then
 	    set TEMP"1" to MARC."260" sub without sort "a,b"
 	    remove string (TEMP"1","<<")
@@ -92,8 +92,8 @@ end
 
 rule "Primo VE - publisher 264"
 	when
-		MARC."264" has any "a,b"AND NOT
-		MARC."502" has any"a,b,c,d,g"
+		MARC."264" has any "a,b" AND NOT
+		MARC."502" has any "a,b,c,d,g"
 	then
 	    set TEMP"1" to MARC."264" sub without sort "a,b"
 	    remove string (TEMP"1","<<")
@@ -113,7 +113,7 @@ rule "Primo VE - Alternate Publisher 880-260/3"
 		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "260-.*" AND
 		MARC."880".ind"1"  equals "3" AND NOT
-		MARC."502" has any"a,b,c,d,g"
+		MARC."502" has any "a,b,c,d,g"
 	then
 	    set TEMP"1" to MARC."880" sub without sort "a,b"
 	    remove string (TEMP"1","<<")
@@ -133,7 +133,7 @@ rule "Primo VE - Alternate Publisher 880-264/3/1"
 		MARC."880"."6" match "264-.*" AND
 		MARC."880".ind"1"  equals "3" AND
 		MARC."880".ind"2"  equals "1" AND NOT
-		MARC."502" has any"a,b,c,d,g"
+		MARC."502" has any "a,b,c,d,g"
 	then
 		set TEMP"1" to MARC."880" sub without sort "a,b"
 	    remove string (TEMP"1","<<")
@@ -151,7 +151,7 @@ rule "Primo VE - Alternate Publisher 880-260"
 	when
 		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "260-.*" AND NOT
-		MARC."502" has any"a,b,c,d,g"
+		MARC."502" has any "a,b,c,d,g"
 	then
 		set TEMP"1" to MARC."880" sub without sort "a,b"
 	    remove string (TEMP"1","<<")
@@ -169,7 +169,7 @@ rule "Primo VE - Alternate Publisher 880-264"
 	when
 		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "264-.*" AND NOT
-		MARC."502" has any"a,b,c,d,g"
+		MARC."502" has any "a,b,c,d,g"
 	then
 		set TEMP"1" to MARC."880" sub without sort "a,b"
 	    remove string (TEMP"1","<<")
@@ -186,7 +186,7 @@ end
 rule "Primo VE - publisher notes 362"
 	when
 		MARC."362" has any "a,z" AND NOT
-		MARC."502" has any"a,b,c,d,g"
+		MARC."502" has any "a,b,c,d,g"
 	then
 		create pnx."display"."publisher_notes" with "N/A"
 end
