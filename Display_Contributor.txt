@@ -1,6 +1,6 @@
 rule "Primo VE Display - contributor 700"
 	when
-		 MARC."700" has any "a,b,c,d,e,j,q,u,3" AND
+		 MARC."700" has any "a,b,c,d,e,j,q,u,3" AND NOT MARC."700" has any "t" AND
 		 MARC.control is "001"
 	then
           set TEMP"1" to MARC."700" sub without sort "a,b,c,d,e,j,q,u,3"
@@ -18,7 +18,7 @@ end
 
 rule "Primo VE Display - contributor 710"
 	when
-		MARC."710" has any "a,b,c,d,e,n,3"
+		MARC."710" has any "a,b,c,d,e,n,3" AND NOT MARC."710" has any "t"
 	then
 	    set TEMP"1" to MARC."710" sub without sort "a,b,c,d,e,n,3"
 	    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
@@ -33,7 +33,7 @@ rule "Primo VE Display - contributor 710"
 end
 rule "Primo VE Display - contributor 711"
 	when
-		MARC."711" has any "a,b,c,d,e,j,n,q,3"
+		MARC."711" has any "a,b,c,d,e,j,n,q,3" AND NOT MARC."711" has any "t"
 	then
 	    set TEMP"1" to MARC."711" sub without sort "a,b,c,d,e,j,n,q,3"
 	    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
