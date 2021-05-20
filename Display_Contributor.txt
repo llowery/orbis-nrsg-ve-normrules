@@ -33,7 +33,7 @@ rule "Primo VE Display - contributor 710"
 end
 rule "Primo VE Display - contributor 711"
 	when
-		MARC."711" has any "a,b,c,d,e,j,n,q,3" AND NOT MARC."711"."t" match ".*"
+		MARC."711" has any "a,b,c,d,e,j,n,q,3"
 	then
 	    set TEMP"1" to MARC."711" sub without sort "a,b,c,d,e,j,n,q,3"
 	    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
