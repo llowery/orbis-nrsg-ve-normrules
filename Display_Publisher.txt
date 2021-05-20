@@ -34,6 +34,7 @@ rule "Primo VE - publisher 502b,c"
 end
 
 rule "Primo VE - publisher 260/3"
+priority 10
 	when
 		MARC."260" has any "a,b" AND
 		MARC."260".ind"1"  equals "3" AND NOT
@@ -53,6 +54,7 @@ rule "Primo VE - publisher 260/3"
 end
 
 rule "Primo VE - publisher 264/3/1"
+priority 20
 	when
 		MARC."264" has any "a,b" AND
 		MARC."264".ind"1"  equals "3" AND
@@ -73,6 +75,7 @@ rule "Primo VE - publisher 264/3/1"
 end
 
 rule "Primo VE - publisher 260"
+priority 30
 	when
 		MARC."260" has any "a,b" AND NOT
 		MARC."502" has any "a,b,c,d,g"
@@ -91,6 +94,7 @@ rule "Primo VE - publisher 260"
 end
 
 rule "Primo VE - publisher 264"
+priority 40
 	when
 		MARC."264" has any "a,b" AND NOT
 		MARC."502" has any "a,b,c,d,g"
@@ -109,6 +113,7 @@ rule "Primo VE - publisher 264"
 end
 
 rule "Primo VE - Alternate Publisher 880-260/3"
+priority 10
 	when
 		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "260-.*" AND
@@ -128,6 +133,7 @@ rule "Primo VE - Alternate Publisher 880-260/3"
 end
 
 rule "Primo VE - Alternate Publisher 880-264/3/1"
+priority 20
 	when
 		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "264-.*" AND
@@ -148,6 +154,7 @@ rule "Primo VE - Alternate Publisher 880-264/3/1"
 end
 
 rule "Primo VE - Alternate Publisher 880-260"
+priority 30
 	when
 		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "260-.*" AND NOT
@@ -166,6 +173,7 @@ rule "Primo VE - Alternate Publisher 880-260"
 end
 
 rule "Primo VE - Alternate Publisher 880-264"
+priority 40
 	when
 		MARC."880" has any "a,b" AND
 		MARC."880"."6" match "264-.*" AND NOT
