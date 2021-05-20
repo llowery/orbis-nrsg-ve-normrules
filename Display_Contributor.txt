@@ -1,6 +1,6 @@
 rule "Primo VE Display - contributor 700"
 	when
-		 MARC."700" has any "a,b,c,d,e,j,q,u,3" AND NOT MARC."700"."t" match ".*" AND
+		 MARC."700" has any "a,b,c,d,e,j,q,u,3" AND
 		 MARC.control is "001"
 	then
           set TEMP"1" to MARC."700" sub without sort "a,b,c,d,e,j,q,u,3"
