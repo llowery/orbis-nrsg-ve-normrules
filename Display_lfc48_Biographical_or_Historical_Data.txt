@@ -15,7 +15,7 @@ rule "Primo VE - Lds48 - 545 Biographical Sketch"
 		MARC."545"."5" match ".*"
 	then
 		set TEMP"1" to MARC."545" subfields "a,b,u"
-		add prefix (TEMP"1","Biographical Sketch: ")
+		add prefix (TEMP"1","<b>Biographical Sketch:</b> ")
 		create pnx."display"."lds48" with TEMP"1"
 end
 
@@ -26,6 +26,6 @@ rule "Primo VE - Lds48 - 545 Administrative History"
 		MARC."545"."5" match ".*"
 	then
 		set TEMP"1" to MARC."545" subfields "a,b,u"
-		add prefix (TEMP"1","Administrative History: ")
+		add prefix (TEMP"1","<b>Administrative History:</b> ")
 		create pnx."display"."lds48" with TEMP"1"
 end		
