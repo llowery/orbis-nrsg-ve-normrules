@@ -1,4 +1,4 @@
-rule "Primo VE - Lds48 - 545 Type not specified"
+rule "Primo VE - Lds48"
 	when
 		    MARC."545" has any "a,b,u" AND NOT
             MARC."545".ind"1" equals "0" AND NOT
