@@ -1,0 +1,6 @@
+rule "Primo VE - Coverage"
+	when
+		MARC is "XXX"
+	then
+		create pnx."display"."coverage" with MARC "XXX"
+end

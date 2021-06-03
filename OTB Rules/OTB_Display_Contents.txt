@@ -1,0 +1,14 @@
+rule "Primo VE - contents 505"
+	when
+		MARC is "505"
+	then
+		create pnx."display"."contents" with MARC "505" excluding num subfields without sort
+end
+
+rule "Prima_Display - contents 880-505"
+	when
+		MARC is "880" AND
+		MARC."880"."6" match "505-.*"
+	then
+		create pnx."display"."contents" with MARC "880" excluding num subfields without sort
+end

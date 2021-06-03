@@ -1,0 +1,6 @@
+rule "Primo VE - Rights"
+	when
+		MARC is "XXX"
+	then
+		create pnx."display"."rights" with MARC "XXX"
+end

@@ -1,0 +1,14 @@
+rule "Primo VE - Related Work 700"
+	when
+		MARC."700" has any "t" AND NOT
+		MARC."700".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."700" subfields "i"
+		set TEMP"2" to MARC."700"  excluding subfields without sorting "[0-9]|x|i|="
+		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
+		set TEMP"3" to MARC."700" excluding subfields without sorting "[0-9]|x|i|=|f"
+		add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."related_work" with TEMP"1"
+end
