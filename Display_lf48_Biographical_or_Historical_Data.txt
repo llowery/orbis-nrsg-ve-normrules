@@ -28,3 +28,4 @@ rule "Primo VE - Lds48 - 545 Administrative History"
 		set TEMP"1" to MARC."545" subfields "a,b,u"
 		add prefix (TEMP"1","Administrative History: ")
 		create pnx."display"."lds48" with TEMP"1"
+end		
