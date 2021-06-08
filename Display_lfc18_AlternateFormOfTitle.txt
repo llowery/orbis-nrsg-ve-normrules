@@ -9,6 +9,7 @@ rule "Primo VE - Lds18"
 end
 
 rule "Primo VE - Lds18b"
+##Ex: 01714309
 	when
 		MARC."210" has any "a"
 	then
@@ -91,6 +92,7 @@ rule "Primo VE - Lds18i"
 end
 
 rule "Primo VE - Lds18j"
+##Ex: 01714309
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
 		MARC."246".ind"1" equals "1" AND
