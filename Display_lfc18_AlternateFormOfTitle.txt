@@ -39,6 +39,7 @@ rule "Primo VE - Lds18d"
 end
 
 rule "Primo VE - Lds18e"
+##Ex: 02259600
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
 		MARC."246".ind"1" equals "1" AND
