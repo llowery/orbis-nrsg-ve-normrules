@@ -1,22 +1,23 @@
 rule "Primo VE - Lds18"
+##Ex: 37853368
 	when
 		MARC."222" has any "a,b"
 	then
 		set TEMP"1" to MARC."222" subfields "a,b"
 		add prefix (TEMP"1","Key title: ")
-		create pnx."display"."lds18" with MARC."222" sub without sort "a,b"
+		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18 210"
+rule "Primo VE - Lds18b"
 	when
 		MARC."210" has any "a"
 	then
 		set TEMP"1" to MARC."210" subfields "a"
 		add prefix (TEMP"1","Abbreviated title: ")
-		create pnx."display"."lds18" with MARC."210" sub without sort "a"
+		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18 246 - 01"
+rule "Primo VE - Lds18c"
 	when
 		MARC."246" has any "i,a,b,f,g,n,p" AND
 		MARC."246".ind"1" equals "1"
@@ -24,7 +25,7 @@ rule "Primo VE - Lds18 246 - 01"
 		create pnx."display"."lds18" with MARC."246" sub without sort "i,a,b,f,g,n,p"
 end
 
-rule "Primo VE - Lds18 246 - 02"
+rule "Primo VE - Lds18d"
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
 		MARC."246".ind"2" equals "1"
@@ -34,7 +35,7 @@ rule "Primo VE - Lds18 246 - 02"
 		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18 246 - 03"
+rule "Primo VE - Lds18e"
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
 		MARC."246".ind"1" equals "1" AND
@@ -45,7 +46,7 @@ rule "Primo VE - Lds18 246 - 03"
 		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18 246 - 04"
+rule "Primo VE - Lds18f"
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
 		MARC."246".ind"1" equals "1" AND
@@ -56,7 +57,7 @@ rule "Primo VE - Lds18 246 - 04"
 		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18 246 - 05"
+rule "Primo VE - Lds18g"
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
 		MARC."246".ind"1" equals "1" AND
@@ -67,7 +68,7 @@ rule "Primo VE - Lds18 246 - 05"
 		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18 246 - 06"
+rule "Primo VE - Lds18h"
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
 		MARC."246".ind"1" equals "1" AND
@@ -78,7 +79,7 @@ rule "Primo VE - Lds18 246 - 06"
 		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18 246 - 07"
+rule "Primo VE - Lds18i"
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
 		MARC."246".ind"1" equals "1" AND
@@ -89,7 +90,7 @@ rule "Primo VE - Lds18 246 - 07"
 		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18 246 - 08"
+rule "Primo VE - Lds18j"
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
 		MARC."246".ind"1" equals "1" AND
@@ -100,7 +101,7 @@ rule "Primo VE - Lds18 246 - 08"
 		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18 246 - 09"
+rule "Primo VE - Lds18k"
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
 		MARC."246".ind"1" equals "1" AND NOT
@@ -109,7 +110,8 @@ rule "Primo VE - Lds18 246 - 09"
 		create pnx."display"."lds18" with MARC."246" sub without sort "a,b,f,g,n,p"
 end
 
-rule "Primo VE - Lds18 247 - 01"
+rule "Primo VE - Lds18l"
+##Ex: 37853368
 	when
 		MARC."247" has any "a,b,g,n,p,x" AND NOT
 		MARC."247".ind"2" equals "1"
@@ -119,7 +121,7 @@ rule "Primo VE - Lds18 247 - 01"
 		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18 247 - 02"
+rule "Primo VE - Lds18m"
 	when
 		MARC."247" has any "f" AND NOT
 		MARC."247".ind"2" equals "1"
@@ -130,7 +132,8 @@ rule "Primo VE - Lds18 247 - 02"
 		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18 242"
+rule "Primo VE - Lds18n"
+##Ex: 37853368
 	when
 		MARC."247" has any "a,b,n,p" AND
 		MARC."247".ind"1" equals "1"
@@ -140,7 +143,7 @@ rule "Primo VE - Lds18 242"
 		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18 730"
+rule "Primo VE - Lds18o"
 	when
 		MARC is "730"
 	then
@@ -149,21 +152,21 @@ rule "Primo VE - Lds18 730"
 		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18 740"
+rule "Primo VE - Lds18p"
 	when
 		MARC is "740"
 	then
 		create pnx."display"."lds18" with MARC."740" excluding num subfields without sort
 end
 
-rule "Primo VE - Lds18 840"
+rule "Primo VE - Lds18q"
 	when
 		MARC is "840"
 	then
 		create pnx."display"."lds18" with MARC."840" excluding num subfields without sort
 end
 
-rule "Primo VE - Lds18 880-246"
+rule "Primo VE - Lds18r"
 	when
 		MARC."880" has any "i,a,b,f,g,n,p" AND
 		MARC."880"."6" match "246-.*"
@@ -172,7 +175,7 @@ rule "Primo VE - Lds18 880-246"
 		create pnx."display"."lds18" with MARC."880" sub without sort "i,a,b,f,g,n,p"
 end
 
-rule "Primo VE - Lds18 880-247"
+rule "Primo VE - Lds18s"
 	when
 		MARC."880" has any "i,a,b,f,g,n,p" AND
 		MARC."880"."6" match "247-.*"
@@ -180,7 +183,7 @@ rule "Primo VE - Lds18 880-247"
 		create pnx."display"."lds18" with MARC."880" sub without sort "i,a,b,f,g,n,p"
 end
 
-rule "Primo VE - Lds18 880-730"
+rule "Primo VE - Lds18t"
 	when
 		MARC is "880" AND
 		MARC."880"."6" match "730-.*"
@@ -188,7 +191,7 @@ rule "Primo VE - Lds18 880-730"
 		create pnx."display"."lds18" with MARC."880" excluding num subfields without sort
 end
 
-rule "Primo VE - Lds18 880-740"
+rule "Primo VE - Lds18u"
 	when
 		MARC is "880" AND
 		MARC."880"."6" match "740-.*"
@@ -196,7 +199,7 @@ rule "Primo VE - Lds18 880-740"
 		create pnx."display"."lds18" with MARC."880" excluding num subfields without sort
 end
 
-rule "Primo VE - Lds18 880-840"
+rule "Primo VE - Lds18v"
 	when
 		MARC is "880" AND
 		MARC."880"."6" match "840-.*"
