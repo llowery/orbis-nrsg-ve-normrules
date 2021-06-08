@@ -148,6 +148,7 @@ rule "Primo VE - Lds18n"
 end
 
 rule "Primo VE - Lds18o"
+##Ex: 905084428
 	when
 		MARC is "730"
 	then
