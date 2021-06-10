@@ -1,0 +1,6 @@
+rule "Primo VE - Dissertation"
+	when
+		MARC is "502"
+	then
+		create pnx."display"."dissertation" with MARC "502" excluding num subfields without sort
+end
