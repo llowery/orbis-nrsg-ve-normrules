@@ -19,7 +19,7 @@ rule "Primo VE - Lds18b"
 end
 
 rule "Primo VE - Lds18c"
-##Ex: 57348324
+##Ex: none
 	when
 		MARC."246" has any "i,a,b,f,g,n,p" AND
                 (MARC."246".ind"1" equals "0" OR 
@@ -113,6 +113,7 @@ rule "Primo VE - Lds18j"
 end
 
 rule "Primo VE - Lds18k"
+##Ex: 76164333
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
 		(MARC."246".ind"0" equals "1" OR
@@ -144,7 +145,7 @@ rule "Primo VE - Lds18l"
 end
 
 rule "Primo VE - Lds18m"
-##Ex: 37853368
+##Ex: none
 	when
 		MARC."242" has any "a,b,n,p" AND
 		MARC."242".ind"1" equals "1"
