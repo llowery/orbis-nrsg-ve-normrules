@@ -19,7 +19,7 @@ rule "Primo VE - Lds18b"
 end
 
 rule "Primo VE - Lds18c"
-##Ex: none
+##Ex: 957180392
 	when
 		MARC."246" has any "i,a,b,f,g,n,p" AND
                 (MARC."246".ind"1" equals "0" OR 
