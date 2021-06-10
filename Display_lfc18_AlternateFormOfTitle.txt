@@ -22,8 +22,9 @@ rule "Primo VE - Lds18c"
 ##Ex: 57348324
 	when
 		MARC."246" has any "i,a,b,f,g,n,p" AND
-		MARC."246"."i" match ".*" AND
-		MARC."246".ind"1" equals "1"
+                (MARC."246".ind"1" equals "0" OR 
+                MARC."246".ind"1" equals "1") AND
+                MARC."246"."i" match ".*"
 	then
 		create pnx."display"."lds18" with MARC."246" sub without sort "i,a,b,f,g,n,p"
 end
@@ -114,8 +115,15 @@ end
 rule "Primo VE - Lds18k"
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
-		MARC."246".ind"1" equals "1" AND NOT
-		MARC."246".ind"2" equals "1,2,4,5,6,7,8"
+		(MARC."246".ind"0" equals "1" OR
+                MARC."246".ind"1" equals "1") AND NOT
+		(MARC."246".ind"2" equals "1" OR
+                MARC."246".ind"2" equals "2" OR
+                MARC."246".ind"2" equals "4" OR
+                MARC."246".ind"2" equals "5" OR
+                MARC."246".ind"2" equals "6" OR
+                MARC."246".ind"2" equals "7" OR
+                MARC."246".ind"2" equals "8")
 	then
 		create pnx."display"."lds18" with MARC."246" sub without sort "a,b,f,g,n,p"
 end
@@ -123,61 +131,32 @@ end
 rule "Primo VE - Lds18l"
 ##Ex: 37853368
 	when
-		MARC."247" has any "a,b,g,n,p,x" AND NOT
+		MARC."247" has any "a,b,g,n,p,x,f" AND NOT
 		MARC."247".ind"2" equals "1"
 	then
 		set TEMP"1" to MARC."247" subfields "a,b,g,n,p,x"
 		add prefix (TEMP"1","Former title: ")
+		set TEMP"2" to MARC."247" subfields "f"
+		replace string by string (TEMP"2","<","(")
+		replace string by string (TEMP"2",">",")")
+		concatenate with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."display"."lds18" with TEMP"1"
 end
 
 rule "Primo VE - Lds18m"
-	when
-		MARC."247" has any "f" AND NOT
-		MARC."247".ind"2" equals "1"
-	then
-		set TEMP"1" to MARC."247" subfields "f"
-		replace string by string (TEMP"1","<<","(")
-		replace string by string (TEMP"1",">>",")")
-		create pnx."display"."lds18" with TEMP"1"
-end
-
-rule "Primo VE - Lds18n"
 ##Ex: 37853368
 	when
-		MARC."247" has any "a,b,n,p" AND
-		MARC."247".ind"1" equals "1"
+		MARC."242" has any "a,b,n,p" AND
+		MARC."242".ind"1" equals "1"
 	then
-		set TEMP"1" to MARC."247" subfields "a,b,n,p"
+		set TEMP"1" to MARC."242" subfields "a,b,n,p"
 		add prefix (TEMP"1","Translation of title: ")
 		create pnx."display"."lds18" with TEMP"1"
 end
 
-rule "Primo VE - Lds18o"
-##Ex: 905084428
-	when
-		MARC is "730"
-	then
-		set TEMP"1" to MARC."730" excluding num subfields without sort
-		kormarc remove nonfiling brackets MARC."730" sourcetag "730" from TEMP"1"
-		create pnx."display"."lds18" with TEMP"1"
-end
+##NRSG Rules End Here
 
-rule "Primo VE - Lds18p"
-	when
-		MARC is "740"
-	then
-		create pnx."display"."lds18" with MARC."740" excluding num subfields without sort
-end
-
-rule "Primo VE - Lds18q"
-	when
-		MARC is "840"
-	then
-		create pnx."display"."lds18" with MARC."840" excluding num subfields without sort
-end
-
-rule "Primo VE - Lds18r"
+rule "Primo VE - Lds18n"
 	when
 		MARC."880" has any "i,a,b,f,g,n,p" AND
 		MARC."880"."6" match "246-.*"
@@ -186,7 +165,7 @@ rule "Primo VE - Lds18r"
 		create pnx."display"."lds18" with MARC."880" sub without sort "i,a,b,f,g,n,p"
 end
 
-rule "Primo VE - Lds18s"
+rule "Primo VE - Lds18o"
 	when
 		MARC."880" has any "i,a,b,f,g,n,p" AND
 		MARC."880"."6" match "247-.*"
@@ -194,26 +173,26 @@ rule "Primo VE - Lds18s"
 		create pnx."display"."lds18" with MARC."880" sub without sort "i,a,b,f,g,n,p"
 end
 
-rule "Primo VE - Lds18t"
+rule "Primo VE - Lds18p"
 	when
 		MARC is "880" AND
-		MARC."880"."6" match "730-.*"
+		MARC."880"."6" match "222-.*"
 	then
 		create pnx."display"."lds18" with MARC."880" excluding num subfields without sort
 end
 
-rule "Primo VE - Lds18u"
+rule "Primo VE - Lds18q"
 	when
 		MARC is "880" AND
-		MARC."880"."6" match "740-.*"
+		MARC."880"."6" match "210-.*"
 	then
 		create pnx."display"."lds18" with MARC."880" excluding num subfields without sort
 end
 
-rule "Primo VE - Lds18v"
+rule "Primo VE - Lds18r"
 	when
 		MARC is "880" AND
-		MARC."880"."6" match "840-.*"
+		MARC."880"."6" match "242-.*"
 	then
 		create pnx."display"."lds18" with MARC."880" excluding num subfields without sort
 end
