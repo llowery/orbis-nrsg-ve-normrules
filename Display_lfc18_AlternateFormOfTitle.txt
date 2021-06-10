@@ -113,10 +113,10 @@ rule "Primo VE - Lds18j"
 end
 
 rule "Primo VE - Lds18k"
-##Ex: 76164333
+##Ex: 76164333, 03810174
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
-		(MARC."246".ind"0" equals "1" OR
+		(MARC."246".ind"1" equals "0" OR
                 MARC."246".ind"1" equals "1") AND NOT
 		(MARC."246".ind"2" equals "1" OR
                 MARC."246".ind"2" equals "2" OR
