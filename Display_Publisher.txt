@@ -80,7 +80,6 @@ priority 50
 	then 
 		set TEMP"1" to MARC."502" subfields "a"
 		remove string (TEMP"1","Thesis(*)--")
-		remove string (TEMP"1",",*")
 		create pnx."display"."publisher" with TEMP"1"
 end
 
