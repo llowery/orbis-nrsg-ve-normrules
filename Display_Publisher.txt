@@ -78,7 +78,9 @@ priority 50
 	when 
 		MARC."502" has any "a"
 	then 
-		create pnx."display"."publisher" with MARC."502" subfields "a"
+		set TEMP"1" to MARC."502" subfields "a"
+		remove string (TEMP"1","Thesis(*)--")
+		create pnx."display"."publisher" with TEMP"1"
 end
 
 rule "Primo VE - Dissertation 502c"
