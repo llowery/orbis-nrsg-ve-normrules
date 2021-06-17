@@ -73,7 +73,7 @@ priority 40
 		set pnx."display"."publisher" to TEMP"1"
 end
 
-rule "Primo VE - Dissertation 502a"
+rule "Primo VE - Publisher 502a"
 priority 50
 	when 
 		MARC."502" has any "a"
@@ -81,7 +81,7 @@ priority 50
 		create pnx."display"."publisher" with MARC."502" subfields "a"
 end
 
-rule "Primo VE - Dissertation 502c"
+rule "Primo VE - Publisher 502c"
 priority 60
 	when 
 		MARC."502" has any "c" 
