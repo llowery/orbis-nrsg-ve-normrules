@@ -131,7 +131,13 @@ rule "Primo VE - Lds18k"
 		MARC."246" has any "a,b,f,g,n,p" AND
 		(MARC."246".ind"1" equals "0" OR
                 MARC."246".ind"1" equals "1") AND NOT
-		MARC."246".ind"2" equals "1|2|4|5|6|7|8" AND NOT
+		(MARC."246".ind"2" equals "1" OR
+                MARC."246".ind"2" equals "2" OR
+                MARC."246".ind"2" equals "4" OR
+                MARC."246".ind"2" equals "5" OR
+                MARC."246".ind"2" equals "6" OR
+                MARC."246".ind"2" equals "7" OR
+                MARC."246".ind"2" equals "8") AND NOT
                 MARC."246"."i" match ".*"
 	then
 		create pnx."display"."lds18" with MARC."246" sub without sort "a,b,f,g,n,p"
