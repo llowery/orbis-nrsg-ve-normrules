@@ -69,13 +69,19 @@ rule "Primo VE Display- Subject 648"
         create pnx."display"."subject" with TEMP"1"
 end
 
-rule "Primo VE Display- Subject 650"
+rule "Primo VE Display - Subject 650"
 	when
-		MARC."650" has any "a-u,w-z" AND
-		MARC."650".ind"2"  equals "0"
+		MARC."650" has any "v-z" AND
+		MARC."650".ind"2"  equals "0" AND NOT
+                MARC."650"."9" match ".*"
 	then
-		set TEMP"1" to MARC."650" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
-		set TEMP"2" to MARC."650" sub without sorting "x-z" delimited by " -- "
+		set TEMP"1" to MARC."650" subfields "a-u" delimited by " " remove substring using regex "\\.+$"
+                replace string by string (TEMP"1","Aliens","Noncitizens")
+                replace string by string (TEMP"1","Alien criminals","Noncitizen criminals")
+                replace string by string (TEMP"1","Alien detention centers","Immigrant detention centers")
+                replace string by string (TEMP"1","illegal alien","undocumented immigrant")
+                replace string by string (TEMP"1","Illegal alien","Undocumented immigrant")
+		set TEMP"2" to MARC."650" sub without sorting "v,x-z" delimited by " -- "
         remove substring using regex (TEMP"2","\\.+$")		
         concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
         set TEMP"3" to multilingual by "650" "Subject" "display"
@@ -83,20 +89,20 @@ rule "Primo VE Display- Subject 650"
         create pnx."display"."subject" with TEMP"1"
 end
 
-rule "Prima_Display - Subject 651"
+rule "Primo VE Display - Subject 651"
 	when
-		MARC."651" has any "a-u,w-z" AND NOT
-		MARC."651".ind"2"  equals "2"  
+		MARC."651" has any "a-u,w-z" AND
+		MARC."651".ind"2"  equals "0" AND NOT
+                MARC."651"."9" match ".*"
 	then
 		set TEMP"1" to MARC."651" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
-		set TEMP"2" to MARC."651" sub without sorting "x-z" delimited by " -- "
+		set TEMP"2" to MARC."651" sub without sorting "v,x-z" delimited by " -- "
         remove substring using regex (TEMP"2","\\.+$")
 		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
 		set TEMP"3" to multilingual by "651" "Subject" "display"
 		concatenate with delimiter (TEMP"1",TEMP"3","")
         create operational."prima_display"."subject" with TEMP"1"
 end
-
 
 rule "Primo VE Display- Subject 654"
 	when
