@@ -1,4 +1,5 @@
 rule "Primo VE Display - Subject 600"
+##Ex: 45661469, 56655274
 	when
 		MARC."600" has any "a-z" AND
 		MARC."600".ind"2" equals "0" AND NOT
@@ -59,8 +60,9 @@ rule "Primo VE Display - Subject 630"
 end
 
 rule "Primo VE Display - Subject 650"
+##Ex: 45661469, 32822032, 21226089, 56655274
 	when
-		MARC."650" has any "v-z" AND
+		MARC."650" has any "a-z" AND
 		MARC."650".ind"2" equals "0" AND NOT
         MARC."650"."9" match ".*"
 	then
@@ -79,6 +81,7 @@ rule "Primo VE Display - Subject 650"
 end
 
 rule "Primo VE Display - Subject 651"
+##Ex: 56655274, 32822032, 21226089
 	when
 		MARC."651" has any "a-z" AND
 		MARC."651".ind"2" equals "0" AND NOT
@@ -93,10 +96,10 @@ rule "Primo VE Display - Subject 651"
         create pnx."display"."subject" with TEMP"1"
 end
 
-rule "Primo VE Display- Subject 880-600"
+rule "Primo VE Display - Subject 880-600"
 	when
 		MARC."880" has any "a-z" AND
-		MARC."880".ind"2" equals "2" AND NOT
+		MARC."880".ind"2" equals "0" AND
 		MARC."880"."6" match "600-.*"
 	then
 		set TEMP"1" to MARC."880" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
@@ -108,10 +111,10 @@ rule "Primo VE Display- Subject 880-600"
         create pnx."display"."subject" with TEMP"1"
 end
 
-rule "Primo VE Display- Subject 880-610"
+rule "Primo VE Display - Subject 880-610"
 	when
 		MARC."880" has any "a-z" AND
-		MARC."880".ind"2" equals "2" AND NOT
+		MARC."880".ind"2" equals "0" AND
 		MARC."880"."6" match "610-.*"
 	then
 		set TEMP"1" to MARC."880" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
@@ -123,10 +126,10 @@ rule "Primo VE Display- Subject 880-610"
         create pnx."display"."subject" with TEMP"1"
 end
 
-rule "Primo VE Display- Subject 880-611"
+rule "Primo VE Display - Subject 880-611"
 	when
 		MARC."880" has any "a-z" AND
-		MARC."880".ind"2" equals "2" AND NOT
+		MARC."880".ind"2" equals "0" AND
 		MARC."880"."6" match "611-.*"
 	then
 		set TEMP"1" to MARC."880" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
@@ -138,10 +141,10 @@ rule "Primo VE Display- Subject 880-611"
         create pnx."display"."subject" with TEMP"1"
 end
 
-rule "Primo VE Display- Subject 880-630"
+rule "Primo VE Display - Subject 880-630"
 	when
 		MARC."880" has any "a-z" AND
-		MARC."880".ind"2" equals "2" AND NOT
+		MARC."880".ind"2" equals "0" AND
 		MARC."880"."6" match "630-.*"
 	then
 		set TEMP"1" to MARC."880" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
@@ -153,10 +156,10 @@ rule "Primo VE Display- Subject 880-630"
         create pnx."display"."subject" with TEMP"1"
 end
 
-rule "Primo VE Display- Subject 880-650"
+rule "Primo VE Display - Subject 880-650"
 	when
 		MARC."880" has any "a-z" AND
-		MARC."880".ind"2" equals "2" AND NOT
+		MARC."880".ind"2" equals "0" AND
 		MARC."880"."6" match "650-.*"
 	then
 		set TEMP"1" to MARC."880" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
@@ -168,10 +171,10 @@ rule "Primo VE Display- Subject 880-650"
         create pnx."display"."subject" with TEMP"1"
 end
 
-rule "Primo VE Display- Subject 880-651"
+rule "Primo VE Display - Subject 880-651"
 	when
 		MARC."880" has any "a-z" AND
-		MARC."880".ind"2" equals "2" AND NOT
+		MARC."880".ind"2" equals "0" AND
 		MARC."880"."6" match "651-.*"
 	then
 		set TEMP"1" to MARC."880" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
