@@ -45,6 +45,7 @@ rule "Primo VE Display - Subject 611"
 end
 
 rule "Primo VE Display - Subject 630"
+##Ex: 00344815
 	when
 		MARC."630" has any "a-z" AND
 		MARC."630".ind"2" equals "0" AND NOT
