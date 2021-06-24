@@ -1,8 +1,8 @@
 rule "Primo VE - Identifier 020"
 	when
-		MARC."020" has any "a,e"
+		MARC is "020"."a"
 	then
-        set TEMP"1" to MARC."020" sub without sort "a,e"
+		set TEMP"1" to MARC "020"."a"
 		add prefix (TEMP"1","$$CISBN$$V")
 		create pnx."display"."identifier" with TEMP"1"
 end
@@ -18,12 +18,13 @@ end
 
 rule "Primo VE - Identifier 022"
 	when
-		MARC."022" has any "a,e"
+		MARC is "022"."a"
 	then
-		set TEMP"1" to MARC."022" sub without sort "a,e"
+		set TEMP"1" to MARC "022"."a"
 		add prefix (TEMP"1","$$CISSN$$V")
 		create pnx."display"."identifier" with TEMP"1"
 end
+
 rule "Prima Display - ISSN 776"
 	when
         MARC is "776"."x"
