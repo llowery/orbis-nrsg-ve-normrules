@@ -6,7 +6,7 @@ priority 10
         set TEMP"1" to MARC."100" sub without sort "a"
         set TEMP"2" to MARC."100" sub without sort "a"
         set TEMP"3" to MARC."100" sub without sort "b,c,q,d,e,j,u"
-        set TEMP"4" to MARC."100" sub without sort "a"
+        set TEMP"4" to MARC."100" sub without sort "a,b,c,d,j,q"
         remove substring using regex (TEMP"1","^([^,]*)")
         remove substring using regex (TEMP"2",",.*$")
         remove substring using regex (TEMP"4","(/|:|;|=|,)+$")
@@ -56,11 +56,11 @@ end
 rule "Primo VE Display - alternate creator 880-100"
 priority 10
 	when
-		MARC."880" has any "a,b,c,d,n" AND
+		MARC."880" has any "a,b,c,d,n,j,q" AND
 		MARC."880"."6" match "100-.*"
 	then
 	    set TEMP"1" to MARC."880" excluding num subfields without sort
-		set TEMP"2" to MARC."880" sub without sort "a"
+		set TEMP"2" to MARC."880" sub without sort "a,b,c,d,j,q"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
@@ -90,11 +90,11 @@ end
 rule "Primo VE Display - alternate creator 880-111"
 priority 30
 	when
-		MARC."880" has any "a,b,c,d,n" AND
+		MARC."880" has any "a,b,c,d,e,n,q" AND
 		MARC."880"."6" match "111-.*"
 	then
 	    set TEMP"1" to MARC."880" excluding num subfields without sort
-		set TEMP"2" to MARC."880" sub without sort "a"
+		set TEMP"2" to MARC."880" sub without sort "a,e,q"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
