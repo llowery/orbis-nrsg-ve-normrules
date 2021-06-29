@@ -30,7 +30,7 @@ end
 
 rule "Primo VE – Lds45"
 when 
-MARC is "520" . "3"
+MARC is "520"."3"
 then
 set TEMP"1" to MARC. "520" subfield "a"
 add  prefix (TEMP"1","Abstract: ")
