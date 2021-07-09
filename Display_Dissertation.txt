@@ -11,7 +11,7 @@ rule "Primo VE - Dissertation 502b,c,g"
 		MARC."502"."g" match "Thesis.*"
 	then	
 		set TEMP"1" to MARC."502" subfields "b"
-		add prefix (TEMP"1","Thesis(")
+		add prefix (TEMP"1","Thesis (")
 		add suffix (TEMP"1",")")
 		set TEMP"2" to MARC."502" subfields "c" 
 		set TEMP"3" to MARC."502" subfields "g"
