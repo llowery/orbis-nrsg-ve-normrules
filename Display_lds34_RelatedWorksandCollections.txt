@@ -1,26 +1,26 @@
-rule "Primo VE - Related Title 880"
-when
-MARC."880" has any "t"
-AND MARC."880"."6" match "700"
-AND NOT MARC."880".ind"2" equals "2"
-then
-set TEMP"1" to MARC."880" excluding subfields without sorting "e,x,0,4,5,6"
-replace string by string (TEMP"1",";","^")
-remove string (TEMP"1"," (work)")
-remove string (TEMP"1"," (expression)")
-replace string by string (TEMP"1"," ","^")
-create pnx."display"."lds34" with TEMP"1"
-end
-
 rule "Primo VE - Related Title 700" 
     when
 MARC."700" has any "t"
 AND NOT MARC."700".ind"2" equals "2"
 then
 set TEMP"1" to MARC."700" excluding subfields without sorting "e,x,0,4,5,6"
-replace string by string (TEMP"1",";","^")
-remove string (TEMP"1"," (work)")
-remove string (TEMP"1"," (expression)")
-replace string by string (TEMP"1"," ","^")
-create pnx."display"."lds34" with TEMP"1"
+replace string by string (TEMP"1",";"," ")
+remove string (TEMP"1"," \\(work\\)")
+remove string (TEMP"1"," \\(expression\\)")
+replace string by string (TEMP"1"," "," ")
+create pnx."display"."related_work" with TEMP"1"
+end
+
+rule "Primo VE - Related Title 880"
+    when
+MARC."880" has any "t"
+AND MARC."880"."6" match "700"
+AND NOT MARC."880".ind"2" equals "2"
+then
+set TEMP"1" to MARC."880" excluding subfields without sorting "e,x,0,4,5,6"
+replace string by string (TEMP"1",";"," ")
+remove string (TEMP"1"," \\(work\\)")
+remove string (TEMP"1"," \\(expression\\)")
+replace string by string (TEMP"1"," "," ")
+create pnx."display"."related_work" with TEMP"1"
 end
