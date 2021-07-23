@@ -4,7 +4,7 @@ rule "Primo VE - Lds50"
 		MARC."035"."a" match ".*OCoLC.*"
 	then
 		set TEMP"1" to MARC."035"."a"
-		remove substring using regex (TEMP"1","\\(OCoLC\\)?[^0-9]+")
+		remove substring using regex (TEMP"1","\\(OCoLC\\)?[^\\d]+")
 		remove leading and trailing spaces (TEMP"1")
 		create pnx."display"."lds50" with TEMP"1"
 end
