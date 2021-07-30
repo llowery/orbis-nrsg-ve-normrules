@@ -16,6 +16,8 @@ priority 10
         concatenate with delimiter (TEMP"1",TEMP"3"," ")
         concatenate with delimiter (TEMP"1",TEMP"4","")
        remove substring using regex (TEMP"1","[,.]")
+	   set TEMP"5" to multilingual by "100" "Creator" "display"
+	   concatenate with delimiter (TEMP"1",TEMP"5","")
         set pnx."display"."creator" to TEMP"1"
 end
 
