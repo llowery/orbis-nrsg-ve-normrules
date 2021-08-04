@@ -1,0 +1,42 @@
+rule "Primo VE - Lds15"
+when
+MARC."383" has any "a,b,e,c,d"
+then
+create pnx."display"."lds15" with MARC."383" sub without sort "a,b,e,c,d"
+end
+
+rule "Primo VE - Lds15"
+when
+MARC."383" has any "a,b" AND NOT
+MARC."383"."e" match ".*" 
+then
+create pnx."display"."lds15" with MARC."383" sub without sort "a,b"
+end
+
+rule "Primo VE - Lds15a"
+when
+MARC."383" has any "a,b" AND
+MARC."383"."e" match ".*" 
+then
+set TEMP"1" to MARC."383" sub without sort "a,b,e" wrap subfields
+replace wrapping delimiters (TEMP"1","e","(",")")
+create pnx."display"."lds14" with TEMP"1"
+end
+
+rule "Primo VE - Lds15c"
+when
+MARC."383" has any "c" AND NOT
+MARC."383"."d" match ".*" 
+then
+create pnx."display"."lds15" with MARC."383" sub without sort "c"
+end
+
+rule "Primo VE - Lds15d"
+when
+MARC."383" has any "c" AND
+MARC."383"."d" match ".*" 
+then
+set TEMP"1" to MARC."383" sub without sort "c,d" wrap subfields
+replace wrapping delimiters (TEMP"1","d","(",")")
+create pnx."display"."lds14" with TEMP"1"
+end
