@@ -1,4 +1,5 @@
 rule "Primo VE - Lds18"
+##222 = Key Title
 ##Ex: 37853368
 	when
 		MARC."222" has any "a,b"
@@ -9,6 +10,7 @@ rule "Primo VE - Lds18"
 end
 
 rule "Primo VE - Lds18b"
+##210 = Abbreviated Title
 ##Ex: 01714309
 	when
 		MARC."210" has any "a"
@@ -19,6 +21,9 @@ rule "Primo VE - Lds18b"
 end
 
 rule "Primo VE - Lds18c"
+##246 = Varying Form of Title
+##ind 1 = 0 (Note, no added entry) or 1 (Note, added entry)
+##includes $i (Display text)
 ##Ex: 957180392
 	when
 		MARC."246" has any "i,a,b,f,g,n,p" AND
@@ -30,18 +35,29 @@ rule "Primo VE - Lds18c"
 end
 
 rule "Primo VE - Lds18d"
+##246 = Varying Form of Title
+##ind 2 = 1 (Parallel title)
+##does not include $i (Display text)
+##prefer label from $i over indicator if both are present
+##ignore ind 1 because it's not uncommon for catalogers to use 3 here when they should use 1
 ##Ex: 23013395
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
 		MARC."246".ind"2" equals "1" AND NOT
                 MARC."246"."i" match ".*"
 	then
-		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
 		add prefix (TEMP"1","Parallel title in another language: ")
 		create pnx."display"."lds18" with TEMP"1"
 end
 
 rule "Primo VE - Lds18e"
+##246 = Varying Form of Title
+##ind 2 = 2 (Distinctive title)
+##does not include $i (Display text)
+##prefer label from $i over indicator if both are present
+##ind 1 = 0 (Note, no added entry) or 1 (Note, added entry)
+##ind 1 = 2 or 3 are intended for search but not display
 ##Ex: 02259600
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
@@ -50,12 +66,18 @@ rule "Primo VE - Lds18e"
 		MARC."246".ind"2" equals "2" AND NOT
                 MARC."246"."i" match ".*"
 	then
-		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
 		add prefix (TEMP"1","Distinctive title: ")
 		create pnx."display"."lds18" with TEMP"1"
 end
 
 rule "Primo VE - Lds18f"
+##246 = Varying Form of Title
+##ind 2 = 4 (Cover title)
+##does not include $i (Display text)
+##prefer label from $i over indicator if both are present
+##ind 1 = 0 (Note, no added entry) or 1 (Note, added entry)
+##ind 1 = 2 or 3 are intended for search but not display
 ##Ex: 76164333, 37924067
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
@@ -64,12 +86,18 @@ rule "Primo VE - Lds18f"
 		MARC."246".ind"2" equals "4" AND NOT
                 MARC."246"."i" match ".*"
 	then
-		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
 		add prefix (TEMP"1","Cover title: ")
 		create pnx."display"."lds18" with TEMP"1"
 end
 
 rule "Primo VE - Lds18g"
+##246 = Varying Form of Title
+##ind 2 = 5 (Added title page title)
+##does not include $i (Display text)
+##prefer label from $i over indicator if both are present
+##ind 1 = 0 (Note, no added entry) or 1 (Note, added entry)
+##ind 1 = 2 or 3 are intended for search but not display
 ##Ex: 57348324
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
@@ -78,12 +106,18 @@ rule "Primo VE - Lds18g"
 		MARC."246".ind"2" equals "5" AND NOT
                 MARC."246"."i" match ".*"
 	then
-		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
 		add prefix (TEMP"1","Added title page title: ")
 		create pnx."display"."lds18" with TEMP"1"
 end
 
 rule "Primo VE - Lds18h"
+##246 = Varying Form of Title
+##ind 2 = 6 (Caption title)
+##does not include $i (Display text)
+##prefer label from $i over indicator if both are present
+##ind 1 = 0 (Note, no added entry) or 1 (Note, added entry)
+##ind 1 = 2 or 3 are intended for search but not display
 ##Ex: 08238063
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
@@ -92,12 +126,18 @@ rule "Primo VE - Lds18h"
 		MARC."246".ind"2" equals "6" AND NOT
                 MARC."246"."i" match ".*"
 	then
-		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
 		add prefix (TEMP"1","Caption title: ")
 		create pnx."display"."lds18" with TEMP"1"
 end
 
 rule "Primo VE - Lds18i"
+##246 = Varying Form of Title
+##ind 2 = 7 (Running title)
+##does not include $i (Display text)
+##prefer label from $i over indicator if both are present
+##ind 1 = 0 (Note, no added entry) or 1 (Note, added entry)
+##ind 1 = 2 or 3 are intended for search but not display
 ##Ex: 51621908
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
@@ -106,12 +146,18 @@ rule "Primo VE - Lds18i"
 		MARC."246".ind"2" equals "7" AND NOT
                 MARC."246"."i" match ".*"
 	then
-		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
 		add prefix (TEMP"1","Running title: ")
 		create pnx."display"."lds18" with TEMP"1"
 end
 
 rule "Primo VE - Lds18j"
+##246 = Varying Form of Title
+##ind 2 = 8 (Spine title)
+##does not include $i (Display text)
+##prefer label from $i over indicator if both are present
+##ind 1 = 0 (Note, no added entry) or 1 (Note, added entry)
+##ind 1 = 2 or 3 are intended for search but not display
 ##Ex: 01714309
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
@@ -120,12 +166,19 @@ rule "Primo VE - Lds18j"
 		MARC."246".ind"2" equals "8" AND NOT
                 MARC."246"."i" match ".*"
 	then
-		set TEMP"1" to MARC."246" subfields "a,b,f,g,n,p"
+		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
 		add prefix (TEMP"1","Spine title: ")
 		create pnx."display"."lds18" with TEMP"1"
 end
 
 rule "Primo VE - Lds18k"
+##246 = Varying Form of Title
+##ind 2 != 1-2, 4-8
+##includes ind 2 = # (unspecified), 0 (Portion of title), 3 (other)
+##does not include $i (Display text)
+##these titles are not prefixed with a label because MARC record provides no useful info
+##ind 1 = 0 (Note, no added entry) or 1 (Note, added entry)
+##ind 1 = 2 or 3 are intended for search but not display
 ##Ex: 76164333
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
@@ -144,12 +197,13 @@ rule "Primo VE - Lds18k"
 end
 
 rule "Primo VE - Lds18l"
+##247 = Former Title
 ##Ex: 37853368
 	when
 		MARC."247" has any "a,b,g,n,p,x,f" AND NOT
 		MARC."247".ind"2" equals "1"
 	then
-		set TEMP"1" to MARC."247" subfields "a,b,g,n,p,x"
+		set TEMP"1" to MARC."247" sub without sort "a,b,g,n,p,x"
 		add prefix (TEMP"1","Former title: ")
 		set TEMP"2" to MARC."247" subfields "f"
 		replace string by string (TEMP"2","<","(")
@@ -164,7 +218,7 @@ rule "Primo VE - Lds18m"
 		MARC."242" has any "a,b,n,p" AND
 		MARC."242".ind"1" equals "1"
 	then
-		set TEMP"1" to MARC."242" subfields "a,b,n,p"
+		set TEMP"1" to MARC."242" sub without sort "a,b,n,p"
 		add prefix (TEMP"1","Translation of title: ")
 		create pnx."display"."lds18" with TEMP"1"
 end
