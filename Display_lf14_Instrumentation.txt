@@ -5,13 +5,15 @@ when
 MARC."382" has any "a,b,e,n" AND NOT
 MARC."382"."3" match ".*"   
 then
-set TEMP"1" to MARC."382" sub without sort "a,b,d,e,n,p" wrap subfields
+set TEMP"1" to MARC."382" sub without sort "a,b,d,e,n,p,v" wrap subfields
 replace wrapping delimiters (TEMP"1","a","","")
 replace wrapping delimiters (TEMP"1","n","(",");")
-replace wrapping delimiters (TEMP"1","b","solo: ","")
+replace wrapping delimiters (TEMP"1","b","solo ","")
 replace wrapping delimiters (TEMP"1","d","/","")
-replace string by string (TEMP"1"," ([0-9]{1}); /","/")
+replace string by string (TEMP"1"," ([0-9]); /","/")
 replace wrapping delimiters (TEMP"1","p"," or ","")
+replace wrapping delimiters (TEMP"1","v","[","]") 
+replace string by string (TEMP"1"," ","+")
 #replace string by string (TEMP"1","( [0-9]){2}"," $1")
 #replace string by string (TEMP"1"," ([0-9]{1})"," ($1);")
 replace string by string (TEMP"1",";$","")
