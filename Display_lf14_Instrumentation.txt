@@ -1,6 +1,8 @@
 rule "Primo VE - Lds14"
 # no 3
-# ex doubling only 1054014464, 807983332
+# ex $d doubling only 1054014464, 807983332
+# ex $p alternative instrumentation 08153868
+# ex $v note 1112144880
 when
 MARC."382" has any "a,b,e,n" AND NOT
 MARC."382"."3" match ".*"   
@@ -10,12 +12,12 @@ replace wrapping delimiters (TEMP"1","a","","")
 replace wrapping delimiters (TEMP"1","n","(",");")
 replace wrapping delimiters (TEMP"1","b","solo ","")
 replace wrapping delimiters (TEMP"1","d","/","")
-replace string by string (TEMP"1"," ([0-9]); //","//")
-replace string by string (TEMP"1"," ([0-9]); or "," or ")
+replace string by string (TEMP"1"," \\([0-9]\\); /","/")
+#replace string by string (TEMP"1","; //","//")
 replace wrapping delimiters (TEMP"1","p","or ","")
-replace string by string (TEMP"1"," ([0-9]); or "," or ")
+replace string by string (TEMP"1"," \\([0-9]\\); or "," or ")
 replace wrapping delimiters (TEMP"1","v","[","]")
-replace string by string (TEMP"1"," (1);",";")
+replace string by string (TEMP"1"," \\(1\\);",";")
 replace string by string (TEMP"1"," ","+")
 #replace string by string (TEMP"1","( [0-9]){2}"," $1")
 #replace string by string (TEMP"1"," ([0-9]{1})"," ($1);")
