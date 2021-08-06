@@ -6,7 +6,7 @@ rule "Primo VE - Lds14"
 # ex $d doubling 1054014464, 807983332
 # ex $p alternative instrumentation 08153868, 457771332, 09224901
 # ex $v note 1112144880, 48788606, 956878944
-# problem 00740415 "chimes/toy instrument [small metal cricket] triangle/..."
+# problem 00740415 "chimes/toy instrument [small metal cricket] triangle/..." missing semicolon
 when
 MARC."382" has any "a,b,e,n" AND NOT
 MARC."382"."3" match ".*"   
