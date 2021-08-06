@@ -1,10 +1,7 @@
-# based on MLA/MOUG display recommendations
-# https://musicoclcusers.org/resources/discovery-reference-collections/
-# https://www.musiclibraryassoc.org/mpage/mdr_IID
 
 rule "Primo VE - Lds14"
 # no 3
-# ex $b solo parts 06809612, 1055684538
+# ex $b solo parts 06809612, 1055684538 [NOT SURE WHY 383 SHOWS!!]
 # ex $d doubling 1054014464, 807983332
 # ex $p alternative instrumentation 08153868, 457771332, 09224901
 # ex $v note 1112144880, 48788606, 956878944
@@ -17,20 +14,24 @@ set TEMP"1" to MARC."382" sub without sort "a,b,d,e,n,p,v" wrap subfields
 replace wrapping delimiters (TEMP"1","a","","")
 replace wrapping delimiters (TEMP"1","n","(",");")
 replace wrapping delimiters (TEMP"1","e","(",");")
-# $b solo parts 
+# $b prefix solo parts with solo
 replace wrapping delimiters (TEMP"1","b","solo ","")
-# $d doubling
+# $d separate doubling parts with /
 replace wrapping delimiters (TEMP"1","d","/","")
 replace string by string (TEMP"1"," \\([0-9]\\); /","/")
-# $p alternative instrumentation
+# $p separate alternative instrumentation with or
 replace wrapping delimiters (TEMP"1","p","or ","")
 replace string by string (TEMP"1"," \\([0-9]\\); or "," or ")
-# $v note
+# $v surround notes with []
 replace wrapping delimiters (TEMP"1","v","[","]")
 # remove number of players when = 1
 replace string by string (TEMP"1"," \\(1\\);",";")
+# clean up punctuation around notes
+replace string by string (TEMP"1","; \\["," \\[")
+replace string by string (TEMP"1","] /","]/")
 #replace string by string (TEMP"1","( [0-9]){2}"," $1")
 #replace string by string (TEMP"1"," ([0-9]{1})"," ($1);")
+add prefix (TEMP"1","For ")
 replace string by string (TEMP"1",";$","")
 create pnx."display"."lds14" with TEMP"1"
 end
@@ -55,4 +56,6 @@ concatenate with delimiter (TEMP"1",TEMP"2"," ")
 create pnx."display"."lds14" with TEMP"1"
 end
 
-
+# based on MLA/MOUG display recommendations
+# https://musicoclcusers.org/resources/discovery-reference-collections/
+# https://www.musiclibraryassoc.org/mpage/mdr_IID
