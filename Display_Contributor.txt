@@ -20,7 +20,7 @@ priority 20
        remove substring using regex (TEMP"1","[,.]")
 	   set TEMP"5" to multilingual by "700" "Creator" "display"
 	   concatenate with delimiter (TEMP"1",TEMP"5","")
-        set pnx."display"."contributor" to TEMP"1"
+        create pnx."display"."contributor" with TEMP"1"
 end
 
 
