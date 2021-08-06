@@ -2,7 +2,7 @@ rule "Primo VE Display - contributor 700"
 priority 20
 	when
 		 MARC."700" has any "a,b,c,d,e,j,q,u,3" 
-                 MARC."700"."a" match ".*" AND NOT MARC."700"."t" match ".*" AND
+         MARC."700"."a" match ".*" AND NOT MARC."700"."t" match ".*" AND
 		 MARC.control is "001"
 	then	   
         set TEMP"1" to MARC."700" sub without sort "a"
@@ -20,7 +20,7 @@ priority 20
        remove substring using regex (TEMP"1","[,.]")
 	   set TEMP"5" to multilingual by "700" "Creator" "display"
 	   concatenate with delimiter (TEMP"1",TEMP"5","")
-        set pnx."display"."contributor" to TEMP"1"
+       create pnx."display"."contributor" to TEMP"1"
 end
 
 
