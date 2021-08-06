@@ -1,11 +1,12 @@
 
 rule "Primo VE - Lds14"
 # no 3
+# ex $n 07222513 (01), 784920 (17)
 # ex $b solo parts 06809612, 1055684538 [NOT SURE WHY 383 SHOWS!!]
 # ex $d doubling 1054014464, 807983332
 # ex $p alternative instrumentation 08153868, 457771332, 09224901
 # ex $v note 1112144880, 48788606, 956878944
-# problem 00740415
+# problem 00740415 "chimes/toy instrument [small metal cricket] triangle/..."
 when
 MARC."382" has any "a,b,e,n" AND NOT
 MARC."382"."3" match ".*"   
@@ -18,12 +19,14 @@ replace wrapping delimiters (TEMP"1","e","(",");")
 replace wrapping delimiters (TEMP"1","b","solo ","")
 # $d separate doubling parts with /
 replace wrapping delimiters (TEMP"1","d","/","")
-replace string by string (TEMP"1"," \\([0-9]\\); /","/")
+replace string by string (TEMP"1"," \\([0-9]+\\); /","/")
 # $p separate alternative instrumentation with or
 replace wrapping delimiters (TEMP"1","p","or ","")
-replace string by string (TEMP"1"," \\([0-9]\\); or "," or ")
+replace string by string (TEMP"1"," \\([0-9]+\\); or "," or ")
 # $v surround notes with []
 replace wrapping delimiters (TEMP"1","v","[","]")
+# fix erroneous $n in form (01)
+replace string by string (TEMP"1"," \\(0"," \\(")
 # remove number of players when = 1
 replace string by string (TEMP"1"," \\(1\\);",";")
 # clean up punctuation around notes
