@@ -1,0 +1,11 @@
+rule "Primo VE - Lds21"
+# ex 1145799732, 1200737739, 1113859921, 123897619
+when
+MARC is "384"."a"
+then
+set TEMP"1" to MARC."384" subfields "3"
+set TEMP"2" to MARC."384" subfields "a"
+replace string by string (TEMP"1","(:| )$","")
+concatenate with delimiter (TEMP"1",TEMP"2",": ")
+create pnx."display"."lds21" with TEMP"1"
+end
