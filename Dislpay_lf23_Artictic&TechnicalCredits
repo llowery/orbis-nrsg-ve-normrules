@@ -13,5 +13,5 @@ rule "Primo VE - Artistic & Technical Credits 880-508"
 		MARC."880" has any "a" AND
 		MARC."880"."6" match "508-.*"
 	then
-		create pnx."display"."lds23" with MARC."508" subfields "a"
+		create pnx."display"."lds23" with MARC."880" subfields "a"
 end
