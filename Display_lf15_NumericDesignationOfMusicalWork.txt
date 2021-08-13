@@ -11,7 +11,7 @@ set TEMP"1" to MARC."383" sub without sort "a,b,e" wrap subfields
 replace wrapping delimiters (TEMP"1","a","",",")
 replace wrapping delimiters (TEMP"1","b","",",")
 replace wrapping delimiters (TEMP"1","e","(",")")
-replace string by string (TEMP"1",", ("," (")
+replace string by string (TEMP"1",", \("," \(")
 replace string by string (TEMP"1",",$","")
 create pnx."display"."lds14" with TEMP"1"
 end
@@ -28,7 +28,7 @@ set TEMP"1" to MARC."383" sub without sort "c,d" wrap subfields
 replace wrapping delimiters (TEMP"1","c","",",")
 #replace wrapping delimiters (TEMP"1","b","",",")
 replace wrapping delimiters (TEMP"1","d","(",")")
-replace string by string (TEMP"1",", ("," (")
+replace string by string (TEMP"1",", \("," \(")
 replace string by string (TEMP"1",",$","")
 create pnx."display"."lds14" with TEMP"1"
 end
