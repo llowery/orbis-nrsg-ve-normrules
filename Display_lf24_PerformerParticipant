@@ -1,0 +1,17 @@
+rule "Primo VE - Performer or Participant 511"
+	when
+		MARC."511" has any "a" AND NOT
+        	(MARC."880" has any "a" AND
+        	MARC."880"."6" match "511-.*")
+	then
+		create pnx."display"."lds24" with MARC."511" subfields "a"
+end
+
+rule "Primo VE - Performer or Participant 880-511"
+	when
+                MARC is "511" AND	
+		MARC."880" has any "a" AND
+		MARC."880"."6" match "511-.*"
+	then
+		create pnx."display"."lds24" with MARC."880" subfields "a"
+end
