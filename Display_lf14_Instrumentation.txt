@@ -27,13 +27,13 @@ replace string by string (TEMP"1"," \\([0-9]+\\); or "," or ")
 replace wrapping delimiters (TEMP"1","v","[","]")
 # $r # soloists
 replace wrapping delimiters (TEMP"1","r","Total soloists: ",".")
-replace string by string (TEMP"1","Total soloists: 1\.","")
+replace string by string (TEMP"1","Total soloists: 1\\.","")
 # $s # performers
 replace wrapping delimiters (TEMP"1","s","Total performers: ",".")
-replace string by string (TEMP"1","Total performers: 1\.","")
+replace string by string (TEMP"1","Total performers: 1\\.","")
 # $t 
 replace wrapping delimiters (TEMP"1","t","Total ensembles: ",".")
-replace string by string (TEMP"1","Total ensembles: 1\.","")
+replace string by string (TEMP"1","Total ensembles: 1\\.","")
 # fix erroneous $n in form (01)
 replace string by string (TEMP"1"," \\(0"," \\(")
 # remove number of players when = 1
@@ -41,7 +41,7 @@ replace string by string (TEMP"1"," \\(1\\);",";")
 # clean up punctuation around notes
 replace string by string (TEMP"1","; \\["," \\[")
 replace string by string (TEMP"1","] /","]/")
-replace string by string (TEMP"1","; Total ","\. Total ")
+replace string by string (TEMP"1","; Total ","\\. Total ")
 #replace string by string (TEMP"1","( [0-9]){2}"," $1")
 #replace string by string (TEMP"1"," ([0-9]{1})"," ($1);")
 add prefix (TEMP"1","For ")
