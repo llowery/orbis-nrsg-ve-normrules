@@ -1,42 +1,34 @@
 rule "Primo VE - Lds15"
+# 383 Numeric Designation of Musical Work
+# $a Serial number (R), $b Opus number (R)
+# $e - Publisher associated with opus number (NR)
+# ex 36366857, 14698923, 961100812, 957303692
+# ex 09099071
 when
-MARC."383" has any "a,b,e,c,d"
-then
-create pnx."display"."lds15" with MARC."383" sub without sort "a,b,e,c,d"
-end
-
-rule "Primo VE - Lds15"
-when
-MARC."383" has any "a,b" AND NOT
-MARC."383"."e" match ".*" 
-then
-create pnx."display"."lds15" with MARC."383" sub without sort "a,b"
-end
-
-rule "Primo VE - Lds15a"
-when
-MARC."383" has any "a,b" AND
-MARC."383"."e" match ".*" 
+MARC."383" has any "a,b,e"
 then
 set TEMP"1" to MARC."383" sub without sort "a,b,e" wrap subfields
+replace wrapping delimiters (TEMP"1","a","",",")
+replace wrapping delimiters (TEMP"1","b","",",")
 replace wrapping delimiters (TEMP"1","e","(",")")
+replace string by string (TEMP"1",", ("," (")
+replace string by string (TEMP"1",",$","")
 create pnx."display"."lds14" with TEMP"1"
 end
 
-rule "Primo VE - Lds15c"
+rule "Primo VE - Lds15a"
+# 383 Numeric Designation of Musical Work
+# $c Thematic index number (R)
+# $d Thematic index code (NR)
+# ex 04566698, 971479624, 1055535827
 when
-MARC."383" has any "c" AND NOT
-MARC."383"."d" match ".*" 
-then
-create pnx."display"."lds15" with MARC."383" sub without sort "c"
-end
-
-rule "Primo VE - Lds15d"
-when
-MARC."383" has any "c" AND
-MARC."383"."d" match ".*" 
+MARC."383" has any "c,d"
 then
 set TEMP"1" to MARC."383" sub without sort "c,d" wrap subfields
+replace wrapping delimiters (TEMP"1","c","",",")
+#replace wrapping delimiters (TEMP"1","b","",",")
 replace wrapping delimiters (TEMP"1","d","(",")")
+replace string by string (TEMP"1",", ("," (")
+replace string by string (TEMP"1",",$","")
 create pnx."display"."lds14" with TEMP"1"
 end
