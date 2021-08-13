@@ -1,0 +1,6 @@
+rule "Primo VE - Artistic & Technical Credits 508"
+    	when
+        	MARC."508" has any "a"
+    	then
+        	create pnx."display"."lds23" with MARC."508" subfields "a"
+end
