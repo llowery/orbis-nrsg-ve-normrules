@@ -4,7 +4,9 @@ rule "Primo VE - Performer or Participant 511"
         	(MARC."880" has any "a" AND
         	MARC."880"."6" match "511-.*")
 	then
-		create pnx."display"."lds24" with MARC."511" subfields "a"
+		set TEMP"1" to MARC."511.1" subfields "a"
+		add prefix (TEMP"1","Cast: ")
+		create pnx."display"."lds24" with TEMP"1"
 end
 
 rule "Primo VE - Performer or Participant 880-511"
@@ -13,5 +15,7 @@ rule "Primo VE - Performer or Participant 880-511"
 		MARC."880" has any "a" AND
 		MARC."880"."6" match "511-.*"
 	then
-		create pnx."display"."lds24" with MARC."880" subfields "a"
+	        set TEMP"1" to MARC."880.1" subfields "a"
+		add prefix (TEMP"1","Cast: ")
+		create pnx."display"."lds24" with TEMP"1"
 end
