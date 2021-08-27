@@ -9,7 +9,7 @@ rule "Primo VE - Lds17_008_22_b"
                 MARC.control."008"(22-23) equals "b" AND NOT
                 MARC.control."LDR"(6-7) matches "e|f|p" AND NOT
                 MARC.control."LDR"(6-8) matches "ab|ai|as" AND NOT
-				MARC."385"."a" equals ".*"
+				MARC is "385"
 	then
                 set TEMP"1" to position("008",22-23)
                 add prefix (TEMP"1","School children,Children") 
@@ -21,7 +21,7 @@ rule "Primo VE - Lds17_008_22_c"
                 MARC.control."008"(22-23) equals "c" AND NOT
                 MARC.control."LDR"(6-7) matches "e|f|p" AND NOT
                 MARC.control."LDR"(6-8) matches "ab|ai|as" AND NOT
-				MARC."385"."a" equals ".*"
+				MARC is "385"
 	then
                 set TEMP"1" to position("008",22-23)
                 add prefix (TEMP"1","Preteens,Children") 
@@ -33,7 +33,7 @@ rule "Primo VE - Lds17_008_22_d"
                 MARC.control."008"(22-23) equals "d" AND NOT
                 MARC.control."LDR"(6-7) matches "e|f|p" AND NOT
                 MARC.control."LDR"(6-8) matches "ab|ai|as" AND NOT
-				MARC."385"."a" equals ".*"
+				MARC is "385"
 	then
                 set TEMP"1" to position("008",22-23)
                 add prefix (TEMP"1","Teenagers") 
@@ -45,7 +45,7 @@ rule "Primo VE - Lds17_008_22_e"
                 MARC.control."008"(22-23) equals "e" AND NOT
                 MARC.control."LDR"(6-7) matches "e|f|p" AND NOT
                 MARC.control."LDR"(6-8) matches "ab|ai|as" AND NOT
-				MARC."385"."a" equals ".*"
+				MARC is "385"
 	then
                 set TEMP"1" to position("008",22-23)
                 add prefix (TEMP"1","Adults") 
@@ -57,7 +57,7 @@ rule "Primo VE - Lds17_008_22_f"
                 MARC.control."008"(22-23) equals "f" AND NOT
                 MARC.control."LDR"(6-7) matches "e|f|p" AND NOT
                 MARC.control."LDR"(6-8) matches "ab|ai|as" AND NOT
-				MARC."385"."a" equals ".*"
+				MARC is "385"
 	then
                 set TEMP"1" to position("008",22-23)
                 add prefix (TEMP"1","Specialized audience") 
@@ -69,7 +69,7 @@ rule "Primo VE - Lds17_008_22_g"
                 MARC.control."008"(22-23) equals "g" AND NOT
                 MARC.control."LDR"(6-7) matches "e|f|p" AND NOT
                 MARC.control."LDR"(6-8) matches "ab|ai|as" AND NOT
-				MARC."385"."a" equals ".*"
+				MARC is "385"
 	then
                 set TEMP"1" to position("008",22-23)
                 add prefix (TEMP"1","General audience") 
@@ -81,7 +81,7 @@ rule "Primo VE - Lds17_008_22_j"
                 MARC.control."008"(22-23) equals "j" AND NOT
                 MARC.control."LDR"(6-7) matches "e|f|p" AND NOT
                 MARC.control."LDR"(6-8) matches "ab|ai|as" AND NOT
-				MARC."385"."a" equals ".*"
+				MARC is "385"
 	then
                 set TEMP"1" to position("008",22-23)
                 add prefix (TEMP"1","Children") 
@@ -93,7 +93,7 @@ rule "Primo VE - Lds17_008_22_a"
                 MARC.control."008"(22-23) equals "a" AND NOT
                 MARC.control."LDR"(6-7) matches "e|f|p" AND NOT
                 MARC.control."LDR"(6-8) matches "ab|ai|as" AND NOT
-				MARC."385"."a" equals ".*"
+				MARC is "385"
 	then
                 set TEMP"1" to position("008",22-23)
                 add prefix (TEMP"1","Preschool children,Children") 
