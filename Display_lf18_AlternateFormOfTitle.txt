@@ -40,7 +40,7 @@ rule "Primo VE - Lds18d"
 ##does not include $i (Display text)
 ##prefer label from $i over indicator if both are present
 ##ignore ind 1 because it's not uncommon for catalogers to use 3 here when they should use 1
-##Ex: 23013395
+##Ex: 957180392
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
 		MARC."246".ind"2" equals "1" AND NOT
@@ -87,6 +87,9 @@ rule "Primo VE - Lds18f"
                 MARC."246"."i" match ".*"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
+		##change <> to () because VE isn't displaying text between <>
+		replace string by string (TEMP"1","<","\\(")
+		replace string by string (TEMP"1",">","\\)")
 		add prefix (TEMP"1","Cover title: ")
 		create pnx."display"."lds18" with TEMP"1"
 end
