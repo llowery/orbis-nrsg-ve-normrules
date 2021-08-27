@@ -165,9 +165,8 @@ priority 40
 end
 
 rule "Primo VE - publisher notes 362"
-	when
-		MARC."362" has any "a,z" AND NOT
-		MARC."502" has any "a,b,c,d,g"
+when
+		MARC."362" has any "a,z"
 	then
 		create pnx."display"."publisher_notes" with "N/A"
 end
