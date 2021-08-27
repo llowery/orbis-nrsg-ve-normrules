@@ -169,5 +169,5 @@ rule "Primo VE - publisher notes 362"
 		MARC."362" has any "a,z" AND NOT
 		MARC."502" has any "a,b,c,d,g"
 	then
-		create pnx."display"."publisher_notes" with MARC."362" sub without sort "a,z"
+		create pnx."display"."publisher_notes" with "N/A"
 end
