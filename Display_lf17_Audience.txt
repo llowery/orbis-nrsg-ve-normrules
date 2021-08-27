@@ -102,8 +102,8 @@ rule "Primo VE - Lds17_008_22_a"
 end
 rule "Primo VE - Lds17_521_ind1_other"
 	when
-		MARC."521" has any "a,b,3" AND NOT
-                MARC."521".ind"1" equals "0,1,2,3,4"
+		MARC."521" has any "a,b,3" AND
+                MARC."521".ind"1" equals "8"
 	then
 		create pnx."display"."lds17" with MARC."521" subfields "a,b,3"
 end
