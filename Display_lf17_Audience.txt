@@ -1,0 +1,110 @@
+rule "Primo VE - Lds17"
+	when
+		MARC is "385"."a"
+	then
+		create pnx."display"."lds17" with MARC "385"."a"
+end
+rule "Primo VE - Lds17_008_22_b"
+	when
+                MARC.control."008"(22-23) equals "b" AND NOT
+                MARC.control."LDR"(6-7) matches "e|f|p"
+#              (MARC.control."LDR"(6-7) matches "a" AND
+#              MARC.control."LDR"(7-8) matches "b|i|s")
+#		MARC is "385"."a"
+	then
+                set TEMP"1" to position("008",22-23)
+                add prefix (TEMP"1","School children,Children") 
+                remove string (TEMP"1","b") 
+                set pnx."display"."lds17" to TEMP"1"
+end
+rule "Primo VE - Lds17_008_22_c"
+	when
+                MARC.control."008"(22-23) equals "c" AND NOT
+                MARC.control."LDR"(6-7) matches "e|f|p"
+#              (MARC.control."LDR"(6-7) matches "a" AND
+#              MARC.control."LDR"(7-8) matches "b|i|s")
+#		MARC is "385"."a"
+	then
+                set TEMP"1" to position("008",22-23)
+                add prefix (TEMP"1","Preteens,Children") 
+                remove string (TEMP"1","c") 
+                set pnx."display"."lds17" to TEMP"1"
+end
+rule "Primo VE - Lds17_008_22_d"
+	when
+                MARC.control."008"(22-23) equals "d" AND NOT
+                MARC.control."LDR"(6-7) matches "e|f|p"
+#              (MARC.control."LDR"(6-7) matches "a" AND
+#              MARC.control."LDR"(7-8) matches "b|i|s")
+#		MARC is "385"."a"
+	then
+                set TEMP"1" to position("008",22-23)
+                add prefix (TEMP"1","Teenagers") 
+                remove string (TEMP"1","d") 
+                set pnx."display"."lds17" to TEMP"1"
+end
+rule "Primo VE - Lds17_008_22_e"
+	when
+                MARC.control."008"(22-23) equals "e" AND NOT
+                MARC.control."LDR"(6-7) matches "e|f|p"
+#              (MARC.control."LDR"(6-7) matches "a" AND
+#              MARC.control."LDR"(7-8) matches "b|i|s")
+#		MARC is "385"."a"
+	then
+                set TEMP"1" to position("008",22-23)
+                add prefix (TEMP"1","Adults") 
+                remove string (TEMP"1","e") 
+                set pnx."display"."lds17" to TEMP"1"
+end
+rule "Primo VE - Lds17_008_22_f"
+	when
+                MARC.control."008"(22-23) equals "f" AND NOT
+                MARC.control."LDR"(6-7) matches "e|f|p"
+#              (MARC.control."LDR"(6-7) matches "a" AND
+#              MARC.control."LDR"(7-8) matches "b|i|s")
+#		MARC is "385"."a"
+	then
+                set TEMP"1" to position("008",22-23)
+                add prefix (TEMP"1","Specialized audience") 
+                remove string (TEMP"1","f") 
+                set pnx."display"."lds17" to TEMP"1"
+end
+rule "Primo VE - Lds17_008_22_g"
+	when
+                MARC.control."008"(22-23) equals "g" AND NOT
+                MARC.control."LDR"(6-7) matches "e|f|p"
+#              (MARC.control."LDR"(6-7) matches "a" AND
+#              MARC.control."LDR"(7-8) matches "b|i|s")
+#		MARC is "385"."a"
+	then
+                set TEMP"1" to position("008",22-23)
+                add prefix (TEMP"1","General audience") 
+                remove string (TEMP"1","g") 
+                set pnx."display"."lds17" to TEMP"1"
+end
+rule "Primo VE - Lds17_008_22_j"
+	when
+                MARC.control."008"(22-23) equals "j" AND NOT
+                MARC.control."LDR"(6-7) matches "e|f|p"
+#              (MARC.control."LDR"(6-7) matches "a" AND
+#              MARC.control."LDR"(7-8) matches "b|i|s")
+#		MARC is "385"."a"
+	then
+                set TEMP"1" to position("008",22-23)
+                add prefix (TEMP"1","Children") 
+                remove string (TEMP"1","j") 
+                set pnx."display"."lds17" to TEMP"1"
+end
+rule "Primo VE - Lds17_008_22_a"
+	when
+                MARC.control."008"(22-23) equals "a" AND NOT
+                MARC.control."LDR"(6-7) matches "e|f|p"
+#              (MARC.control."LDR"(6-7) matches "a" AND
+#              MARC.control."LDR"(7-8) matches "b|i|s")
+#		MARC is "385"."a"
+	then
+                set TEMP"1" to position("008",22-23)
+                add prefix (TEMP"1","Preschool children,Children") 
+                remove string (TEMP"1","a") 
+                set pnx."display"."lds17" to TEMP"1"
+end
