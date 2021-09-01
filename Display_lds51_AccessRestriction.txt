@@ -4,3 +4,13 @@ MARC."506" has any "a,b,c,d,e,f"
 then
 create pnx."display"."lds49" with MARC."506" subfields "a,b,c,d,e,f"
 end
+
+rule "Primo VE - LDR check"
+when
+   MARC is "506"."3" AND
+   MARC.control."LDR"(6) matches "p"
+then
+   set TEMP"1" to MARC."506"."3"
+   remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+   create pnx."display"."lds49" with TEMP"1"
+end
