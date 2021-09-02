@@ -25,3 +25,15 @@ then
    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
    create pnx."display"."lds49" with TEMP"1"
 end
+
+rule "Primo VE - IND check - Rule 4"
+when
+   MARC is "506" AND
+   MARC."506".ind"1" equals "0" AND
+   MARC."506".ind"2" match ".*" AND
+   MARC.control."LDR"(6) matches "p"
+then
+   set TEMP"1" to MARC."506" excluding num subfields without sort
+   add suffix (TEMP"1"," NO RESTRICTION")
+   create pnx."display"."lds49" with TEMP"1"
+end
