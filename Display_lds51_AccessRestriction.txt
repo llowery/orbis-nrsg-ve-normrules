@@ -14,3 +14,14 @@ then
    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
    create pnx."display"."lds49" with TEMP"1"
 end
+
+rule "Primo VE - LDR check2"
+when
+   MARC is "506"."3" AND
+   MARC."506"."2" match ".*" AND NOT MARC."506"."5" match ".*" AND
+   NOT MARC.control."LDR"(6) matches "p"
+then
+   set TEMP"1" to MARC."506"."3"
+   remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+   create pnx."display"."lds49" with TEMP"1"
+end
