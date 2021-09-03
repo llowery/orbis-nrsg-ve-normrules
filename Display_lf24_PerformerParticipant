@@ -1,21 +1,37 @@
-rule "Primo VE - Performer or Participant 511"
+rule "Primo VE - Lds24"
 	when
-		MARC."511" has any "a" AND NOT
-        	(MARC."880" has any "a" AND
-        	MARC."880"."6" match "511-.*")
+                MARC."880" has any "a" AND
+		MARC."880"."6" match "511-.*" AND
+                MARC."880".ind"1" equals "0"
 	then
-		set TEMP"1" to MARC."511.1" subfields "a"
+                create pnx."display"."lds24" with MARC."880" subfields "a"
+end
+
+rule "Primo VE - Lds24b"
+	when
+                MARC."880" has any "a" AND
+		MARC."880"."6" match "511-.*" AND
+                MARC."880".ind"1" equals "1"
+	then
+		set TEMP"1" to MARC."880" subfields "a"
 		add prefix (TEMP"1","Cast: ")
 		create pnx."display"."lds24" with TEMP"1"
 end
 
-rule "Primo VE - Performer or Participant 880-511"
+rule "Primo VE - Lds24c"
 	when
-                MARC is "511" AND	
-		MARC."880" has any "a" AND
-		MARC."880"."6" match "511-.*"
+		MARC."511" has any "a" AND
+                MARC."511".ind"1" equals "0"
 	then
-	        set TEMP"1" to MARC."880.1" subfields "a"
+		create pnx."display"."lds24" with MARC."511" subfields "a"
+end
+
+rule "Primo VE - Lds24d"
+	when
+		MARC."511" has any "a" AND
+                MARC."511".ind"1" equals "1"
+	then
+		set TEMP"1" to MARC."511" subfields "a"
 		add prefix (TEMP"1","Cast: ")
 		create pnx."display"."lds24" with TEMP"1"
 end
