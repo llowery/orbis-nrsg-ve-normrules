@@ -1,3 +1,4 @@
+# OCLC 144230347  
 rule "Primo VE - Lds24"
 	when
                 MARC."880" has any "a" AND
@@ -7,6 +8,7 @@ rule "Primo VE - Lds24"
                 create pnx."display"."lds24" with MARC."880" subfields "a"
 end
 
+# OCLC 957180392 
 rule "Primo VE - Lds24b"
 	when
                 MARC."880" has any "a" AND
@@ -18,6 +20,7 @@ rule "Primo VE - Lds24b"
 		create pnx."display"."lds24" with TEMP"1"
 end
 
+# OCLC 949929354
 rule "Primo VE - Lds24c"
 	when
 		MARC."511" has any "a" AND
@@ -26,6 +29,7 @@ rule "Primo VE - Lds24c"
 		create pnx."display"."lds24" with MARC."511" subfields "a"
 end
 
+# OCLC 319853531 (511 0_ 511 1_)
 rule "Primo VE - Lds24d"
 	when
 		MARC."511" has any "a" AND
