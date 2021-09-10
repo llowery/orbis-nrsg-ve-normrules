@@ -1,8 +1,10 @@
 rule "Primo VE - Lds17"
+##Ex: 60421176
 	when
 		MARC is "385"."a"
 	then
-		create pnx."display"."lds17" with MARC "385"."a"
+              set TEMP"1" to MARC "385"."a"		
+              append TEMP"1" to pnx."display"."lds17" delimited by "; "
 end
 rule "Primo VE - Lds17_008_22_b"
 	when
