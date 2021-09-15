@@ -59,7 +59,6 @@ rule "Primo VE - Lds49"
 when
    MARC is "506"."2" AND NOT MARC."506" has any "5" 
    AND MARC.control."LDR"(6-6) does not equal "p"
-   AND MARC."506" has any "a,b,c,d,e,f"
 then
    set TEMP"1" to MARC."506" sub without sort "a,b,c,d,e,f"
    create pnx."display"."lds49" with TEMP"1"
