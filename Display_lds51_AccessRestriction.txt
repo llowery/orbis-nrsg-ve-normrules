@@ -1,39 +1,70 @@
-rule "Primo VE - Lds51"
+# 
+#Scenario 1 LDR 6 = p
+#For MARC 506
+#If Ind1=0, writes “No Restriction”
+#If $3 exists, remove “:” and output first.
+#Grab the rest of subfield a-f
+ 
+#Scenario 2 LDR 6 <> p
+#For MARC 506
+#Only process if $2 exists and $5 not exist.
+ 
+#If Ind1=0, writes “No Restriction”
+#If $3 exists, remove “:” and output first.
+#Grab the rest of subfield a-f
+ 
+rule "Primo VE - LDR 6 is P ind1=0"
 when
-MARC."506" has any "a,b,c,d,e,f"
+   MARC."506"."3" match ".*"  AND
+   MARC.control."LDR"(6) matches "p" AND
+   MARC."506".ind"1" equals "0" 
 then
-create pnx."display"."lds49" with MARC."506" subfields "a,b,c,d,e,f"
+   set TEMP"1" to "No Restriction”
+   create pnx."display"."lds49" with TEMP"1"
 end
 
-rule "Primo VE - LDR check"
+rule "Primo VE - LDR 6 is P"
 when
-   MARC is "506"."3" AND
+   MARC."506"."3" match ".*"  AND
    MARC.control."LDR"(6) matches "p"
+then
+   set TEMP"1" to MARC."506"."3"
+   remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+   set TEMP"2" to MARC."506" excluding num subfields without sort
+   concatenate with delimiter (TEMP"1",TEMP"2","")
+   create pnx."display"."lds49" with TEMP"1"
+end
+
+rule "Primo VE - LDR 6 is NOT P Ind1=0"
+when
+   MARC."506"."2" match ".*" 
+   AND NOT MARC."506"."5" match ".*" 
+   AND NOT MARC.control."LDR"(6) matches "p"
+   AND MARC."506".ind"1" equals "0" 
+then
+   set TEMP"1" to “No Restriction”
+   create pnx."display"."lds49" with TEMP"1"
+end
+
+rule "Primo VE - LDR 6 is NOT P $3 exists"
+when
+   MARC."506"."2" match ".*" 
+   AND NOT MARC."506"."5" match ".*" 
+   AND NOT MARC.control."LDR"(6) matches "p"
+   AND MARC."506"."3" match ".*"
 then
    set TEMP"1" to MARC."506"."3"
    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
    create pnx."display"."lds49" with TEMP"1"
 end
 
-rule "Primo VE - LDR check2"
+rule "Primo VE - LDR 6 is NOT P grab the rest"
 when
-   MARC is "506"."3" AND
-   MARC."506"."2" match ".*" AND NOT MARC."506"."5" match ".*" AND
-   NOT MARC.control."LDR"(6) matches "p"
+   MARC."506"."2" match ".*" 
+   AND NOT MARC."506"."5" match ".*" 
+   AND NOT MARC.control."LDR"(6) matches "p"
+   AND MARC."506" has any "a,b,c,d,e,f"
 then
-   set TEMP"1" to MARC."506"."3"
-   remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-   create pnx."display"."lds49" with TEMP"1"
-end
-
-rule "Primo VE - IND check - Rule 4"
-when
-   MARC is "506" AND
-   MARC."506".ind"1" equals "0" AND
-   MARC."506".ind"2" match ".*" AND
-   MARC.control."LDR"(6) matches "p"
-then
-   set TEMP"1" to MARC."506" excluding num subfields without sort
-   add suffix (TEMP"1"," NO RESTRICTION")
+   set TEMP"1" to MARC."506" sub without sort "a,b,c,d,e,f"
    create pnx."display"."lds49" with TEMP"1"
 end
