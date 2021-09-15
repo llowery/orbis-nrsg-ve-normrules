@@ -61,6 +61,6 @@ rule "Prima Display - ISSN 074"
         MARC is "074"."a"
 	then
 		set TEMP"1" to MARC "074"."a"
-		add prefix (TEMP"1","GPO:^")
+		add prefix (TEMP"1","GPO : ")
 		create pnx."display"."identifier" with TEMP"1"
 end
