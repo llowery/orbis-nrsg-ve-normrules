@@ -2,65 +2,65 @@ rule "Primo VE - Lds49"
 #rule "Primo VE - LDR 6 is P ind1=0"
 when
    MARC is "506"."3" AND
-   MARC.control."LDR"(6-6) equals "p" AND
-   MARC."506".ind"1" equals "0" 
+   MARC.control."LDR"(6-7) equals "p" AND
+   MARC."506".ind"1" equals "0"
 then
-   set TEMP"1" to "No Restriction”
-   create pnx."display"."lds49" with TEMP"1"
+   create pnx."display"."lds49" with "No Restriction"
 end
 
-#rule "Primo VE - LDR 6 is P"
-rule "Primo VE - Lds49"
+rule "Primo VE - LDR 6 is P"
 when
    MARC is "506"."3"  AND
-   MARC.control."LDR"(6-6) equals "p"
+   MARC.control."LDR"(6-7) equals "p"
 then
    set TEMP"1" to MARC."506"."3"
    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
    create pnx."display"."lds49" with TEMP"1"
 end
 
-
-rule "Primo VE - Lds49"
-#rule "Primo VE - LDR 6 is P - remaining"
+rule "Primo VE - LDR 6 is P - remaining"
 when
    MARC is "506"  AND
-   MARC.control."LDR"(6-6) equals "p"
+   MARC.control."LDR"(6-7) equals "p"
 then
    set TEMP"1" to MARC."506" sub without sort "a,b,c,d,e,f"
    create pnx."display"."lds49" with TEMP"1"
 end
 
 
-#rule "Primo VE - LDR 6 is NOT P Ind1=0"
-rule "Primo VE - Lds49"
+rule "Primo VE - LDR 6 is NOT P Ind1=0"
+priority 20
 when
-   MARC is "506"."2" AND NOT MARC."506" has any "5" 
-   AND MARC.control."LDR"(6-6) does not equal "p"
+   MARC."506" has any "2,5" AND
+   MARC."506"."2" match ".*" AND NOT MARC."506"."5" match ".*"
+   AND MARC.control."LDR"(6-7) does not equal "p"
    AND MARC."506".ind"1" equals "0" 
 then
-   set TEMP"1" to “No Restriction”
-   create pnx."display"."lds49" with TEMP"1"
+   set TEMP"1" to MARC."506" sub without sort "a,b,c,d,e,f"
+   add suffix (TEMP"1"," No Restriction")
+   set pnx."display"."lds49" to TEMP"1"
 end
 
-#rule "Primo VE - LDR 6 is NOT P $3 exists"
-rule "Primo VE - Lds49"
+rule "Primo VE - LDR 6 is NOT P $3 exists"
+priority 10
 when
-   MARC is "506"."2" AND NOT MARC."506" has any "3,5" 
-   AND MARC.control."LDR"(6-6) does not equal "p"
+   MARC is "506"."3" AND
+   MARC."506"."2" match ".*" AND NOT MARC."506"."5" match ".*"
+   AND MARC.control."LDR"(6-7) does not equal "p"
 then
    set TEMP"1" to MARC."506"."3"
    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
    create pnx."display"."lds49" with TEMP"1"
 end
 
-#rule "Primo VE - LDR 6 is NOT P grab the rest"
-rule "Primo VE - Lds49"
+rule "Primo VE - LDR 6 is NOT P grab the rest"
 when
-   MARC is "506"."2" AND NOT MARC."506" has any "5" 
-   AND MARC.control."LDR"(6-6) does not equal "p"
+   MARC."506" has any "a,b,c,d,e,f" AND
+   MARC."506"."2" match ".*" AND NOT MARC."506"."5" match ".*"
+   AND MARC.control."LDR"(6-7) does not equal "p"
 then
    set TEMP"1" to MARC."506" sub without sort "a,b,c,d,e,f"
+   set TEMP"2" to position("LDR",6-7)
    create pnx."display"."lds49" with TEMP"1"
 end
 
