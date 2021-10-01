@@ -21,7 +21,7 @@ priority 20
 		MARC."110" has any "a,b,c,d,e,n"
 	then
 	    set TEMP"1" to MARC."110" sub without sort "a,b,c,d,e,n"
-		set TEMP"2" to MARC."110" sub without sort "a,b"
+		set TEMP"2" to MARC."110" sub without sort "a"
 		remove string (TEMP"1",";@@^")
 		remove string (TEMP"2",";()?*@@^")
 		remove substring using regex (TEMP"2","[.,/=]+$")
@@ -38,7 +38,7 @@ priority 30
 		MARC."111" has any "a,c,d,e,n,j,q" 
 	then
 	    set TEMP"1" to MARC."111" sub without sort "a,c,d,e,n,j,q"
-		set TEMP"2" to MARC."111" sub without sort "a,e,q"
+		set TEMP"2" to MARC."111" sub without sort "a"
 		remove string (TEMP"1",";@@^")
 		remove string (TEMP"2",";()?*@@^")
 		remove substring using regex (TEMP"2","[.,/=]+$")
@@ -56,7 +56,7 @@ priority 10
 		MARC."880"."6" match "100-.*"
 	then
 	    set TEMP"1" to MARC."880" excluding num subfields without sort
-		set TEMP"2" to MARC."880" sub without sort "a,b,c,d,j,q"
+		set TEMP"2" to MARC."880" sub without sort "a"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
@@ -73,7 +73,7 @@ priority 20
 		MARC."880"."6" match "110-.*"
 	then
 	    set TEMP"1" to MARC."880" excluding num subfields without sort
-		set TEMP"2" to MARC."880" sub without sort "a,b"
+		set TEMP"2" to MARC."880" sub without sort "a"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
@@ -90,7 +90,7 @@ priority 30
 		MARC."880"."6" match "111-.*"
 	then
 	    set TEMP"1" to MARC."880" excluding num subfields without sort
-		set TEMP"2" to MARC."880" sub without sort "a,e,q"
+		set TEMP"2" to MARC."880" sub without sort "a"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
