@@ -25,7 +25,7 @@ priority 30
 	then
 	    set TEMP"1" to MARC."710" sub without sort "a,b,c,d,e,n,3"
 	    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-		set TEMP"2" to MARC."710" sub without sort "a,b"
+		set TEMP"2" to MARC."710" sub without sort "a"
         remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
@@ -42,7 +42,7 @@ priority 30
 	then
 	    set TEMP"1" to MARC."711" sub without sort "a,b,c,d,e,j,n,q,3"
 	    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-		set TEMP"2" to MARC."711" sub without sort "a,e,q"
+		set TEMP"2" to MARC."711" sub without sort "a"
         remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
@@ -60,7 +60,7 @@ priority 10
 	then
 	    set TEMP"1" to MARC."880" sub without sort "a,b,c,d,e,j,q,u"
 	    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-		set TEMP"2" to MARC."880" sub without sort "a,b,c,d,j,q"
+		set TEMP"2" to MARC."880" sub without sort "a"
         remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
@@ -78,7 +78,7 @@ priority 30
 	then
 	    set TEMP"1" to MARC."880" sub without sort "a,b,c,d,e"
 	    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-		set TEMP"2" to MARC."880" sub without sort "a,b"
+		set TEMP"2" to MARC."880" sub without sort "a"
         remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
@@ -96,7 +96,7 @@ priority 30
 	then
 	    set TEMP"1" to MARC."880" sub without sort "a,b,c,d,n"
 	    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-		set TEMP"2" to MARC."880" sub without sort "a,e,q"
+		set TEMP"2" to MARC."880" sub without sort "a"
         remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
