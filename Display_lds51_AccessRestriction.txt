@@ -68,7 +68,6 @@ when
    AND MARC.control."LDR"(6-7) does not equal "p"
 then
    set TEMP"1" to MARC."506" sub without sort "a,b,c,d,e,f"
-   set TEMP"2" to position("LDR",6-7)
    create pnx."display"."lds49" with TEMP"1"
 end
 
