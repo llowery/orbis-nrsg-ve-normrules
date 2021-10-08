@@ -1,4 +1,5 @@
 rule "Primo VE - Lds19"
+##Ex: 925959193
 	when
 		MARC."386" has any "a,i" AND
 		MARC."386"."3" match ".*"
@@ -12,6 +13,7 @@ rule "Primo VE - Lds19"
 end
 
 rule "Primo VE - Lds19b"
+##Ex: 03498635
 	when
 		MARC."386" has any "a,i" AND NOT
 		MARC."386"."3" match ".*"
@@ -19,5 +21,16 @@ rule "Primo VE - Lds19b"
 		set TEMP"1" to MARC."386" subfields "i"
 		set TEMP"2" to MARC."386" subfields "a" delimited by "; " remove substring using regex "\\.+$"
 		concatenate with delimiter (TEMP"1",TEMP"2"," ")
+		create pnx."display"."lds19" with TEMP"1"
+end
+
+rule "Primo VE - Lds19c"
+##Ex: 02112725
+	when
+		MARC."386" has any "a" AND NOT
+		MARC."386"."3" match ".*" AND NOT
+		MARC."386"."i" match ".*" 
+	then
+		set TEMP"1" to MARC."386" subfields "a" delimited by "; " remove substring using regex "\\.+$"
 		create pnx."display"."lds19" with TEMP"1"
 end
