@@ -1,0 +1,14 @@
+rule "Primo VE - Lds11"
+when
+MARC is "880"."c" AND
+MARC."880"."6" match "245-.*"
+then
+create pnx."display"."lds11" with MARC "880"."c"
+end
+
+rule "Primo VE - Lds11b"
+when
+MARC is "245"."c"
+then
+create pnx."display"."lds11" with MARC "245"."c"
+end
