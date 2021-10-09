@@ -1,18 +1,19 @@
 rule "Primo VE - Lds14"
 # no 3
-# ex $n 07222513 (01), 784920 (17)
+# ex $n 07222513 (01), 00784920 (17)
 # ex $b solo parts 06809612, 1055684538 [NOT SURE WHY 383 SHOWS!!]
 # ex $d doubling instruments 1054014464, 807983332
 # ex $p alternative instrumentation 08153868, 457771332, 09224901
 # ex $v note 1112144880, 48788606, 956878944
-# problem no $n 14698923
+# ex no $n 14698923
 # problem 00740415 "chimes/toy instrument [small metal cricket] triangle/..." missing semicolon
 when
 MARC."382" has any "a,b,e,n" AND NOT
 MARC."382"."3" match ".*"   
 then
 set TEMP"1" to MARC."382" sub without sort "a,b,d,e,n,p,r,s,t,v" wrap subfields
-replace wrapping delimiters (TEMP"1","a","","")
+# add extra ";" after subfield a to account for fields lacking $n/$e
+replace wrapping delimiters (TEMP"1","a","",";")
 replace wrapping delimiters (TEMP"1","n","(",");")
 replace wrapping delimiters (TEMP"1","e","(",");")
 # $b prefix solo parts with solo
@@ -46,6 +47,10 @@ replace string by string (TEMP"1","; Total ","\\. Total ")
 #replace string by string (TEMP"1"," ([0-9]{1})"," ($1);")
 add prefix (TEMP"1","For ")
 replace string by string (TEMP"1",";$","")
+# remove any extra semicolons 
+replace string by string (TEMP"1",";;",";")
+replace string by string (TEMP"1",";\\.","\\.")
+replace string by string (TEMP"1","; \\("," \\(")
 create pnx."display"."lds14" with TEMP"1"
 end
 
