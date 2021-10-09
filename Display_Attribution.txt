@@ -1,14 +1,18 @@
 rule "Primo VE - Lds11"
 when
-MARC is "880"."c" AND
-MARC."880"."6" match "245-.*"
+MARC is "245"."c"
 then
-create pnx."display"."lds11" with MARC "880"."c"
+set TEMP"1" to MARC "245"."c"
+remove substring using regex (TEMP"1","(\\.)+$")
+create pnx."display"."lds11" with TEMP"1"
 end
 
 rule "Primo VE - Lds11b"
 when
-MARC is "245"."c"
+MARC is "880"."c" AND
+MARC."880"."6" match "245-.*"
 then
-create pnx."display"."lds11" with MARC "245"."c"
+set TEMP"1" to MARC "880"."c"
+remove substring using regex (TEMP"1","(\\.)+$")
+create pnx."display"."lds11" with TEMP"1"
 end
