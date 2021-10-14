@@ -1,0 +1,7 @@
+rule "Primo VE - Lds36 MESH Genre"
+	when
+		MARC."655" has any "a" AND
+    MARC."655".ind"2" equals "2"
+	then
+		create pnx."display"."lds36" with MARC."655" subfields "a"
+end
