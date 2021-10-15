@@ -1,0 +1,25 @@
+rule "Primo VE - Lds26"
+when
+MARC is "370"."g" 
+then	
+set TEMP"1" to MARC."370" subfields "g"
+add prefix (TEMP"1","Place of Origin of Work: ")
+create pnx."display"."lds26" with TEMP"1"
+end
+
+rule "Primo VE - Lds26_370_c"
+when
+MARC is "370"."c"
+then	
+set TEMP"1" to MARC."370" subfields "c"
+add prefix (TEMP"1","Associated Country: ")
+create pnx."display"."lds26" with TEMP"1"
+end
+
+rule "Primo VE - Lds26_370_f"
+when
+MARC is "370"."f"
+then	
+set TEMP"1" to MARC."370" subfields "f"
+create pnx."display"."lds26" with TEMP"1"
+end
