@@ -2,7 +2,7 @@
 #fast OCLC #05264690 
 #655#0 OCLC#43354922 
 
-rule "Primo VE - Genre 655"
+rule "Primo VE - Genre 655 #7 lcgft"
 	when
         	MARC."655" has any "a" AND
         	MARC."655".ind"2" equals "7" AND  
@@ -11,7 +11,7 @@ rule "Primo VE - Genre 655"
         create pnx."display"."genre" with MARC "655" subfields "a" delimited by " " remove substring using regex "\\.+$"
 end
 
-rule "Primo VE - Genre 655b"
+rule "Primo VE - Genre 655 #7"
 	when
         	MARC."655" has any "a" AND
         	MARC."655".ind"2" equals "7" AND  
@@ -43,7 +43,7 @@ rule "Primo VE - Genre 655b"
         create pnx."display"."genre" with TEMP"1"
 end
 
-rule "Primo VE - Genre 655c"
+rule "Primo VE - Genre 655 #0,2,4"
 	when
         	MARC."655" has any "a" AND
         	(MARC."655".ind"2" equals "0" OR
@@ -56,9 +56,33 @@ rule "Primo VE - Genre 655c"
 	create pnx."display"."genre" with TEMP"1"
 end
 
-rule "Primo VE - Genre 655d"
+rule "Primo VE - Genre 380"
 	when
         	MARC."380" has any "a"
 	then
         create pnx."display"."genre" with MARC "380" subfields "a" delimited by " " remove substring using regex "\\.+$"
+end
+
+rule "Primo VE - Genre 008_30_a"
+	when
+		MARC.control."008"(30-31) equals "a" AND
+		MARC.control."LDR"(6-7) matches "i|"
+	then
+		set TEMP"1" to position("008",30-31)
+                add prefix (TEMP"1","Autobiography") 
+                remove string (TEMP"1","a") 
+        create pnx."display"."genre" with TEMP"1"
+end
+
+#Ex. OCLC #50090159
+
+rule "Primo VE - Genre 008_24_b"
+	when
+		MARC.control."008"(24-27) equals "b" AND
+		MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+	then
+		set TEMP"1" to position("008",24-27)
+                add prefix (TEMP"1","Bibliographies") 
+                remove string (TEMP"1","b") 
+        create pnx."display"."genre" with TEMP"1"
 end
