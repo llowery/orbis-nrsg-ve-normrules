@@ -1,4 +1,4 @@
-rule "Primo VE - Lds50"
+rule "Primo VE - Lds100"
 	when
 		MARC is "035"."a" AND
 		MARC."035"."a" match ".*OCoLC.*"
@@ -6,9 +6,9 @@ rule "Primo VE - Lds50"
 		set TEMP"1" to MARC."035"."a"
 		remove substring using regex (TEMP"1","\\(OCoLC\\)?[^\\d]+")
 		remove leading and trailing spaces (TEMP"1")
-		create pnx."display"."lds50" with TEMP"1"
+		create pnx."display"."Lds100" with TEMP"1"
 end
-rule "Primo VE - Lds50 ocm"
+rule "Primo VE - Lds100 ocm"
 	when
 		MARC is "035"."a" AND
 		MARC."035"."a" match "^ocm.*"
@@ -16,23 +16,23 @@ rule "Primo VE - Lds50 ocm"
 		set TEMP"1" to MARC."035"."a"
 		remove substring using regex (TEMP"1","ocm")
 		remove leading and trailing spaces (TEMP"1")
-		create pnx."display"."lds50" with TEMP"1"
+		create pnx."display"."Lds100" with TEMP"1"
 end
-rule "Primo VE - Lds50 ocn"
+rule "Primo VE - Lds100 ocn"
 	when
 		MARC is "035"."a" AND
 		MARC."035"."a" match "^ocn.*"
 	then
 		set TEMP"1" to MARC."035"."a"
 		remove substring using regex (TEMP"1","ocn")
-		create pnx."display"."lds50" with TEMP"1"
+		create pnx."display"."Lds100" with TEMP"1"
 end
-rule "Primo VE - Lds50 on"
+rule "Primo VE - Lds100 on"
 	when
 		MARC is "035"."a" AND
 		MARC."035"."a" match "^on.*"
 	then
 		set TEMP"1" to MARC."035"."a"
 		remove substring using regex (TEMP"1","on")
-		create pnx."display"."lds50" with TEMP"1"
+		create pnx."display"."Lds100" with TEMP"1"
 end
