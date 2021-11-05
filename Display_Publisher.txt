@@ -1,3 +1,5 @@
+# OCLC 45106833
+
 rule "Primo VE - publisher 260/3"
 priority 10
 	when
@@ -24,16 +26,16 @@ priority 20
 		MARC."264".ind"1"  equals "3" AND
 		MARC."264".ind"2"  equals "1" 
 	then
-	    set TEMP"1" to MARC."264" sub without sort "a,b"
-	    remove string (TEMP"1","<<")
-        remove string (TEMP"1",">>")
-        remove string (TEMP"1","\\(")
-        remove string (TEMP"1","\\)")
-        remove string (TEMP"1","\\[")
-        remove string (TEMP"1","\\]")
-        remove leading and trailing spaces (TEMP"1")
-        remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-        replace spaces (TEMP"1"," ")
+		set TEMP"1" to MARC."264" sub without sort "a,b"
+	    	remove string (TEMP"1","<<")
+        	remove string (TEMP"1",">>")
+        	remove string (TEMP"1","\\(")
+        	remove string (TEMP"1","\\)")
+        	remove string (TEMP"1","\\[")
+        	remove string (TEMP"1","\\]")
+        	remove leading and trailing spaces (TEMP"1")
+        	remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+        	replace spaces (TEMP"1"," ")
 		set pnx."display"."publisher" to TEMP"1"
 end
 
