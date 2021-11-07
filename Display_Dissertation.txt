@@ -1,3 +1,4 @@
+# OCLC 41710075
 rule "Primo VE - Dissertation 502a"
 	when 
 		MARC."502" has any "a"
@@ -26,7 +27,7 @@ rule "Primo VE - Dissertation 502b,c"
 		MARC."502"."g" match "Thesis.*"
 	then	
 		set TEMP"1" to MARC."502" subfields "b"
-		add prefix (TEMP"1","Thesis(")
+		add prefix (TEMP"1","Thesis (")
 		add suffix (TEMP"1",")")
 		set TEMP"2" to MARC."502" subfields "c" 
 		concatenate with delimiter (TEMP"1",TEMP"2","--")
