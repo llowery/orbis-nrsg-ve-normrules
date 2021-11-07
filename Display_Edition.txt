@@ -16,15 +16,15 @@ rule "Primo VE - Complete Edition 880-250"
 end
 
 rule "Primo VE - Edition 251"
-    	when
-        	MARC."251" has any "a"
-    	then
-        	create pnx."display"."edition" with MARC."251" subfields "a"
+	when
+		MARC."251" has any "a"
+	then
+		create pnx."display"."edition" with MARC."251" subfields "a"
 end
 
 rule "Primo VE - Edition 254"
-    	when
-        	MARC."254" has any "a"
-    	then
-        	create pnx."display"."edition" with MARC."254" subfields "a"
+	when
+		MARC."254" has any "a"
+	then
+		create pnx."display"."edition" with MARC."254" subfields "a"
 end
