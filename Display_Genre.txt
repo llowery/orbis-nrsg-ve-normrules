@@ -1,20 +1,20 @@
-#lcgft OCLC #774607605 
-#fast OCLC #05264690 
-#655#0 OCLC#43354922 
+#lcgft OCLC 774607605 
+#fast OCLC 05264690 
+#655 _0 OCLC 43354922 
 
 rule "Primo VE - Genre 655 #7 lcgft"
 	when
-        	MARC."655" has any "a" AND
-        	MARC."655".ind"2" equals "7" AND  
+		MARC."655" has any "a" AND
+		MARC."655".ind"2" equals "7" AND  
 		MARC."655"."2" match "lcgft" 
 	then
-        create pnx."display"."genre" with MARC "655" subfields "a" delimited by " " remove substring using regex "\\.+$"
+		create pnx."display"."genre" with MARC "655" subfields "a" delimited by " " remove substring using regex "\\.+$"
 end
 
 rule "Primo VE - Genre 655 #7"
 	when
-        	MARC."655" has any "a" AND
-        	MARC."655".ind"2" equals "7" AND  
+		MARC."655" has any "a" AND
+		MARC."655".ind"2" equals "7" AND  
 		(MARC."655"."2" match "aat" OR
 		MARC."655"."2" match "fast" OR 
 		MARC."655"."2" match "ftamc" OR
@@ -37,30 +37,30 @@ rule "Primo VE - Genre 655 #7"
 		MARC."655"."2" match "mim" OR
 		MARC."655"."2" match "migfg")
 	then
-        	set TEMP"1" to MARC."655" subfields "a" delimited by " " remove substring using regex "\\.+$"
+	   	set TEMP"1" to MARC."655" subfields "a" delimited by " " remove substring using regex "\\.+$"
 		set TEMP"2" to MARC."655" sub without sorting "v,x-z" delimited by " -- " remove substring using regex (TEMP"2","\\.+$")
 		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
-        create pnx."display"."genre" with TEMP"1"
+		create pnx."display"."genre" with TEMP"1"
 end
 
 rule "Primo VE - Genre 655 #0,2,4"
 	when
-        	MARC."655" has any "a" AND
-        	(MARC."655".ind"2" equals "0" OR
+		MARC."655" has any "a" AND
+		(MARC."655".ind"2" equals "0" OR
 		MARC."655".ind"2" equals "2" OR
 		MARC."655".ind"2" equals "4")
 	then
-        	set TEMP"1" to MARC."655" subfields "a" delimited by " " remove substring using regex "\\.+$"
+		set TEMP"1" to MARC."655" subfields "a" delimited by " " remove substring using regex "\\.+$"
 		set TEMP"2" to MARC."655" sub without sorting "v,x-z" delimited by " -- " remove substring using regex (TEMP"2","\\.+$")
 		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
-	create pnx."display"."genre" with TEMP"1"
+		create pnx."display"."genre" with TEMP"1"
 end
 
 rule "Primo VE - Genre 380"
 	when
-        	MARC."380" has any "a"
+		MARC."380" has any "a"
 	then
-        create pnx."display"."genre" with MARC "380" subfields "a" delimited by " " remove substring using regex "\\.+$"
+		create pnx."display"."genre" with MARC "380" subfields "a" delimited by " " remove substring using regex "\\.+$"
 end
 
 rule "Primo VE - Genre 008_30_a"
@@ -69,12 +69,10 @@ rule "Primo VE - Genre 008_30_a"
 		MARC.control."LDR"(6-7) matches "i|"
 	then
 		set TEMP"1" to position("008",30-31)
-                add prefix (TEMP"1","Autobiography") 
-                remove string (TEMP"1","a") 
-        create pnx."display"."genre" with TEMP"1"
+		add prefix (TEMP"1","Autobiography") 
+		remove string (TEMP"1","a") 
+		create pnx."display"."genre" with TEMP"1"
 end
-
-#Ex. OCLC #50090159
 
 rule "Primo VE - Genre 008_24_b"
 	when
@@ -82,7 +80,7 @@ rule "Primo VE - Genre 008_24_b"
 		MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
 	then
 		set TEMP"1" to position("008",24-27)
-                add prefix (TEMP"1","Bibliographies") 
-                remove string (TEMP"1","b") 
-        create pnx."display"."genre" with TEMP"1"
+		add prefix (TEMP"1","Bibliographies") 
+		remove string (TEMP"1","b") 
+		create pnx."display"."genre" with TEMP"1"
 end
