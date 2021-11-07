@@ -6,17 +6,17 @@ priority 10
 		MARC."260" has any "a,b" AND
 		MARC."260".ind"1"  equals "3" 
 	then
-	    	set TEMP"1" to MARC."260" sub without sort "a,b"
-	    	remove string (TEMP"1","<<")
-        	remove string (TEMP"1",">>")
-        	remove string (TEMP"1","\\(")
-        	remove string (TEMP"1","\\)")
-        	remove string (TEMP"1","\\[")
-        	remove string (TEMP"1","\\]")
-        	remove leading and trailing spaces (TEMP"1")
-        	remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-        	replace spaces (TEMP"1"," ")
-	    	set pnx."display"."publisher" to TEMP"1"
+		set TEMP"1" to MARC."260" sub without sort "a,b"
+		remove string (TEMP"1","<<")
+		remove string (TEMP"1",">>")
+		remove string (TEMP"1","\\(")
+		remove string (TEMP"1","\\)")
+		remove string (TEMP"1","\\[")
+		remove string (TEMP"1","\\]")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		replace spaces (TEMP"1"," ")
+		set pnx."display"."publisher" to TEMP"1"
 end
 
 rule "Primo VE - publisher 264/3/1"
@@ -27,15 +27,15 @@ priority 20
 		MARC."264".ind"2"  equals "1" 
 	then
 		set TEMP"1" to MARC."264" sub without sort "a,b"
-	    	remove string (TEMP"1","<<")
-        	remove string (TEMP"1",">>")
-        	remove string (TEMP"1","\\(")
-        	remove string (TEMP"1","\\)")
-        	remove string (TEMP"1","\\[")
-        	remove string (TEMP"1","\\]")
-        	remove leading and trailing spaces (TEMP"1")
-        	remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-        	replace spaces (TEMP"1"," ")
+		remove string (TEMP"1","<<")
+		remove string (TEMP"1",">>")
+		remove string (TEMP"1","\\(")
+		remove string (TEMP"1","\\)")
+		remove string (TEMP"1","\\[")
+		remove string (TEMP"1","\\]")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		replace spaces (TEMP"1"," ")
 		set pnx."display"."publisher" to TEMP"1"
 end
 
@@ -44,16 +44,16 @@ priority 30
 	when
 		MARC."260" has any "a,b" 
 	then
-	    	set TEMP"1" to MARC."260" sub without sort "a,b"
-	    	remove string (TEMP"1","<<")
-        	remove string (TEMP"1",">>")
-        	remove string (TEMP"1","\\(")
-        	remove string (TEMP"1","\\)")
-        	remove string (TEMP"1","\\[")
-        	remove string (TEMP"1","\\]")
-        	remove leading and trailing spaces (TEMP"1")
-        	remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-        	replace spaces (TEMP"1"," ")
+		set TEMP"1" to MARC."260" sub without sort "a,b"
+		remove string (TEMP"1","<<")
+		remove string (TEMP"1",">>")
+		remove string (TEMP"1","\\(")
+		remove string (TEMP"1","\\)")
+		remove string (TEMP"1","\\[")
+		remove string (TEMP"1","\\]")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		replace spaces (TEMP"1"," ")
 		set pnx."display"."publisher" to TEMP"1"
 end
 
@@ -62,16 +62,16 @@ priority 40
 	when
 		MARC."264" has any "a,b"
 	then
-	    	set TEMP"1" to MARC."264" sub without sort "a,b"
-	    	remove string (TEMP"1","<<")
-        	remove string (TEMP"1",">>")
-        	remove string (TEMP"1","\\(")
-        	remove string (TEMP"1","\\)")
-        	remove string (TEMP"1","\\[")
-        	remove string (TEMP"1","\\]")
-        	remove leading and trailing spaces (TEMP"1")
-        	remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-        	replace spaces (TEMP"1"," ")
+		set TEMP"1" to MARC."264" sub without sort "a,b"
+		remove string (TEMP"1","<<")
+		remove string (TEMP"1",">>")
+		remove string (TEMP"1","\\(")
+		remove string (TEMP"1","\\)")
+		remove string (TEMP"1","\\[")
+		remove string (TEMP"1","\\]")
+		remove leading and trailing spaces (TEMP"1")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		replace spaces (TEMP"1"," ")
 		set pnx."display"."publisher" to TEMP"1"
 end
 
@@ -98,15 +98,15 @@ priority 10
 		MARC."880"."6" match "260-.*" AND
 		MARC."880".ind"1"  equals "3" 
 	then
-	    	set TEMP"1" to MARC."880" sub without sort "a,b"
-	    	remove string (TEMP"1","<<")
-        	remove string (TEMP"1",">>")
-        	remove string (TEMP"1","\\(")
-        	remove string (TEMP"1","\\)")
-        	remove string (TEMP"1","\\[")
-        	remove string (TEMP"1","\\]")
-        	remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-        	replace spaces (TEMP"1"," ")
+		set TEMP"1" to MARC."880" sub without sort "a,b"
+		remove string (TEMP"1","<<")
+		remove string (TEMP"1",">>")
+		remove string (TEMP"1","\\(")
+		remove string (TEMP"1","\\)")
+		remove string (TEMP"1","\\[")
+		remove string (TEMP"1","\\]")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		replace spaces (TEMP"1"," ")
 		set pnx."display"."alternate_publisher" to TEMP"1"
 end
 
@@ -119,14 +119,14 @@ priority 20
 		MARC."880".ind"2"  equals "1" 
 	then
 		set TEMP"1" to MARC."880" sub without sort "a,b"
-	    	remove string (TEMP"1","<<")
-        	remove string (TEMP"1",">>")
-        	remove string (TEMP"1","\\(")
-        	remove string (TEMP"1","\\)")
-        	remove string (TEMP"1","\\[")
-        	remove string (TEMP"1","\\]")
-        	remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-        	replace spaces (TEMP"1"," ")
+		remove string (TEMP"1","<<")
+		remove string (TEMP"1",">>")
+		remove string (TEMP"1","\\(")
+		remove string (TEMP"1","\\)")
+		remove string (TEMP"1","\\[")
+		remove string (TEMP"1","\\]")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		replace spaces (TEMP"1"," ")
 		set pnx."display"."alternate_publisher" to TEMP"1"
 end
 
@@ -137,14 +137,14 @@ priority 30
 		MARC."880"."6" match "260-.*" 
 	then
 		set TEMP"1" to MARC."880" sub without sort "a,b"
-	    	remove string (TEMP"1","<<")
-        	remove string (TEMP"1",">>")
-        	remove string (TEMP"1","\\(")
-        	remove string (TEMP"1","\\)")
-        	remove string (TEMP"1","\\[")
-        	remove string (TEMP"1","\\]")
-        	remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-        	replace spaces (TEMP"1"," ")
+		remove string (TEMP"1","<<")
+		remove string (TEMP"1",">>")
+		remove string (TEMP"1","\\(")
+		remove string (TEMP"1","\\)")
+		remove string (TEMP"1","\\[")
+		remove string (TEMP"1","\\]")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		replace spaces (TEMP"1"," ")
 		set pnx."display"."alternate_publisher" to TEMP"1"
 end
 
@@ -155,19 +155,19 @@ priority 40
 		MARC."880"."6" match "264-.*" 
 	then
 		set TEMP"1" to MARC."880" sub without sort "a,b"
-	    	remove string (TEMP"1","<<")
-        	remove string (TEMP"1",">>")
-        	remove string (TEMP"1","\\(")
-        	remove string (TEMP"1","\\)")
-        	remove string (TEMP"1","\\[")
-        	remove string (TEMP"1","\\]")
-        	remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-        	replace spaces (TEMP"1"," ")
+		remove string (TEMP"1","<<")
+		remove string (TEMP"1",">>")
+		remove string (TEMP"1","\\(")
+		remove string (TEMP"1","\\)")
+		remove string (TEMP"1","\\[")
+		remove string (TEMP"1","\\]")
+		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
+		replace spaces (TEMP"1"," ")
 		set pnx."display"."alternate_publisher" to TEMP"1"
 end
 
 rule "Primo VE - publisher notes 362"
-when
+	when
 		MARC."362" has any "a,z"
 	then
 		create pnx."display"."publisher_notes" with "N/A"
