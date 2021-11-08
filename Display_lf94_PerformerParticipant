@@ -5,7 +5,7 @@ rule "Primo VE - Lds94"
 		MARC."880"."6" match "511-.*" AND
 		MARC."880".ind"1" equals "0"
 	then
-		qcreate pnx."display"."lds94" with MARC."880" subfields "a"
+		create pnx."display"."lds94" with MARC."880" subfields "a"
 end
 
 # OCLC 957180392 
