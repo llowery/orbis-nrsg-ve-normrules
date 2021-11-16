@@ -1,4 +1,4 @@
-rule "Primo VE - Lds19"
+rule "Primo VE - Lds96"
 ##Ex: 925959193
 	when
 		MARC."386" has any "a,i" AND
@@ -9,7 +9,7 @@ rule "Primo VE - Lds19"
 		set TEMP"3" to MARC."386" subfields "a" delimited by "; " remove substring using regex "\\.+$"
 		concatenate with delimiter (TEMP"1",TEMP"2",": ")
 		concatenate with delimiter (TEMP"1",TEMP"3"," ")
-		create pnx."display"."lds19" with TEMP"1"
+		create pnx."display"."lds96" with TEMP"1"
 end
 
 rule "Primo VE - Lds19b"
@@ -21,7 +21,7 @@ rule "Primo VE - Lds19b"
 		set TEMP"1" to MARC."386" subfields "i"
 		set TEMP"2" to MARC."386" subfields "a" delimited by "; " remove substring using regex "\\.+$"
 		concatenate with delimiter (TEMP"1",TEMP"2"," ")
-		create pnx."display"."lds19" with TEMP"1"
+		create pnx."display"."lds96" with TEMP"1"
 end
 
 rule "Primo VE - Lds19c"
@@ -32,5 +32,5 @@ rule "Primo VE - Lds19c"
 		MARC."386"."i" match ".*" 
 	then
 		set TEMP"1" to MARC."386" subfields "a" delimited by "; " remove substring using regex "\\.+$"
-		create pnx."display"."lds19" with TEMP"1"
+		create pnx."display"."lds96" with TEMP"1"
 end
