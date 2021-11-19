@@ -1,4 +1,4 @@
-rule "Primo VE - Lds25"
+rule "Primo VE - Lds91"
 priority 1
 when
    MARC is "540"."3" AND
@@ -6,10 +6,10 @@ when
 then
    set TEMP"1" to MARC."540"."3"
    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-   create pnx."display"."lds25" with TEMP"1"
+   create pnx."display"."lds91" with TEMP"1"
 end
 
-rule "Primo VE - lds25 LDR 6 is P - remaining"
+rule "Primo VE - lds91 LDR 6 is P - remaining"
 priority 20
 when
    MARC is "540"  AND
@@ -17,10 +17,10 @@ when
 then
    set TEMP"1" to MARC."540" sub without sort "a,b,c,d"
    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-   create pnx."display"."lds25" with TEMP"1"
+   create pnx."display"."lds91" with TEMP"1"
 end
 
-rule "Primo VE -lds25 LDR 6 is NOT P - $3 exists NOT $5"
+rule "Primo VE -lds91 LDR 6 is NOT P - $3 exists NOT $5"
 priority 20
 when
    MARC is "540"."3" AND NOT MARC."540"."5" match ".*"
@@ -32,10 +32,10 @@ then
    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
    remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
    concatenate with delimiter (TEMP"2",TEMP"1","")
-   create pnx."display"."lds25" with TEMP"2"
+   create pnx."display"."lds91" with TEMP"2"
 end
 
-rule "Primo VE - lds25 LDR 6 is NOT P - $5/$3 not exists"
+rule "Primo VE - lds91 LDR 6 is NOT P - $5/$3 not exists"
 priority 20
 when
    MARC is "540" AND NOT MARC."540"."5" match ".*"
@@ -45,5 +45,5 @@ when
 then
    set TEMP"1" to MARC."540" sub without sort "a,b,c,d"
    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
-   create pnx."display"."lds25" with TEMP"1"
+   create pnx."display"."lds91" with TEMP"1"
 end
