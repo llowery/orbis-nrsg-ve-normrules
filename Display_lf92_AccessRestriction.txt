@@ -1,4 +1,4 @@
-rule "Primo VE - Lf92"
+rule "Primo VE - Lds92"
 #rule "Primo VE - LDR 6 is P ind1=0 Has 3"
 priority 10
 when
