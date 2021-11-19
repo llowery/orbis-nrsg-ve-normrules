@@ -9,7 +9,7 @@ then
    set TEMP"1" to MARC."506"."3"
    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
    add suffix (TEMP"1",": No Restriction")
-   create pnx."display"."lds49" with TEMP"1"
+   create pnx."display"."lds92" with TEMP"1"
 end
 
 rule "Primo VE - LDR 6 is P Has 3 ind0<>1"
@@ -20,7 +20,7 @@ when
    AND NOT MARC."506".ind"1" equals "0" 
 then
    set TEMP"1" to MARC."506"."3"
-   create pnx."display"."lds49" with TEMP"1"
+   create pnx."display"."lds92" with TEMP"1"
 end
 
 rule "Primo VE - LDR 6 is P - remaining"
@@ -30,7 +30,7 @@ when
    MARC.control."LDR"(6-7) equals "p"
 then
    set TEMP"1" to MARC."506" sub without sort "a,b,c,d,e,f"
-   create pnx."display"."lds49" with TEMP"1"
+   create pnx."display"."lds92" with TEMP"1"
 end
 
 
@@ -45,7 +45,7 @@ then
    set TEMP"1" to MARC."506"."3"
    remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
    add suffix (TEMP"1",": No Restriction")
-   create pnx."display"."lds49" with TEMP"1"
+   create pnx."display"."lds92" with TEMP"1"
 end
 
 rule "Primo VE - LDR 6 is NOT P $3 exists Ind1<>0"
@@ -57,7 +57,7 @@ when
    AND NOT MARC."506".ind"1" equals "0" 
 then
    set TEMP"1" to MARC."506"."3"
-   create pnx."display"."lds49" with TEMP"1"
+   create pnx."display"."lds92" with TEMP"1"
 end
 
 rule "Primo VE - LDR 6 is NOT P grab the rest"
@@ -68,7 +68,7 @@ when
    AND MARC.control."LDR"(6-7) does not equal "p"
 then
    set TEMP"1" to MARC."506" sub without sort "a,b,c,d,e,f"
-   create pnx."display"."lds49" with TEMP"1"
+   create pnx."display"."lds92" with TEMP"1"
 end
 
 
