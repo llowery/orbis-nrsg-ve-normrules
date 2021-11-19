@@ -3,5 +3,5 @@ rule "Primo VE - Lds73"
 		MARC is "534"."a" AND NOT
     MARC."534"."5" match ".*"
 	then
-		create pnx."display"."lds73" with MARC "534" subfields "a,b,c,e,f,k,l,m,n,o,p,t,x,z"
+		create pnx."display"."lds73" with MARC "534" excluding num subfields without sort
 end
