@@ -1,6 +1,8 @@
 #lcgft OCLC 774607605 
 #fast OCLC 05264690 
 #655 _0 OCLC 43354922 
+#008 audn 1026478925
+#008 natcont 58919862
 
 rule "Primo VE - Genre 655 #7 lcgft"
 	when
@@ -65,7 +67,7 @@ end
 
 rule "Primo VE - Genre 008_30_a"
 	when
-		MARC.control."008"(30-31) equals "a" AND
+		MARC.control."008"(34) equals "a" AND
 		MARC.control."LDR"(6-7) matches "i|"
 	then
 		set TEMP"1" to position("008",30-31)
@@ -76,7 +78,7 @@ end
 
 rule "Primo VE - Genre 008_24_b"
 	when
-		MARC.control."008"(24-27) equals "b" AND
+		MARC.control."008"(24-27) equals "*b*" AND
 		MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
 	then
 		set TEMP"1" to position("008",24-27)
