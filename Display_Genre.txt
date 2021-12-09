@@ -63,28 +63,3 @@ rule "Primo VE - Genre 380"
 	then
 		create pnx."display"."genre" with MARC "380" subfields "a" delimited by " " remove substring using regex "\\.+$"
 end
-
-rule "Primo VE - Genre 008_24b"
-	when
-		(MARC.control."008"(24-25) equals "b" OR
-		MARC.control."008"(25-26) equals "b" OR
-		MARC.control."008"(26-27) equals "b" OR
-		MARC.control."008"(27-28) equals "b") AND
-		MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
-	then
-		set TEMP"1" to position("008",24-27)
-		add prefix (TEMP"1","Bibliographies") 
-		remove string (TEMP"1","b") 
-		set pnx."display"."genre" to TEMP"1"
-end
-
-rule "Primo VE - Genre 008_30a"
-	when
-		MARC.control."008"(30-31) equals "a" AND
-		MARC.control."LDR"(6-7) matches "i|"
-	then
-		set TEMP"1" to position("008",30-31)
-		add prefix (TEMP"1","Autobiography") 
-		remove string (TEMP"1","a") 
-		set pnx."display"."genre" to TEMP"1"
-end
