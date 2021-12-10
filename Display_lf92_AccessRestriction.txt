@@ -71,6 +71,14 @@ then
    create pnx."display"."lds92" with TEMP"1"
 end
 
+## experimental rules
+rule "Primo VE - showing 596 LOCAL"
+priority 25
+when
+   MARC is "596" AND MARC."596"."9" match "local|LOCAL"
+then
+   create pnx."display"."lds92" with MARC."596" excluding num subfields without sort
+
 
 # 
 #Scenario 1 LDR 6 = p
