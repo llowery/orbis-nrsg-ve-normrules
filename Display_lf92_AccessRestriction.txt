@@ -78,7 +78,7 @@ when
    MARC is "596" AND MARC."596"."9" match "local|LOCAL"
 then
    create pnx."display"."lds92" with MARC."596" excluding num subfields without sort
-
+end
 
 # 
 #Scenario 1 LDR 6 = p
