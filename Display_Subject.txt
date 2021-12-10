@@ -53,7 +53,7 @@ rule "Primo VE Display - Subject 630"
 	then
 		set TEMP"1" to MARC."630" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
 		set TEMP"2" to MARC."630" sub without sorting "v,x-z" delimited by " -- "
-        remove substring using regex (TEMP"2","\\.+$")
+		remove substring using regex (TEMP"2","\\.+$")
 		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
 		set TEMP"3" to multilingual by "630" "Subject" "display"
 		concatenate with delimiter (TEMP"1",TEMP"3","")
