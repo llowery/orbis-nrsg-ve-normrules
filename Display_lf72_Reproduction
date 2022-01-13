@@ -9,7 +9,7 @@ rule "Primo VE - Lds72"
                 concatenate with delimiter (TEMP"1",TEMP"2",": ")
                 create pnx."display"."lds72" with TEMP"1"
 end
-rule "Primo VE - Lds72_other"
+rule "Primo VE - Lds72_no3"
 	when
 		MARC is "533" AND NOT
                 MARC."533"."3" match ".*" AND NOT
