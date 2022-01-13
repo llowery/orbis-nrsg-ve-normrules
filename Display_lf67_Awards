@@ -5,6 +5,6 @@ rule "Primo VE - Lds67"
 		set TEMP"1" to MARC."586" subfields "3"
 		remove substring using regex (TEMP"1","(:)+$")
 		set TEMP"2" to MARC."586" subfields "a"
-		concatenate with delimiter (TEMP"1",TEMP"2",":")
+		concatenate with delimiter (TEMP"1",TEMP"2",": ")
 		create pnx."display"."lds67" with TEMP"1"
 end
