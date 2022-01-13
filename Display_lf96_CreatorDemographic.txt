@@ -12,7 +12,7 @@ rule "Primo VE - Lds96"
 		create pnx."display"."lds96" with TEMP"1"
 end
 
-rule "Primo VE - Lds19b"
+rule "Primo VE - Lds96b"
 ##Ex: 03498635
 	when
 		MARC."386" has any "a,i" AND NOT
@@ -24,7 +24,7 @@ rule "Primo VE - Lds19b"
 		create pnx."display"."lds96" with TEMP"1"
 end
 
-rule "Primo VE - Lds19c"
+rule "Primo VE - Lds96c"
 ##Ex: 02112725
 	when
 		MARC."386" has any "a" AND NOT
