@@ -8,3 +8,12 @@ rule "Primo VE - Lds67"
 		concatenate with delimiter (TEMP"1",TEMP"2",": ")
 		create pnx."display"."lds67" with TEMP"1"
 end
+
+rule "Primo VE - Lds67_no3"
+	when
+		MARC."586" has any "a" AND NOT
+                MARC."586"."3" match ".*"
+	then
+		set TEMP"1" to MARC."586" subfields "a"
+		create pnx."display"."lds67" with TEMP"1"
+end
