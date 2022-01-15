@@ -1,4 +1,4 @@
-rule "Primo VE - Lds18"
+rule "Primo VE - Lds97"
 ##222 = Key Title
 ##Ex: 37853368
 	when
@@ -6,10 +6,10 @@ rule "Primo VE - Lds18"
 	then
 		set TEMP"1" to MARC."222" subfields "a,b"
 		add prefix (TEMP"1","Key title: ")
-		create pnx."display"."lds18" with TEMP"1"
+		create pnx."display"."lds97" with TEMP"1"
 end
 
-rule "Primo VE - Lds18b"
+rule "Primo VE - Lds97b"
 ##210 = Abbreviated Title
 ##Ex: 01714309
 	when
@@ -17,10 +17,10 @@ rule "Primo VE - Lds18b"
 	then
 		set TEMP"1" to MARC."210" subfields "a"
 		add prefix (TEMP"1","Abbreviated title: ")
-		create pnx."display"."lds18" with TEMP"1"
+		create pnx."display"."lds97" with TEMP"1"
 end
 
-rule "Primo VE - Lds18c"
+rule "Primo VE - Lds97c"
 ##246 = Varying Form of Title
 ##ind 1 = 0 (Note, no added entry) or 1 (Note, added entry)
 ##includes $i (Display text)
@@ -31,10 +31,10 @@ rule "Primo VE - Lds18c"
                 MARC."246".ind"1" equals "1") AND
                 MARC."246"."i" match ".*"
 	then
-		create pnx."display"."lds18" with MARC."246" sub without sort "i,a,b,f,g,n,p"
+		create pnx."display"."lds97" with MARC."246" sub without sort "i,a,b,f,g,n,p"
 end
 
-rule "Primo VE - Lds18d"
+rule "Primo VE - Lds97d"
 ##246 = Varying Form of Title
 ##ind 2 = 1 (Parallel title)
 ##does not include $i (Display text)
@@ -48,10 +48,10 @@ rule "Primo VE - Lds18d"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
 		add prefix (TEMP"1","Parallel title in another language: ")
-		create pnx."display"."lds18" with TEMP"1"
+		create pnx."display"."lds97" with TEMP"1"
 end
 
-rule "Primo VE - Lds18e"
+rule "Primo VE - Lds97e"
 ##246 = Varying Form of Title
 ##ind 2 = 2 (Distinctive title)
 ##does not include $i (Display text)
@@ -68,10 +68,10 @@ rule "Primo VE - Lds18e"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
 		add prefix (TEMP"1","Distinctive title: ")
-		create pnx."display"."lds18" with TEMP"1"
+		create pnx."display"."lds97" with TEMP"1"
 end
 
-rule "Primo VE - Lds18f"
+rule "Primo VE - Lds97f"
 ##246 = Varying Form of Title
 ##ind 2 = 4 (Cover title)
 ##does not include $i (Display text)
@@ -91,10 +91,10 @@ rule "Primo VE - Lds18f"
 		replace string by string (TEMP"1","<","\\(")
 		replace string by string (TEMP"1",">","\\)")
 		add prefix (TEMP"1","Cover title: ")
-		create pnx."display"."lds18" with TEMP"1"
+		create pnx."display"."lds97" with TEMP"1"
 end
 
-rule "Primo VE - Lds18g"
+rule "Primo VE - Lds97g"
 ##246 = Varying Form of Title
 ##ind 2 = 5 (Added title page title)
 ##does not include $i (Display text)
@@ -111,10 +111,10 @@ rule "Primo VE - Lds18g"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
 		add prefix (TEMP"1","Added title page title: ")
-		create pnx."display"."lds18" with TEMP"1"
+		create pnx."display"."lds97" with TEMP"1"
 end
 
-rule "Primo VE - Lds18h"
+rule "Primo VE - Lds97h"
 ##246 = Varying Form of Title
 ##ind 2 = 6 (Caption title)
 ##does not include $i (Display text)
@@ -131,10 +131,10 @@ rule "Primo VE - Lds18h"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
 		add prefix (TEMP"1","Caption title: ")
-		create pnx."display"."lds18" with TEMP"1"
+		create pnx."display"."lds97" with TEMP"1"
 end
 
-rule "Primo VE - Lds18i"
+rule "Primo VE - Lds97i"
 ##246 = Varying Form of Title
 ##ind 2 = 7 (Running title)
 ##does not include $i (Display text)
@@ -151,10 +151,10 @@ rule "Primo VE - Lds18i"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
 		add prefix (TEMP"1","Running title: ")
-		create pnx."display"."lds18" with TEMP"1"
+		create pnx."display"."lds97" with TEMP"1"
 end
 
-rule "Primo VE - Lds18j"
+rule "Primo VE - Lds97j"
 ##246 = Varying Form of Title
 ##ind 2 = 8 (Spine title)
 ##does not include $i (Display text)
@@ -171,10 +171,10 @@ rule "Primo VE - Lds18j"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
 		add prefix (TEMP"1","Spine title: ")
-		create pnx."display"."lds18" with TEMP"1"
+		create pnx."display"."lds97" with TEMP"1"
 end
 
-rule "Primo VE - Lds18k"
+rule "Primo VE - Lds97k"
 ##246 = Varying Form of Title
 ##ind 2 != 1-2, 4-8
 ##includes ind 2 = # (unspecified), 0 (Portion of title), 3 (other)
@@ -196,10 +196,10 @@ rule "Primo VE - Lds18k"
                 MARC."246".ind"2" equals "8") AND NOT
                 MARC."246"."i" match ".*"
 	then
-		create pnx."display"."lds18" with MARC."246" sub without sort "a,b,f,g,n,p"
+		create pnx."display"."lds97" with MARC."246" sub without sort "a,b,f,g,n,p"
 end
 
-rule "Primo VE - Lds18l"
+rule "Primo VE - Lds97l"
 ##247 = Former Title
 ##Ex: 37853368
 	when
@@ -212,10 +212,10 @@ rule "Primo VE - Lds18l"
 		replace string by string (TEMP"2","<","(")
 		replace string by string (TEMP"2",">",")")
 		concatenate with delimiter (TEMP"1",TEMP"2"," ")
-		create pnx."display"."lds18" with TEMP"1"
+		create pnx."display"."lds97" with TEMP"1"
 end
 
-rule "Primo VE - Lds18m"
+rule "Primo VE - Lds97m"
 ##Ex: none
 	when
 		MARC."242" has any "a,b,n,p" AND
@@ -223,48 +223,48 @@ rule "Primo VE - Lds18m"
 	then
 		set TEMP"1" to MARC."242" sub without sort "a,b,n,p"
 		add prefix (TEMP"1","Translation of title: ")
-		create pnx."display"."lds18" with TEMP"1"
+		create pnx."display"."lds97" with TEMP"1"
 end
 
 ##NRSG Rules End Here
 
-rule "Primo VE - Lds18n"
+rule "Primo VE - Lds97n"
 	when
 		MARC."880" has any "i,a,b,f,g,n,p" AND
 		MARC."880"."6" match "246-.*"
 
 	then
-		create pnx."display"."lds18" with MARC."880" sub without sort "i,a,b,f,g,n,p"
+		create pnx."display"."lds97" with MARC."880" sub without sort "i,a,b,f,g,n,p"
 end
 
-rule "Primo VE - Lds18o"
+rule "Primo VE - Lds97o"
 	when
 		MARC."880" has any "i,a,b,f,g,n,p" AND
 		MARC."880"."6" match "247-.*"
 	then
-		create pnx."display"."lds18" with MARC."880" sub without sort "i,a,b,f,g,n,p"
+		create pnx."display"."lds97" with MARC."880" sub without sort "i,a,b,f,g,n,p"
 end
 
-rule "Primo VE - Lds18p"
+rule "Primo VE - Lds97p"
 	when
 		MARC is "880" AND
 		MARC."880"."6" match "222-.*"
 	then
-		create pnx."display"."lds18" with MARC."880" excluding num subfields without sort
+		create pnx."display"."lds97" with MARC."880" excluding num subfields without sort
 end
 
-rule "Primo VE - Lds18q"
+rule "Primo VE - Lds97q"
 	when
 		MARC is "880" AND
 		MARC."880"."6" match "210-.*"
 	then
-		create pnx."display"."lds18" with MARC."880" excluding num subfields without sort
+		create pnx."display"."lds97" with MARC."880" excluding num subfields without sort
 end
 
-rule "Primo VE - Lds18r"
+rule "Primo VE - Lds97r"
 	when
 		MARC is "880" AND
 		MARC."880"."6" match "242-.*"
 	then
-		create pnx."display"."lds18" with MARC."880" excluding num subfields without sort
+		create pnx."display"."lds97" with MARC."880" excluding num subfields without sort
 end
