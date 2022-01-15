@@ -1,4 +1,4 @@
-rule "Primo VE - Lds15"
+rule "Primo VE - Lds86"
 # 383 Numeric Designation of Musical Work
 # $a Serial number (R), $b Opus number (R)
 # $e - Publisher associated with opus number (NR)
@@ -13,10 +13,10 @@ replace wrapping delimiters (TEMP"1","b","",",")
 replace wrapping delimiters (TEMP"1","e","(",")")
 replace string by string (TEMP"1",", \\("," \\(")
 replace string by string (TEMP"1",",$","")
-create pnx."display"."lds14" with TEMP"1"
+create pnx."display"."lds86" with TEMP"1"
 end
 
-rule "Primo VE - Lds15a"
+rule "Primo VE - Lds86a"
 # 383 Numeric Designation of Musical Work
 # $c Thematic index number (R)
 # $d Thematic index code (NR)
@@ -30,5 +30,5 @@ replace wrapping delimiters (TEMP"1","c","",",")
 replace wrapping delimiters (TEMP"1","d","(",")")
 replace string by string (TEMP"1",", \\("," \\(")
 replace string by string (TEMP"1",",$","")
-create pnx."display"."lds14" with TEMP"1"
+create pnx."display"."lds86" with TEMP"1"
 end
