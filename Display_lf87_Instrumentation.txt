@@ -1,4 +1,4 @@
-rule "Primo VE - Lds14"
+rule "Primo VE - Lds87"
 # no 3
 # ex $n 07222513 (01), 00784920 (17)
 # ex $b solo parts 06809612, 1055684538 [NOT SURE WHY 383 SHOWS!!]
@@ -51,7 +51,7 @@ replace string by string (TEMP"1",";$","")
 replace string by string (TEMP"1",";;",";")
 replace string by string (TEMP"1",";\\.","\\.")
 replace string by string (TEMP"1","; \\("," \\(")
-create pnx."display"."lds14" with TEMP"1"
+create pnx."display"."lds87" with TEMP"1"
 end
 
 # based on MLA/MOUG display recommendations
