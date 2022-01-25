@@ -1,0 +1,10 @@
+rule "audiocassette - LDR, 007, 300"
+when
+    #sound recordings AND not online form
+    ((existsControl "LDR.{6,1}.i|j") AND (not existsControl "008.{23,1}.o"))
+    AND 
+    #sound recording/sound cassette bytes in 007 OR cassette in physical description.
+    ((existsControl "007.{0,2}.ss") OR (exists "300.a.*cassette*"))
+then
+     set indication."true"
+end

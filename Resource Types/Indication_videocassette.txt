@@ -1,0 +1,13 @@
+rule "videocassette - 008, LDR, 007, 3xx, 5xx"
+when
+    #Type of visual material is videorecording AND not online form
+    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{23,1}.o")) 
+    AND
+    #Projected medium AND video recording category with videocassette SMD in 007. 
+    (((existsControl "LDR.{6,1}.g") AND (existsControl "007.{0,2}.vf"))
+    OR
+    #300 OR 346 OR 538 contain VHS (if 007 not coded properly.
+    ((exists "300.a.*VHS*") OR (exists "346.a.*VHS*") OR (exists "538.a.*VHS*"))))
+then
+     set indication."true"
+end

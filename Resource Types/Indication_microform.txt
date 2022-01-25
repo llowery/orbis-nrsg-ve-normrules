@@ -1,0 +1,10 @@
+rule "microform - LDR, 008"
+when
+    #Include language material, sound recordings, computer files, mixed materials, and manuscripts AND require microform form byte AND exclude conference proceedings AND exclude monographic serials AND exclude dissertations.
+    (((not existsControl "LDR.{6,1}.e|f|g|k|o|r") AND (existsControl "008.{23,1}.a|b|c") AND (not existsControl "008.{29,1}.1") AND (not existsControl "008.{24,1}.m") AND (not exists "502"))
+    OR
+    #Cartographic material, projected media, 2-d nonprojectable graphic, kit, or 3-d artifact AND microform form AND exclude dissertations.
+    ((existsControl "LDR.{6,1}.e|f|g|k|o|r") AND (existsControl "008.{29,1}.a|b|c") AND (not exists "502")))
+then
+     set indication."true"
+end

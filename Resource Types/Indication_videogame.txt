@@ -1,0 +1,7 @@
+rule "videogame - LDR, 008"
+when
+    #Computer file AND type of computer file = game.
+    ((existsControl "LDR.{06,1}.m") AND (existsControl "008.{26,1}.g"))
+then
+     set indication."true"
+end

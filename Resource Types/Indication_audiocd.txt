@@ -1,0 +1,16 @@
+rule "audiocd - LDR, 007, 3xx, 5xx"
+when
+    #sound recordings AND not online form
+    ((existsControl "LDR.{6,1}.i|j") AND (not existsControl "008.{23,1}.o"))
+    AND 
+    #sound recording with 4 3/4 in. dimension in 007 coding
+    ((existsControl "007.{0,7}.s*****g")
+    OR
+    #physical description includes disc AND 4 3/4 in. dimension (if not coded in 007 properly).
+    ((exists "300.a.*disc*") AND (exists "300.c.*4 3/4*"))
+    OR
+    #Media type has CD OR 500 OR 538 contains compact disc or Compact disc (if 007 and 300 do not include coding).
+    ((exists "337.a.*CD*") OR (exists "500.a.*CD*|*ompact disc*") OR (exists "538.a.*CD*|*ompact disc*")))
+then
+     set indication."true"
+end

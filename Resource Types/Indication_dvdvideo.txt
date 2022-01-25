@@ -1,0 +1,13 @@
+rule "dvdvideo - 008, LDR, 007, 3xx, 5xx"
+when
+    #Type of visual material is videorecording AND not online form
+    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{23,1}.o"))
+    AND 
+    #Projected medium AND videorecording with DVD format in 007
+    (((existsControl "LDR.{6,1}.g") AND (existsControl "007.{0,5}.v***v"))
+    OR
+    #300 OR 347 OR 538 include DVD (if 007 not properly coded).
+    ((exists "300.a.*DVD*") OR (exists "347.b.*DVD*") OR (exists "538.a.*DVD*"))))
+then
+     set indication."true"
+end
