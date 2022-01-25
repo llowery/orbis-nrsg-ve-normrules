@@ -1,7 +1,7 @@
 rule "audiocd - LDR, 007, 3xx, 5xx"
 priority 100
 when
-    ((existsControl "LDR.{6,1}.i|j") AND (not existsControl "008.{23,1}.o") AND (not exists "973"))
+    ((existsControl "LDR.{6,1}.i|j") AND (not existsControl "008.{23,1}.o"))
     AND 
     ((existsControl "007.{0,7}.s*****g")
     OR
@@ -9,127 +9,127 @@ when
     OR
     ((exists "337.a.*CD*") OR (exists "500.a.*CD*|*ompact disc*") OR (exists "538.a.*CD*|*ompact disc*")))
 then
-     addField "973.a.audiocd"
+    addField "973.a.audiocd" if (not exists "973")
 end
 
 rule "audiocassette - LDR, 007, 300"
 priority 95
 when
-    ((existsControl "LDR.{6,1}.i|j") AND (not existsControl "008.{23,1}.o") AND (not exists "973"))
+    ((existsControl "LDR.{6,1}.i|j") AND (not existsControl "008.{23,1}.o"))
     AND 
     ((existsControl "007.{0,2}.ss") OR (exists "300.a.*cassette*"))
 then
-     addField "973.a.audiocassette"
+    addField "973.a.audiocassette" if (not exists "973")
 end
 
 rule "lprecord - LDR, 007, 300"
 priority 90
 when
-    ((existsControl "LDR.{6,1}.i|j") AND (not existsControl "008.{23,1}.o") AND (not exists "973"))
+    ((existsControl "LDR.{6,1}.i|j") AND (not existsControl "008.{23,1}.o"))
     AND 
     ((existsControl "007.{0,7}.sd****e") OR (exists "300.c.*12 in*"))
 then
-     addField "973.a.lprecord"
+    addField "973.a.lprecord" if (not exists "973")
 end
 
 rule "videogame - LDR, 008"
 priority 85
 when
-    ((existsControl "LDR.{06,1}.m") AND (existsControl "008.{26,1}.g") AND (not exists "973"))
+    ((existsControl "LDR.{06,1}.m") AND (existsControl "008.{26,1}.g"))
 then
-     addField "973.a.videogame"
+    addField "973.a.videogame" if (not exists "973")
 end
 
 rule "cddvdrom - LDR, 008, 007"
 priority 80
 when
-    (((not existsControl "LDR.{6,1}.c|d|e|f|g|k|o|r") AND (not existsControl "LDR.{6,2}.ab|ai|as") AND (existsControl "008.{23,1}.q") AND (existsControl "007.{00,5}.c***g") AND (not existsControl "008.{29,1}.1") AND (not existsControl "008.{24,1}.m") AND (not exists "502") AND (not exists "973"))
+    (((not existsControl "LDR.{6,1}.c|d|e|f|g|k|o|r") AND (not existsControl "LDR.{6,2}.ab|ai|as") AND (existsControl "008.{23,1}.q") AND (existsControl "007.{00,5}.c***g") AND (not existsControl "008.{29,1}.1") AND (not existsControl "008.{24,1}.m") AND (not exists "502"))
     OR
-    ((existsControl "LDR.{6,1}.g") AND (existsControl "008.{29,1}.q") AND (existsControl "007.{00,5}.c***g") AND (not existsControl "008.{33,1}.s|t") AND (not exists "502") AND (not exists "973"))
+    ((existsControl "LDR.{6,1}.g") AND (existsControl "008.{29,1}.q") AND (existsControl "007.{00,5}.c***g") AND (not existsControl "008.{33,1}.s|t") AND (not exists "502"))
     OR
-    ((existsControl "LDR.{6,1}.k") AND (existsControl "008.{29,1}.q") AND (existsControl "007.{00,5}.c***g") AND (not existsControl "008.{33,1}.i|k|l|n|s|t") AND (not exists "502") AND (not exists "973"))
+    ((existsControl "LDR.{6,1}.k") AND (existsControl "008.{29,1}.q") AND (existsControl "007.{00,5}.c***g") AND (not existsControl "008.{33,1}.i|k|l|n|s|t") AND (not exists "502"))
     OR
-    ((existsControl "LDR.{6,1}.o") AND (existsControl "008.{29,1}.q") AND (existsControl "007.{00,5}.c***g") AND (not exists "502") AND (not exists "973")))
+    ((existsControl "LDR.{6,1}.o") AND (existsControl "008.{29,1}.q") AND (existsControl "007.{00,5}.c***g") AND (not exists "502")))
 then
-     addField "973.a.cddvdrom"
+    addField "973.a.cddvdrom" if (not exists "973")
 end
 
 rule "computerfile - LDR, 008"
 priority 75
 when
-    #exclude all record types except nonserial language material, sound recordings, computer files, mixed materials, and manuscripts AND require direct electronic form byte AND exclude conference proceedings AND exclude monographic serials AND exclude dissertations AND exclude already marked records.
-    (((not existsControl "LDR.{6,1}.c|d|e|f|g|k|o|r") AND (not existsControl "LDR.{6,2}.ab|ai|as") AND (existsControl "008.{23,1}.q") AND (not existsControl "008.{29,1}.1") AND (not existsControl "008.{24,1}.m") AND (not exists "502") AND (not exists "973"))
+    #exclude all record types except nonserial language material, sound recordings, computer files, mixed materials, and manuscripts AND require direct electronic form byte AND exclude conference proceedings AND exclude monographic serials AND exclude dissertations.
+    (((not existsControl "LDR.{6,1}.c|d|e|f|g|k|o|r") AND (not existsControl "LDR.{6,2}.ab|ai|as") AND (existsControl "008.{23,1}.q") AND (not existsControl "008.{29,1}.1") AND (not existsControl "008.{24,1}.m") AND (not exists "502"))
     OR
-    #Projected media AND direct electronic form AND not slides or transparencies (TMat) AND exclude dissertations AND exclude already-marked records.
-    ((existsControl "LDR.{6,1}.g") AND (existsControl "008.{29,1}.q") AND (not existsControl "008.{33,1}.s|t") AND (not exists "502") AND (not exists "973"))
+    #Projected media AND direct electronic form AND not slides or transparencies (TMat) AND exclude dissertations.
+    ((existsControl "LDR.{6,1}.g") AND (existsControl "008.{29,1}.q") AND (not existsControl "008.{33,1}.s|t") AND (not exists "502"))
     OR
-    #2-D nonprojectable graphic AND direct electronic form AND not picture, graphic, technical drawing, chart, slide, or transparency AND exclude dissertations AND exclude already-marked records.
-    ((existsControl "LDR.{6,1}.k") AND (existsControl "008.{29,1}.q") AND (not existsControl "008.{33,1}.i|k|l|n|s|t") AND (not exists "502") AND (not exists "973"))
+    #2-D nonprojectable graphic AND direct electronic form AND not picture, graphic, technical drawing, chart, slide, or transparency AND exclude dissertations.
+    ((existsControl "LDR.{6,1}.k") AND (existsControl "008.{29,1}.q") AND (not existsControl "008.{33,1}.i|k|l|n|s|t") AND (not exists "502"))
     OR
-    #Kit AND direct electronic form AND exclude dissertations AND exclude already-marked records.
-    ((existsControl "LDR.{6,1}.o") AND (existsControl "008.{29,1}.q") AND (not exists "502") AND (not exists "973")))
+    #Kit AND direct electronic form AND exclude dissertations.
+    ((existsControl "LDR.{6,1}.o") AND (existsControl "008.{29,1}.q") AND (not exists "502")))
 then
-     addField "973.a.computerfile"
+    addField "973.a.computerfile" if (not exists "973")
 end
 
 rule "microform - LDR, 008"
 priority 70
 when
-    #Include language material, sound recordings, computer files, mixed materials, and manuscripts AND require microform form byte AND exclude conference proceedings AND exclude monographic serials AND exclude dissertations AND exclude records already marked.
-    (((not existsControl "LDR.{6,1}.e|f|g|k|o|r") AND (existsControl "008.{23,1}.a|b|c") AND (not existsControl "008.{29,1}.1") AND (not existsControl "008.{24,1}.m") AND (not exists "502") AND (not exists "973"))
+    #Include language material, sound recordings, computer files, mixed materials, and manuscripts AND require microform form byte AND exclude conference proceedings AND exclude monographic serials AND exclude dissertations.
+    (((not existsControl "LDR.{6,1}.e|f|g|k|o|r") AND (existsControl "008.{23,1}.a|b|c") AND (not existsControl "008.{29,1}.1") AND (not existsControl "008.{24,1}.m") AND (not exists "502"))
     OR
     #Cartographic material, projected media, 2-d nonprojectable graphic, kit, or 3-d artifact AND microform form AND exclude dissertations.
-    ((existsControl "LDR.{6,1}.e|f|g|k|o|r") AND (existsControl "008.{29,1}.a|b|c") AND (not exists "502") AND (not exists "973")))
+    ((existsControl "LDR.{6,1}.e|f|g|k|o|r") AND (existsControl "008.{29,1}.a|b|c") AND (not exists "502")))
 then
-     addField "973.a.microform"
+    addField "973.a.microform" if (not exists "973")
 end
 
 rule "dvdvideo - 008, LDR, 007, 3xx, 5xx"
 priority 65
 when
-    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{23,1}.o") AND (not exists "973"))
+    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{23,1}.o"))
     AND 
     (((existsControl "LDR.{6,1}.g") AND (existsControl "007.{0,5}.v***v"))
     OR
     ((exists "300.a.*DVD*") OR (exists "347.b.*DVD*") OR (exists "538.a.*DVD*"))))
 then
-     addField "973.a.dvdvideo"
+    addField "973.a.dvdvideo" if (not exists "973")
 end
 
 rule "blurayvideo - 008, LDR, 007, 3xx, 5xx"
 priority 60
 when
-    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{23,1}.o") AND (not exists "973"))
+    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{23,1}.o"))
     AND 
     (((existsControl "LDR.{6,1}.g") AND (existsControl "007.{0,5}.v***s"))
     OR
     ((exists "300.a.*blu-*|*Blu-*") OR (exists "347.b.*blu-*|*Blu-*") OR (exists "538.a.*blu-*|*Blu-*"))))
 then
-     addField "973.a.blurayvideo"
+    addField "973.a.blurayvideo" if (not exists "973")
 end
 
 rule "videocassette - 008, LDR, 007, 3xx, 5xx"
 priority 55
 when
-    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{23,1}.o") AND (not exists "973")) 
+    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{23,1}.o")) 
     AND 
     (((existsControl "LDR.{6,1}.g") AND (existsControl "007.{0,2}.vf"))
     OR
     ((exists "300.a.*VHS*") OR (exists "346.a.*VHS*") OR (exists "538.a.*VHS*"))))
 then
-     addField "973.a.videocassette"
+    addField "973.a.videocassette" if (not exists "973")
 end
 
 rule "laserdisc - 008, LDR, 007, 3xx, 5xx"
 priority 50
 when
-    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{23,1}.o") AND (not exists "973"))
+    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{23,1}.o"))
     AND 
     (((existsControl "LDR.{6,1}.g") AND (existsControl "007.{0,5}.v***g"))
     OR
     ((exists "300.a.*laserdisc*") OR (exists "500.a.*laserdisc*") OR (exists "538.a.*laserdisc*"))))
 then
-     addField "973.a.laserdisc"
+    addField "973.a.laserdisc" if (not exists "973")
 end
 
 rule "pbook - LDR, 008, 502"
@@ -145,5 +145,5 @@ when
     #exclude microform, online, electronic form codes, AND exclude conference proceedings, AND exclude dissertations AND exclude records already marked.
     ((not existsControl "008.{23,1}.a|b|c|o|s") AND (not existsControl "008.{29,1}.1") AND (not exists "502") AND (not exists "973")))
 then
-    addField "973.a.pbook"
+    addField "973.a.pbook" if (not exists "973")
 end
