@@ -15,6 +15,7 @@ set TEMP"3" to MARC."520" subfields "c"
 add prefix (TEMP"3","--")
 concatenate with delimiter (TEMP"1",TEMP"3","")
 set TEMP"4" to MARC."520" subfields "u"
+remove leading and trailing spaces (TEMP"4")
 add prefix (TEMP"4","(")
 add suffix (TEMP"4",")")
 concatenate with delimiter (TEMP"1",TEMP"4"," ")
@@ -38,6 +39,7 @@ set TEMP"3" to MARC."520" subfields "c"
 add prefix (TEMP"3","--")
 concatenate with delimiter (TEMP"1",TEMP"3","")
 set TEMP"4" to MARC."520" subfields "u"
+remove leading and trailing spaces (TEMP"4")
 add prefix (TEMP"4","(")
 add suffix (TEMP"4",")")
 concatenate with delimiter (TEMP"1",TEMP"4"," ")
@@ -61,6 +63,7 @@ set TEMP"3" to MARC."520" subfields "c"
 add prefix (TEMP"3","--")
 concatenate with delimiter (TEMP"1",TEMP"3","")
 set TEMP"4" to MARC."520" subfields "u"
+remove leading and trailing spaces (TEMP"4")
 add prefix (TEMP"4","(")
 add suffix (TEMP"4",")")
 concatenate with delimiter (TEMP"1",TEMP"4"," ")
@@ -84,6 +87,7 @@ set TEMP"3" to MARC."520" subfields "c"
 add prefix (TEMP"3","--")
 concatenate with delimiter (TEMP"1",TEMP"3","")
 set TEMP"4" to MARC."520" subfields "u"
+remove leading and trailing spaces (TEMP"4")
 add prefix (TEMP"4","(")
 add suffix (TEMP"4",")")
 concatenate with delimiter (TEMP"1",TEMP"4"," ")
@@ -107,6 +111,7 @@ set TEMP"3" to MARC."520" subfields "c"
 add prefix (TEMP"3","--")
 concatenate with delimiter (TEMP"1",TEMP"3","")
 set TEMP"4" to MARC."520" subfields "u"
+remove leading and trailing spaces (TEMP"4")
 add prefix (TEMP"4","(")
 add suffix (TEMP"4",")")
 concatenate with delimiter (TEMP"1",TEMP"4"," ")
@@ -133,6 +138,7 @@ set TEMP"3" to MARC."520" subfields "c"
 add prefix (TEMP"3","--")
 concatenate with delimiter (TEMP"1",TEMP"3","")
 set TEMP"4" to MARC."520" subfields "u"
+remove leading and trailing spaces (TEMP"4")
 add prefix (TEMP"4","(")
 add suffix (TEMP"4",")")
 concatenate with delimiter (TEMP"1",TEMP"4"," ")
