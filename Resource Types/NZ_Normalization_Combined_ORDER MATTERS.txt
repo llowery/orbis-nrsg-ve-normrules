@@ -9,7 +9,7 @@ when
     OR
     ((exists "337.a.*CD*") OR (exists "500.a.*CD*|*ompact disc*") OR (exists "538.a.*CD*|*ompact disc*")))
 then
-    addField "973.a.audiocd" if (not exists "973")
+    addField "973.a.audio_CDs" if (not exists "973")
 end
 
 rule "audiocassette - LDR, 007, 300"
@@ -19,7 +19,7 @@ when
     AND 
     ((existsControl "007.{0,2}.ss") OR (exists "300.a.*cassette*"))
 then
-    addField "973.a.audiocassette" if (not exists "973")
+    addField "973.a.audiocassettes" if (not exists "973")
 end
 
 rule "lprecord - LDR, 007, 300"
@@ -29,7 +29,7 @@ when
     AND 
     ((existsControl "007.{0,7}.sd****e") OR (exists "300.c.*12 in*"))
 then
-    addField "973.a.lprecord" if (not exists "973")
+    addField "973.a.lprecords" if (not exists "973")
 end
 
 rule "videogame - LDR, 008"
@@ -37,7 +37,7 @@ priority 85
 when
     ((existsControl "LDR.{06,1}.m") AND (existsControl "008.{26,1}.g"))
 then
-    addField "973.a.videogame" if (not exists "973")
+    addField "973.a.videogames" if (not exists "973")
 end
 
 rule "cddvdrom - LDR, 008, 007"
@@ -69,7 +69,7 @@ when
     #Kit AND direct electronic form AND exclude electronic resource with dimension of 4 3/4 in. in 007 AND exclude dissertations.
     ((existsControl "LDR.{6,1}.o") AND (existsControl "008.{29,1}.q") AND (not existsControl "007.{00,5}.c***g") AND (not exists "502")))
 then
-    addField "973.a.computerfile" if (not exists "973")
+    addField "973.a.computer_files" if (not exists "973")
 end
 
 rule "microform - LDR, 008"
@@ -93,7 +93,7 @@ when
     OR
     ((exists "300.a.*DVD*") OR (exists "347.b.*DVD*") OR (exists "538.a.*DVD*"))))
 then
-    addField "973.a.dvdvideo" if (not exists "973")
+    addField "973.a.dvd_videos" if (not exists "973")
 end
 
 rule "blurayvideo - 008, LDR, 007, 3xx, 5xx"
@@ -105,7 +105,7 @@ when
     OR
     ((exists "300.a.*blu-*|*Blu-*") OR (exists "347.b.*blu-*|*Blu-*") OR (exists "538.a.*blu-*|*Blu-*"))))
 then
-    addField "973.a.blurayvideo" if (not exists "973")
+    addField "973.a.blurayvideos" if (not exists "973")
 end
 
 rule "videocassette - 008, LDR, 007, 3xx, 5xx"
@@ -117,7 +117,7 @@ when
     OR
     ((exists "300.a.*VHS*") OR (exists "346.a.*VHS*") OR (exists "538.a.*VHS*"))))
 then
-    addField "973.a.videocassette" if (not exists "973")
+    addField "973.a.videocassettes" if (not exists "973")
 end
 
 rule "laserdisc - 008, LDR, 007, 3xx, 5xx"
@@ -129,7 +129,7 @@ when
     OR
     ((exists "300.a.*laserdisc*") OR (exists "500.a.*laserdisc*") OR (exists "538.a.*laserdisc*"))))
 then
-    addField "973.a.laserdisc" if (not exists "973")
+    addField "973.a.laserdiscs" if (not exists "973")
 end
 
 rule "pbook - LDR, 008, 502"
@@ -145,5 +145,5 @@ when
     #exclude microform, online, electronic form codes, AND exclude conference proceedings, AND exclude dissertations AND exclude records already marked.
     ((not existsControl "008.{23,1}.a|b|c|o|s") AND (not existsControl "008.{29,1}.1") AND (not exists "502") AND (not exists "973")))
 then
-    addField "973.a.pbook" if (not exists "973")
+    addField "973.a.pbooks" if (not exists "973")
 end
