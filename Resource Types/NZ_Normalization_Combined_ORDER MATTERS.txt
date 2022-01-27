@@ -57,17 +57,17 @@ end
 rule "computerfile - LDR, 008"
 priority 75
 when
-    #exclude all record types except nonserial language material, sound recordings, computer files, mixed materials, and manuscripts AND require direct electronic form byte AND exclude conference proceedings AND exclude monographic serials AND exclude dissertations.
-    (((not existsControl "LDR.{6,1}.c|d|e|f|g|k|o|r") AND (not existsControl "LDR.{6,2}.ab|ai|as") AND (existsControl "008.{23,1}.q") AND (not existsControl "008.{29,1}.1") AND (not existsControl "008.{24,1}.m") AND (not exists "502"))
+    #exclude all record types except nonserial language material, sound recordings, computer files, mixed materials, and manuscripts AND require direct electronic form byte AND exclude electronic resource with dimension of 4 3/4 in. in 007 AND exclude conference proceedings AND exclude monographic serials AND exclude dissertations.
+    (((not existsControl "LDR.{6,1}.c|d|e|f|g|k|o|r") AND (not existsControl "LDR.{6,2}.ab|ai|as") AND (existsControl "008.{23,1}.q") AND (not existsControl "007.{00,5}.c***g") AND (not existsControl "008.{29,1}.1") AND (not existsControl "008.{24,1}.m") AND (not exists "502"))
     OR
-    #Projected media AND direct electronic form AND not slides or transparencies (TMat) AND exclude dissertations.
-    ((existsControl "LDR.{6,1}.g") AND (existsControl "008.{29,1}.q") AND (not existsControl "008.{33,1}.s|t") AND (not exists "502"))
+    #Projected media AND direct electronic form AND exclude electronic resource with dimension of 4 3/4 in. in 007 AND not slides or transparencies (TMat) AND exclude dissertations.
+    ((existsControl "LDR.{6,1}.g") AND (existsControl "008.{29,1}.q") AND (not existsControl "007.{00,5}.c***g") AND (not existsControl "008.{33,1}.s|t") AND (not exists "502"))
     OR
-    #2-D nonprojectable graphic AND direct electronic form AND not picture, graphic, technical drawing, chart, slide, or transparency AND exclude dissertations.
-    ((existsControl "LDR.{6,1}.k") AND (existsControl "008.{29,1}.q") AND (not existsControl "008.{33,1}.i|k|l|n|s|t") AND (not exists "502"))
+    #2-D nonprojectable graphic AND direct electronic form AND exclude electronic resource with dimension of 4 3/4 in. in 007 AND not picture, graphic, technical drawing, chart, slide, or transparency AND exclude dissertations.
+    ((existsControl "LDR.{6,1}.k") AND (existsControl "008.{29,1}.q") AND (not existsControl "007.{00,5}.c***g") AND (not existsControl "008.{33,1}.i|k|l|n|s|t") AND (not exists "502"))
     OR
-    #Kit AND direct electronic form AND exclude dissertations.
-    ((existsControl "LDR.{6,1}.o") AND (existsControl "008.{29,1}.q") AND (not exists "502")))
+    #Kit AND direct electronic form AND exclude electronic resource with dimension of 4 3/4 in. in 007 AND exclude dissertations.
+    ((existsControl "LDR.{6,1}.o") AND (existsControl "008.{29,1}.q") AND (not existsControl "007.{00,5}.c***g") AND (not exists "502")))
 then
     addField "973.a.computerfile" if (not exists "973")
 end
