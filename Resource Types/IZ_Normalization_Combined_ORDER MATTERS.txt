@@ -9,7 +9,7 @@ when
     OR
     ((exists "337.a.*CD*") OR (exists "500.a.*CD*|*ompact disc*") OR (exists "538.a.*CD*|*ompact disc*"))))
 then
-    addField "972.a.audiocd" if (not exists "972")
+    addField "972.a.audio_CDs" if (not exists "972")
     addSubField "972.9.LOCAL" if (not exists "972.9.LOCAL")
 end
 
@@ -20,7 +20,7 @@ when
     AND 
     ((existsControl "007.{0,2}.ss") OR (exists "300.a.*cassette*")))
 then
-    addField "972.a.audiocassette" if (not exists "972")
+    addField "972.a.audiocassettes" if (not exists "972")
     addSubField "972.9.LOCAL" if (not exists "972.9.LOCAL")
 end
 
@@ -31,7 +31,7 @@ when
     AND 
     ((existsControl "007.{0,7}.sd****e") OR (exists "300.c.*12 in*")))
 then
-    addField "972.a.lprecord" if (not exists "972")
+    addField "972.a.lprecords" if (not exists "972")
     addSubField "972.9.LOCAL" if (not exists "972.9.LOCAL")
 end
 
@@ -40,7 +40,7 @@ priority 85
 when
     ((existsControl "LDR.{06,1}.m") AND (existsControl "008.{26,1}.g") AND (not exists "972"))
 then
-    addField "972.a.videogame" if (not exists "972")
+    addField "972.a.videogames" if (not exists "972")
     addSubField "972.9.LOCAL" if (not exists "972.9.LOCAL")
 end
 
@@ -74,7 +74,7 @@ when
     #Kit AND direct electronic form AND exclude electronic resource with dimension of 4 3/4 in. in 007 AND exclude dissertations.
     ((existsControl "LDR.{6,1}.o") AND (existsControl "008.{29,1}.q") AND (not existsControl "007.{00,5}.c***g") AND (not exists "502")))
 then
-    addField "972.a.computerfile" if (not exists "972")
+    addField "972.a.computer_files" if (not exists "972")
     addSubField "972.9.LOCAL" if (not exists "972.9.LOCAL")
 end
 
@@ -100,7 +100,7 @@ when
     OR
     ((exists "300.a.*DVD*") OR (exists "347.b.*DVD*") OR (exists "538.a.*DVD*"))))
 then
-    addField "972.a.dvdvideo" if (not exists "972")
+    addField "972.a.dvd_videos" if (not exists "972")
     addSubField "972.9.LOCAL" if (not exists "972.9.LOCAL")
 end
 
@@ -113,7 +113,7 @@ when
     OR
     ((exists "300.a.*blu-*|*Blu-*") OR (exists "347.b.*blu-*|*Blu-*") OR (exists "538.a.*blu-*|*Blu-*"))))
 then
-    addField "972.a.blurayvideo" if (not exists "972")
+    addField "972.a.blurayvideos" if (not exists "972")
     addSubField "972.9.LOCAL" if (not exists "972.9.LOCAL")
 end
 
@@ -126,7 +126,7 @@ when
     OR
     ((exists "300.a.*VHS*") OR (exists "346.a.*VHS*") OR (exists "538.a.*VHS*"))))
 then
-    addField "972.a.videocassette" if (not exists "972")
+    addField "972.a.videocassettes" if (not exists "972")
     addSubField "972.9.LOCAL" if (not exists "972.9.LOCAL")
 end
 
@@ -139,7 +139,7 @@ when
     OR
     ((exists "300.a.*laserdisc*") OR (exists "500.a.*laserdisc*") OR (exists "538.a.*laserdisc*"))))
 then
-    addField "972.a.laserdisc" if (not exists "972")
+    addField "972.a.laserdiscs" if (not exists "972")
     addSubField "972.9.LOCAL" if (not exists "972.9.LOCAL")
 end
 
@@ -156,6 +156,6 @@ when
     #exclude microform, online, electronic form codes, AND exclude conference proceedings, AND exclude dissertations AND exclude records already marked.
     ((not existsControl "008.{23,1}.a|b|c|o|s") AND (not existsControl "008.{29,1}.1") AND (not exists "502")))
 then
-    addField "972.a.pbook" if (not exists "972")
+    addField "972.a.pbooks" if (not exists "972")
     addSubField "972.9.LOCAL" if (not exists "972.9.LOCAL")
 end
