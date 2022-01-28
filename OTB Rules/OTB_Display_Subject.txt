@@ -71,8 +71,8 @@ end
 
 rule "Primo VE Display- Subject 650"
 	when
-		MARC."650" has any "a-u,w-z" AND
-		MARC."650".ind"2"  equals "0"
+		MARC."650" has any "a-u,w-z" AND NOT
+		MARC."650".ind"2"  equals "2"
 	then
 		set TEMP"1" to MARC."650" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
 		set TEMP"2" to MARC."650" sub without sorting "x-z" delimited by " -- "
@@ -98,6 +98,16 @@ rule "Prima_Display - Subject 651"
 end
 
 
+rule "Primo VE Display- Subject 653"
+	when
+		MARC."653" has any "a-u,w"
+	then
+		set TEMP"1" to MARC."653" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+		set TEMP"2" to multilingual by "653" "Subject" "display"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+        create pnx."display"."subject" with TEMP"1"
+end
+
 rule "Primo VE Display- Subject 654"
 	when
 		MARC."654" has any "a-u,w-z"
@@ -107,6 +117,20 @@ rule "Primo VE Display- Subject 654"
         remove substring using regex (TEMP"2","\\.+$")		
 		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
 		set TEMP"3" to multilingual by "654" "Subject" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."subject" with TEMP"1"
+end
+
+rule "Primo VE Display- Subject 655"
+	when
+		MARC."655" has any "a-u,w-z" AND NOT
+		MARC."655".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."655" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+		set TEMP"2" to MARC."655" sub without sorting "x-z" delimited by " -- "
+        remove substring using regex (TEMP"2","\\.+$")		
+		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+		set TEMP"3" to multilingual by "655" "Subject" "display"
 		concatenate with delimiter (TEMP"1",TEMP"3","")
         create pnx."display"."subject" with TEMP"1"
 end
@@ -259,6 +283,17 @@ rule "Primo VE Display- Subject 880-651"
 		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
 		set TEMP"3" to multilingual by "880" "Subject" "display"
 		concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."subject" with TEMP"1"
+end
+
+rule "Primo VE Display- Subject 880-653"
+	when
+		MARC."880" has any "a-u,w" AND
+		MARC."880"."6" match "653-.*"
+	then
+		set TEMP"1" to MARC."880" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+		set TEMP"2" to multilingual by "880" "Subject" "display"
+		concatenate with delimiter (TEMP"1",TEMP"2","")
         create pnx."display"."subject" with TEMP"1"
 end
 
