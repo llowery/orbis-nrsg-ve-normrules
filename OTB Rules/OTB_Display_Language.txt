@@ -4,8 +4,7 @@ rule "Primo VE- Language 041 a"
 	then
 	    set TEMP"2" to MARC."041"."a"
         lower case (TEMP"2")
-	    return list using regex (TEMP"1",TEMP"2","[a-z]{3}")
-	    normalize discovery lang (TEMP"1")
+	    normalize discovery language (TEMP"1",TEMP"2")
         create pnx."display"."language" with list TEMP"1"
 end
 
@@ -15,8 +14,7 @@ rule "Primo VE- Language 041 d"
 	then
 	    set TEMP"2" to MARC."041"."d"
         lower case (TEMP"2")
-	    return list using regex (TEMP"1",TEMP"2","[a-z]{3}")
-	    normalize discovery lang (TEMP"1")
+	    normalize discovery language (TEMP"1",TEMP"2")
         create pnx."display"."language" with list TEMP"1"
 end
 
@@ -26,8 +24,7 @@ rule "Primo VE- Language 041 e"
 	then
 	    set TEMP"2" to MARC."041"."e"
         lower case (TEMP"2")
-	    return list using regex (TEMP"1",TEMP"2","[a-z]{3}")
-	    normalize discovery lang (TEMP"1")
+	    normalize discovery language (TEMP"1",TEMP"2")
         create pnx."display"."language" with list TEMP"1"
 end
 
