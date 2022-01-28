@@ -32,3 +32,60 @@ rule "Prima Display - ISSN 776"
 		add prefix (TEMP"1","$$CISSN$$V")
 		create pnx."display"."identifier" with TEMP"1"
 end
+rule "Primo VE - Identifier 024"
+	when
+		MARC is "024"."a" AND
+		MARC."024".ind"1"  equals "2"
+	then
+		set TEMP"1" to MARC "024"."a"
+		add prefix (TEMP"1","$$CISMN$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Primo VE - Identifier 035"
+	when
+	     MARC is "035"."a" AND
+	     MARC."035"."a" match ".*OCoLC.*"
+	then
+		set TEMP"1" to MARC "035"."a"
+		add prefix (TEMP"1","$$COCLC$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Primo VE - Identifier 010"
+	when
+		MARC is "010"."a"
+	then
+		set TEMP"1" to MARC "010"."a"
+		add prefix (TEMP"1","$$CLC$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Primo VE - Identifier 028"
+	when
+		MARC is "028"."a"
+	then
+		set TEMP"1" to MARC "028"."a"
+		add prefix (TEMP"1","$$CPUBNUM$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Primo VE - Identifier 086"
+	when
+		MARC is "086"."a"
+	then
+		set TEMP"1" to MARC."086"."a"
+		add prefix (TEMP"1","$$CGOVDOC$$V")
+		create pnx."display"."identifier" with TEMP"1"
+end
+
+rule "Primo VE - Identifier 084"
+	when
+		(MARC is "084"."a" AND
+        (MARC."084"."2" match "NDC.*" OR
+        MARC."084"."2" match "njb.*"))
+	then
+	   set TEMP"1" to MARC."084"."a"
+	   add prefix (TEMP"1","$$CNDC$$V")
+	   create pnx."display"."identifier" with TEMP"1"
+end
