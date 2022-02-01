@@ -4,7 +4,7 @@ when
     (((existsControl "LDR.{06,2}.aa|ac|ad") OR ((existsControl "LDR.{06,2}.ab|ai|as") AND (existsControl "008.{21,1}.m")) OR ((existsControl "LDR.{06,2}.am") AND (not existsControl "008.{24,1}.m")))
     AND 
     #exclude microform, online, electronic form codes, AND exclude conference proceedings, AND exclude dissertations.
-    ((not existsControl "008.{23,1}.a|b|c|o|s") AND (not existsControl "008.{29,1}.1") AND (not exists "502")))
+    ((not existsControl "008.{23,1}.a|b|c|o|q|s") AND (not existsControl "008.{29,1}.1") AND (not exists "502")))
 then
     set indication."true"
 end
