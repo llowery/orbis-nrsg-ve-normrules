@@ -1,30 +1,21 @@
 rule "Primo VE - Lds90"
-# ex 07269975
-# ex 31523613
-# ex 38328628
+priority 2
 when
-MARC."041" has any "d"
+	MARC is "041"."h"
 then
-set TEMP"1" to MARC."041" subfields "d"
-add prefix (TEMP"1","$$Tlang.")
-add suffix (TEMP"1","$$</p>")
-create pnx."display"."lds90" with TEMP"1"
+	set TEMP"1" to MARC."041" subfields "h" append translation "h"
+	add prefix (TEMP"1","Original language(s): ")
+	replace string by string (TEMP"1","\\$\\$ ","\\$\\$; ")
+	replace string by string (TEMP"1","\\$\\$T","\\$\\$Tlang\\.")
+	#remove substring using regex (TEMP"1","; $")
+	create pnx."display"."lds90" with TEMP"1"
 end
 
-#rule "Primo VE - Lds90b"
-#when
-#MARC."041" has any "d"
-#then
-#set TEMP"1" to MARC."041" sub without sort "d" wrap subfields
-#replace wrapping delimiters (TEMP"1","d","$$Tlang.","$$</p>")
-#replace wrapping delimiters (TEMP"1","d","Tlang.","+")
-#create pnx."display"."lds90" with TEMP"1"
-#end
-
-rule "Primo VE - Lds90/546"
+rule "Primo VE - Lds90 546"
+priority 1
 when
-MARC is "546"."a"
+	MARC is "546"."a"
 then
-set TEMP"1" to MARC."546"."a"
-create pnx."display"."lds90" with TEMP"1"
+	set TEMP"1" to MARC."546"."a"
+	create pnx."display"."lds90" with TEMP"1"
 end
