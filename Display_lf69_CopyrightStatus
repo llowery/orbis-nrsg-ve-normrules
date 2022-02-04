@@ -21,5 +21,5 @@ rule "Primo VE - Lds69_has3"
                 add prefix (TEMP"3","($5: ")
                 add suffix (TEMP"3",")")
 		concatenate with delimiter (TEMP"1",TEMP"3"," ")
-		create pnx."display"."lds69" with MARC "542" subfields "a-p,r-s,3,5"
+		create pnx."display"."lds69" with TEMP"1"
 end
