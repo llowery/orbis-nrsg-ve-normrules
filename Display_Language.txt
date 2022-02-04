@@ -1,47 +1,18 @@
-rule "Primo VE- Language 546"
+rule "Primo VE - Language 008 no 546"
+#  041 subfields displayed and searched in language field in PBO: a,d,i,j,p,q,r
+# Example OCL numbers
+# 02164044 008 only
+# 42686496 546 captioned
+# 1158419826 translated
+# 60556363 translated from in middle of 546
+# 07269975 no 546
+# 31523613 no 546
+# 53033697 has 546
+# 38328628 has 546
+# 42690654 outlier 2 546 fields; 1 = captioned
 	when
-        MARC is "546"."a"
-	then
-	    set TEMP"1" to MARC."546"."a"
-        create pnx."display"."language" with list TEMP"1"
-end
-
-rule "Primo VE- Language 041 a"
-	when
-        MARC is "041"."a"
-	then
-	    set TEMP"2" to MARC."041"."a"
-        lower case (TEMP"2")
-	    return list using regex (TEMP"1",TEMP"2","[a-z]{3}")
-	    normalize discovery lang (TEMP"1")
-        create pnx."display"."language" with list TEMP"1"
-end
-
-rule "Primo VE- Language 041 d"
-	when
-        MARC is "041"."d"
-	then
-	    set TEMP"2" to MARC."041"."d"
-        lower case (TEMP"2")
-	    return list using regex (TEMP"1",TEMP"2","[a-z]{3}")
-	    normalize discovery lang (TEMP"1")
-        create pnx."display"."language" with list TEMP"1"
-end
-
-rule "Primo VE- Language 041 e"
-	when
-        MARC is "041"."e"
-	then
-	    set TEMP"2" to MARC."041"."e"
-        lower case (TEMP"2")
-	    return list using regex (TEMP"1",TEMP"2","[a-z]{3}")
-	    normalize discovery lang (TEMP"1")
-        create pnx."display"."language" with list TEMP"1"
-end
-
-rule "Primo VE - Language 008"
-	when
-        MARC.control is "008"
+        MARC.control is "008" AND NOT
+		MARC is "546"
 	then
 		set TEMP"2" to MARC.control."008".Language
 		return list using regex (TEMP"1",TEMP"2","[a-z]{3}")
@@ -49,14 +20,39 @@ rule "Primo VE - Language 008"
         create pnx."display"."language" with list TEMP"1"
 end
 
-rule "Primo VE- Language 041 h"
+rule "Primo VE - Language 008 with 546 exceptions"
 	when
-        MARC is "041"."h"
+        MARC.control is "008" AND 
+		MARC."546" has any "a" AND 
+		(MARC."546"."a" match "(?i)close(d)?[ -]caption(ed|ing|s)(\\.)?" OR
+		MARC."546"."a" match "Translated from .*")
 	then
-	    set TEMP"2" to MARC."041"."h"
+		set TEMP"2" to MARC.control."008".Language
+		return list using regex (TEMP"1",TEMP"2","[a-z]{3}")
+		normalize discovery lang (TEMP"1")
+        create pnx."display"."language" with list TEMP"1"
+end
+
+rule "Primo VE- Language 041 a no 546"
+	when
+        MARC "041" has any "a,d,e,i,j,p,q,r" AND NOT
+		MARC is "546"
+	then
+	    set TEMP"2" to MARC."041" subfields "a,d,e,i,j,p,q,r"
         lower case (TEMP"2")
-	    return list using regex (TEMP"1",TEMP"2","[a-z]{3}")
-	    normalize discovery lang (TEMP"1")
-	add prefix (TEMP"1","Original language: ")
+	    normalize discovery language (TEMP"1",TEMP"2")
+        create pnx."display"."language" with list TEMP"1"
+end
+
+rule "Primo VE- Language 041 a with 546 exceptions"
+	when
+        MARC "041" has any "a,d,e,i,j,p,q,r" AND
+		MARC."546" has any "a" AND 
+		(MARC."546"."a" match "(?i)close(d)?[ -]caption(ed|ing|s)(\\.)?" OR
+		MARC."546"."a" match "Translated from .*")
+	then
+	    set TEMP"2" to MARC."041" subfields "a,d,e,i,j,p,q,r"
+        lower case (TEMP"2")
+	    normalize discovery language (TEMP"1",TEMP"2")
         create pnx."display"."language" with list TEMP"1"
 end
