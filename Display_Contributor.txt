@@ -1,4 +1,5 @@
 rule "Primo VE Display - contributor 700"
+##Rules grab 700/710/711 and corresponding 880
 priority 20
     when
         MARC."700" has any "a,b,c,d,e,j,q,u,3" 
