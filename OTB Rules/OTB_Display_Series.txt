@@ -41,10 +41,10 @@ end
 
 rule "Primo VE - Series 800"
 	when
-		MARC."800" has any "t"
+		MARC."800" has any "t,w,x"
 	then
 	    set TEMP"1" to MARC "800" excluding num subfields without sort
-		set TEMP"2" to MARC."800" sub without sort "t"
+		set TEMP"2" to MARC."800" sub without sort or empty "t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
@@ -58,10 +58,10 @@ end
 
 rule "Primo VE - Series 810"
 	when
-		MARC."810" has any "t"
+		MARC."810" has any "t,w,x"
 	then
 	    set TEMP"1" to MARC "810" excluding num subfields without sort
-		set TEMP"2" to MARC."810" sub without sort "t"
+		set TEMP"2" to MARC."810" sub without sort or empty "t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
@@ -75,10 +75,10 @@ end
 
 rule "Primo VE - Series 811"
 	when
-		MARC."811" has any "t"
+		MARC."811" has any "t,w,x"
 	then
 	    set TEMP"1" to MARC "811" excluding num subfields without sort
-		set TEMP"2" to MARC."811" sub without sort "t"
+		set TEMP"2" to MARC."811" sub without sort or empty "t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
@@ -92,10 +92,10 @@ end
 
 rule "Primo VE - Series 830"
 	when
-		MARC."830" has any "a,t"
+		MARC."830" has any "a,t,w,x"
 	then
 	    set TEMP"1" to MARC "830" excluding num subfields without sort
-		set TEMP"2" to MARC."830" sub without sort "a,t"
+		set TEMP"2" to MARC."830" sub without sort or empty "a,t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
         remove substring using regex (TEMP"2","^$$Q$")
