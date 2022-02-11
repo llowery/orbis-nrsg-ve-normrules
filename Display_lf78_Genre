@@ -1,4 +1,5 @@
 rule "Primo VE - Lds78"
+# lit text - sound recordings (ex. 1197080110)
 when
     MARC.control."LDR"(6-7) matches "i|j" AND 
     MARC.control is "008"
@@ -7,15 +8,87 @@ then
     add prefix (TEMP"1","$$Tgenre_008_LitTxtSR_")
     add suffix (TEMP"1","$$")
     create pnx."display"."lds78" with TEMP"1"
-    end
+end
 
-rule "Primo VE - Lds78 008 Litf"
+rule "Primo VE - Lds78 008/31"
 when
- MARC.control."LDR"(6-8) matches "aa|ac|ad|am" AND
- MARC.control is "008" 
+    MARC.control."LDR"(6-7) matches "i|j" AND 
+    MARC.control is "008"
 then
- set TEMP"1" to position("008",33-34)
- add prefix (TEMP"1","$$Tgenre_008_LitF_")
-  add suffix (TEMP"1","$$</p>")
-  create pnx."display"."lds78" with TEMP"1"
+    set TEMP"1" to position("008",31-32)
+    add prefix (TEMP"1","$$Tgenre_008_LitTxtSR_")
+    add suffix (TEMP"1","$$")
+    create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/24"
+# nature of contents
+when
+    MARC.control."LDR"(6-8) matches "aa|ac|ad|am" AND
+    MARC.control is "008" 
+then
+    set TEMP"1" to position("008",24-25)
+    add prefix (TEMP"1","$$Tgenre_008_NatureContents_")
+    add suffix (TEMP"1","$$")
+    create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25"
+# nature of contents
+when
+    MARC.control."LDR"(6-8) matches "aa|ac|ad|am" AND
+    MARC.control is "008" 
+then
+    set TEMP"1" to position("008",25-26)
+    add prefix (TEMP"1","$$Tgenre_008_NatureContents_")
+    add suffix (TEMP"1","$$")
+    create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26"
+# nature of contents
+when
+    MARC.control."LDR"(6-8) matches "aa|ac|ad|am" AND
+    MARC.control is "008" 
+then
+    set TEMP"1" to position("008",26-27)
+    add prefix (TEMP"1","$$Tgenre_008_NatureContents_")
+    add suffix (TEMP"1","$$")
+    create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27"
+# nature of contents
+when
+    MARC.control."LDR"(6-8) matches "aa|ac|ad|am" AND
+    MARC.control is "008" 
+then
+    set TEMP"1" to position("008",27-28)
+    add prefix (TEMP"1","$$Tgenre_008_NatureContents_")
+    add suffix (TEMP"1","$$")
+    create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/33"
+# literary form (ex. 1057242876)
+when
+    MARC.control."LDR"(6-8) matches "aa|ac|ad|am" AND
+    MARC.control is "008" 
+then
+    set TEMP"1" to position("008",33-34)
+    add prefix (TEMP"1","$$Tgenre_008_LitF_")
+    add suffix (TEMP"1","$$")
+    create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/34"
+#biography
+when
+    MARC.control."LDR"(6-8) matches "aa|ac|ad|am" AND
+    MARC.control is "008" 
+then
+    set TEMP"1" to position("008",34-35)
+    add prefix (TEMP"1","$$Tgenre_008_Biog_")
+    add suffix (TEMP"1","$$")
+    create pnx."display"."lds78" with TEMP"1"
 end
