@@ -1,14 +1,5 @@
 rule "Primo VE - Lds89"
 	when
-		MARC is "561" AND
-		MARC "561"."5" match ".*"
-	then
-		set TEMP"1" to MARC."561" subfields "a"
-		create pnx."display"."lds89" with TEMP"1"
-end
-
-rule "Primo VE - Lds89_no5"
-	when
 		MARC is "561" AND NOT
 		MARC "561"."5" match ".*"
 	then
