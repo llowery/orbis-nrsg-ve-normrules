@@ -1,15 +1,7 @@
 rule "Primo VE - Lds60"
 	when
-		MARC is "541" AND
-    MARC "541"."5" match ".*"
-	then
-		create pnx."display"."lds60" with MARC "541" excluding num subfields without sort
-end
-
-rule "Primo VE - Lds60_no5"
-	when
 		MARC is "541" AND NOT
-    MARC "541"."5" match ".*"
+                MARC "541"."5" match ".*"
 	then
 		set TEMP"1" to MARC."541" subfields "3"
 		remove substring using regex (TEMP"1","(:)+$")
