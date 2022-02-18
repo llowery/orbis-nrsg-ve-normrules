@@ -1,7 +1,7 @@
 rule "Primo VE - Lds65"
 	when
-		MARC."538" has any "3" AND NOT
-        MARC."538"."5" match ".*"
+		MARC."538" has any "3,a" AND NOT
+                MARC."538"."5" match ".*"
 	then
 		set TEMP"1" to MARC."538" subfields "3"
 		remove substring using regex (TEMP"1","(:)+$")
@@ -11,10 +11,11 @@ rule "Primo VE - Lds65"
 end
 rule "Primo VE - Lds65_no3"
 	when
-        MARC is "538" AND NOT	
-        MARC."538"."3" match ".*"
+                MARC is "538" AND NOT
+                MARC."538"."5" match ".*" AND NOT	
+                MARC."538"."3" match ".*"
 	then
-		set TEMP"1" to MARC."538" sub without sort "a,i,u,5,6,8"
+		set TEMP"1" to MARC."538" subfields "a"
 		create pnx."display"."lds65" with TEMP"1"
 end
 rule "Primo VE - Lds65_346a"
@@ -53,8 +54,3 @@ rule "Primo VE - Lds65_347e"
         add prefix (TEMP"1","Regional encoding: ")
 		create pnx."display"."lds65" with TEMP"1"
 end
-#Tested with 897774769 (538$3 and 538$a, no 538$5; 347$b)
-#Tested with 43781899 (538, no 538$3)
-#Tested with 69863648 (347$b and 347$e)
-#Tested with 1117775619 (346$a and $346b, no 538$a)
-#Note: Rule for 344 is not enabled in PBO
