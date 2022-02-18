@@ -31,7 +31,10 @@ rule "Primo VE - Lds97c"
                 MARC."246".ind"1" equals "1") AND
                 MARC."246"."i" match ".*"
 	then
-		create pnx."display"."lds97" with MARC."246" sub without sort "i,a,b,f,g,n,p"
+		set TEMP"1" to MARC."246" sub without sort "i,a,b,f,g,n,p"
+		replace string by string (TEMP"1",">","&gt;")
+		replace string by string (TEMP"1","<","&lt;")
+		create pnx."display"."lds97" with TEMP"1"
 end
 
 rule "Primo VE - Lds97d"
@@ -47,6 +50,8 @@ rule "Primo VE - Lds97d"
                 MARC."246"."i" match ".*"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
+		replace string by string (TEMP"1",">","&gt;")
+		replace string by string (TEMP"1","<","&lt;")
 		add prefix (TEMP"1","Parallel title in another language: ")
 		create pnx."display"."lds97" with TEMP"1"
 end
@@ -67,6 +72,8 @@ rule "Primo VE - Lds97e"
                 MARC."246"."i" match ".*"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
+		replace string by string (TEMP"1",">","&gt;")
+		replace string by string (TEMP"1","<","&lt;")
 		add prefix (TEMP"1","Distinctive title: ")
 		create pnx."display"."lds97" with TEMP"1"
 end
@@ -87,9 +94,9 @@ rule "Primo VE - Lds97f"
                 MARC."246"."i" match ".*"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
-		##change <> to () because VE isn't displaying text between <>
-		replace string by string (TEMP"1","<","\\(")
-		replace string by string (TEMP"1",">","\\)")
+		##change <> so VE will display text between <>
+		replace string by string (TEMP"1",">","&gt;")
+		replace string by string (TEMP"1","<","&lt;")
 		add prefix (TEMP"1","Cover title: ")
 		create pnx."display"."lds97" with TEMP"1"
 end
@@ -110,6 +117,8 @@ rule "Primo VE - Lds97g"
                 MARC."246"."i" match ".*"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
+		replace string by string (TEMP"1",">","&gt;")
+		replace string by string (TEMP"1","<","&lt;")
 		add prefix (TEMP"1","Added title page title: ")
 		create pnx."display"."lds97" with TEMP"1"
 end
@@ -121,7 +130,7 @@ rule "Primo VE - Lds97h"
 ##prefer label from $i over indicator if both are present
 ##ind 1 = 0 (Note, no added entry) or 1 (Note, added entry)
 ##ind 1 = 2 or 3 are intended for search but not display
-##Ex: 08238063
+##Ex: 09062933
 	when
 		MARC."246" has any "a,b,f,g,n,p" AND
                 (MARC."246".ind"1" equals "0" OR 
@@ -130,6 +139,8 @@ rule "Primo VE - Lds97h"
                 MARC."246"."i" match ".*"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
+		replace string by string (TEMP"1",">","&gt;")
+		replace string by string (TEMP"1","<","&lt;")
 		add prefix (TEMP"1","Caption title: ")
 		create pnx."display"."lds97" with TEMP"1"
 end
@@ -150,6 +161,8 @@ rule "Primo VE - Lds97i"
                 MARC."246"."i" match ".*"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
+		replace string by string (TEMP"1",">","&gt;")
+		replace string by string (TEMP"1","<","&lt;")
 		add prefix (TEMP"1","Running title: ")
 		create pnx."display"."lds97" with TEMP"1"
 end
@@ -170,6 +183,8 @@ rule "Primo VE - Lds97j"
                 MARC."246"."i" match ".*"
 	then
 		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
+		replace string by string (TEMP"1",">","&gt;")
+		replace string by string (TEMP"1","<","&lt;")
 		add prefix (TEMP"1","Spine title: ")
 		create pnx."display"."lds97" with TEMP"1"
 end
@@ -196,7 +211,10 @@ rule "Primo VE - Lds97k"
                 MARC."246".ind"2" equals "8") AND NOT
                 MARC."246"."i" match ".*"
 	then
-		create pnx."display"."lds97" with MARC."246" sub without sort "a,b,f,g,n,p"
+		set TEMP"1" to MARC."246" sub without sort "a,b,f,g,n,p"
+		replace string by string (TEMP"1",">","&gt;")
+		replace string by string (TEMP"1","<","&lt;")
+		create pnx."display"."lds97" with TEMP"1"
 end
 
 rule "Primo VE - Lds97l"
@@ -209,14 +227,14 @@ rule "Primo VE - Lds97l"
 		set TEMP"1" to MARC."247" sub without sort "a,b,g,n,p,x"
 		add prefix (TEMP"1","Former title: ")
 		set TEMP"2" to MARC."247" subfields "f"
-		replace string by string (TEMP"2","<","(")
-		replace string by string (TEMP"2",">",")")
+		replace string by string (TEMP"2",">","&gt;")
+		replace string by string (TEMP"2","<","&lt;")
 		concatenate with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."display"."lds97" with TEMP"1"
 end
 
 rule "Primo VE - Lds97m"
-##Ex: none
+##Ex: 274802690
 	when
 		MARC."242" has any "a,b,n,p" AND
 		MARC."242".ind"1" equals "1"
