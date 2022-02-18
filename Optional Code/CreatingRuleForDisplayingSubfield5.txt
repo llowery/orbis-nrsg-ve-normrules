@@ -1,25 +1,24 @@
-#####add to the very bottom of rule block#####
-#####including $5 local data#####
-#####If you want to display your local data, replace "XXXX" with your local symbol#####
-rule "Primo VE - Lds60_local"
+#####The code below is meant to serve as a model for institutions who want to add data from fields containing $5
+#####Note: you will need to add this code to the very bottom of a rule block
+#####If you want to display your local data: Replace "XX" with a local field number, replace "YYY" with a MARC field, and replace "ZZZZ" with your local MARC Organization Code (https://www.loc.gov/marc/organizations/org-search.php)
+rule "Primo VE - LdsXX_local"
 	when
-		MARC is "541" AND
-        MARC "541"."5" match ".*XXXX.*"
+		MARC is "YYY" AND
+        	MARC "YYY"."5" match ".*ZZZZ.*"
 	then
-		set TEMP"1" to MARC."541" subfields "3"
+		set TEMP"1" to MARC."YYY" subfields "3"
 		remove substring using regex (TEMP"1","(:)+$")
-		set TEMP"2" to MARC."541" excluding num subfields without sort
+		set TEMP"2" to MARC."YYY" excluding num subfields without sort
 		concatenate with delimiter (TEMP"1",TEMP"2",": ")
-		create pnx."display"."lds60" with TEMP"1"
+		create pnx."display"."ldsXX" with TEMP"1"
 end
-#####including $5 local data#####
-#####If you want to display your local data, replace "XXXX" with your local symbol#####
-rule "Primo VE - Lds60_local_no3"
+#####If you want to display your local data: Replace "XX" with a local field number, replace "YYY" with a MARC field, and replace "ZZZZ" with your local MARC Organization Code (https://www.loc.gov/marc/organizations/org-search.php)
+rule "Primo VE - LdsXX_local_no3"
 	when
-		MARC is "541" AND
-        MARC "541"."5" match ".*XXXX.*" AND NOT
-        MARC "541"."3" match ".*"
+		MARC is "YYY" AND
+        	MARC "YYY"."5" match ".*XXXX.*" AND NOT
+       		MARC "YYY"."3" match ".*"
 	then
-		set TEMP"1" to MARC."541" excluding num subfields without sort
-		create pnx."display"."lds60" with TEMP"1"
+		set TEMP"1" to MARC."YYY" excluding num subfields without sort
+		create pnx."display"."ldsXX" with TEMP"1"
 end
