@@ -1,57 +1,75 @@
 rule "Primo VE - Lds87"
-# no 3
 # ex $n 07222513 (01), 00784920 (17)
-# ex $b solo parts 06809612, 1055684538 [NOT SURE WHY 383 SHOWS!!]
+# ex $b solo parts 06809612, 1055684538
 # ex $d doubling instruments 1054014464, 807983332
 # ex $p alternative instrumentation 08153868, 457771332, 09224901
 # ex $v note 1112144880, 48788606, 956878944
 # ex no $n 14698923
-# problem 00740415 "chimes/toy instrument [small metal cricket] triangle/..." missing semicolon
+# ex $3 268925851
+# ex $v followed by $a 00740415 "chimes/toy instrument [small metal cricket]; triangle/..."
+
 when
-MARC."382" has any "a,b,e,n" AND NOT
-MARC."382"."3" match ".*"   
+	MARC."382" has any "a,b,e,n,3"
+	
 then
-set TEMP"1" to MARC."382" sub without sort "a,b,d,e,n,p,r,s,t,v" wrap subfields
+
+set TEMP"1" to MARC."382" subfields "3"
+set TEMP"2" to MARC."382" sub without sort "a,b,d,e,n,p,r,s,t,v" wrap subfields
+
 # add extra ";" after subfield a to account for fields lacking $n/$e
-replace wrapping delimiters (TEMP"1","a","",";")
-replace wrapping delimiters (TEMP"1","n","(",");")
-replace wrapping delimiters (TEMP"1","e","(",");")
+	replace wrapping delimiters (TEMP"2","a","",";")
+	replace wrapping delimiters (TEMP"2","n","(",");")
+	replace wrapping delimiters (TEMP"2","e","(",");")
 # $b prefix solo parts with solo
-replace wrapping delimiters (TEMP"1","b","solo ","")
+	replace wrapping delimiters (TEMP"2","b","solo ","")
 # $d separate doubling parts with /
-replace wrapping delimiters (TEMP"1","d","/","")
-replace string by string (TEMP"1"," \\([0-9]+\\); /","/")
+	replace wrapping delimiters (TEMP"2","d","/","")
+	replace string by string (TEMP"2"," \\([0-9]+\\); /","/")
 # $p separate alternative instrumentation with or
-replace wrapping delimiters (TEMP"1","p","or ","")
-replace string by string (TEMP"1"," \\([0-9]+\\); or "," or ")
+	replace wrapping delimiters (TEMP"2","p","or ","")
+	replace string by string (TEMP"2"," \\([0-9]+\\); or "," or ")
 # $v surround notes with []
-replace wrapping delimiters (TEMP"1","v","[","]")
+	replace wrapping delimiters (TEMP"2","v","[","]")
 # $r # soloists
-replace wrapping delimiters (TEMP"1","r","Total soloists: ",".")
-replace string by string (TEMP"1","Total soloists: 1\\.","")
+	replace wrapping delimiters (TEMP"2","r","Total soloists: ",".")
+	replace string by string (TEMP"2","Total soloists: 1\\.","")
 # $s # performers
-replace wrapping delimiters (TEMP"1","s","Total performers: ",".")
-replace string by string (TEMP"1","Total performers: 1\\.","")
+	replace wrapping delimiters (TEMP"2","s","Total performers: ",".")
+	replace string by string (TEMP"2","Total performers: 1\\.","")
 # $t 
-replace wrapping delimiters (TEMP"1","t","Total ensembles: ",".")
-replace string by string (TEMP"1","Total ensembles: 1\\.","")
+	replace wrapping delimiters (TEMP"2","t","Total ensembles: ",".")
+	replace string by string (TEMP"2","Total ensembles: 1\\.","")
 # fix erroneous $n in form (01)
-replace string by string (TEMP"1"," \\(0"," \\(")
+	replace string by string (TEMP"2"," \\(0"," \\(")
 # remove number of players when = 1
-replace string by string (TEMP"1"," \\(1\\);",";")
+	replace string by string (TEMP"2"," \\(1\\);",";")
 # clean up punctuation around notes
-replace string by string (TEMP"1","; \\["," \\[")
-replace string by string (TEMP"1","] /","]/")
-replace string by string (TEMP"1","; Total ","\\. Total ")
-#replace string by string (TEMP"1","( [0-9]){2}"," $1")
-#replace string by string (TEMP"1"," ([0-9]{1})"," ($1);")
-add prefix (TEMP"1","For ")
-replace string by string (TEMP"1",";$","")
+	replace string by string (TEMP"2",";+ \\["," \\[")
+	replace string by string (TEMP"2","\\] /","\\]/")
+# for $v followed by #a
+	replace string by string (TEMP"2","\\] ([a-z])","\\]; $1")
+# add explanatory words
+	replace string by string (TEMP"2","; Total ","\\. Total ")
+	add prefix (TEMP"2","For ")
+# remove extra spaces from end
+	replace string by string (TEMP"2"," +$","")
+# add period before Total if instrumentation ends in note (])
+	replace string by string (TEMP"2","] Total","]\\. Total")
 # remove any extra semicolons 
-replace string by string (TEMP"1",";;",";")
-replace string by string (TEMP"1",";\\.","\\.")
-replace string by string (TEMP"1","; \\("," \\(")
+	replace string by string (TEMP"2",";;",";")
+	replace string by string (TEMP"2",";\\.","\\.")
+	replace string by string (TEMP"2","; \\("," \\(")
+	replace string by string (TEMP"2",";/","/")
+	replace string by string (TEMP"2","; or "," or ")
+	replace string by string (TEMP"2",";$","")
+
+# combine $3 and $a so $3 comes first; add colon in case missing
+	concatenate existing with delimiter (TEMP"1",TEMP"2",": ")
+# remove extra colon if it was already there in data
+	replace string by string (TEMP"1","::",":")
+	
 create pnx."display"."lds87" with TEMP"1"
+
 end
 
 # based on MLA/MOUG display recommendations
