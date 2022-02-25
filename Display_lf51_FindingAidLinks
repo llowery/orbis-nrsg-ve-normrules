@@ -1,7 +1,7 @@
 rule "Primo VE - Lds51"
 	when
 		MARC."856" has any "u,z" AND
-                MARC."856".ind"1" equals "4"
+                MARC."856".ind"1" equals "4" AND
                 MARC."856"."z" match ".*finding aid.*"
 	then
                 set TEMP"1" to MARC."856" subfields "u"
