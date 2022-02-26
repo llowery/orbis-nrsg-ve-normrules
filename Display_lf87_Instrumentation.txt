@@ -1,6 +1,6 @@
 rule "Primo VE - Lds87"
 # ex $n 07222513 (01), 00784920 (17)
-# ex $b solo parts 06809612, 1055684538
+# ex $b solo parts 06809612, 1055684538, 28088962 ($b not followed by n)
 # ex $d doubling instruments 1054014464, 807983332
 # ex $p alternative instrumentation 08153868, 457771332, 09224901
 # ex $v note 1112144880, 48788606, 956878944
@@ -21,7 +21,7 @@ set TEMP"2" to MARC."382" sub without sort "a,b,d,e,n,p,r,s,t,v" wrap subfields
 	replace wrapping delimiters (TEMP"2","n","(",");")
 	replace wrapping delimiters (TEMP"2","e","(",");")
 # $b prefix solo parts with solo
-	replace wrapping delimiters (TEMP"2","b","solo ","")
+	replace wrapping delimiters (TEMP"2","b","solo ","AFTERB")
 # $d separate doubling parts with /
 	replace wrapping delimiters (TEMP"2","d","/","")
 	replace string by string (TEMP"2"," \\([0-9]+\\); /","/")
@@ -62,6 +62,12 @@ set TEMP"2" to MARC."382" sub without sort "a,b,d,e,n,p,r,s,t,v" wrap subfields
 	replace string by string (TEMP"2",";/","/")
 	replace string by string (TEMP"2","; or "," or ")
 	replace string by string (TEMP"2",";$","")
+#fix punctuation after $b (needed to account for $b not followed by a $n
+	replace string by string (TEMP"2","AFTERB;",";")
+	replace string by string (TEMP"2","AFTERB/","/")
+	replace string by string (TEMP"2","AFTERB or "," or ")
+	replace string by string (TEMP"2","AFTERB \\["," \\[")
+	replace string by string (TEMP"2","AFTERB",";")
 
 # combine $3 and $a so $3 comes first; add colon in case missing
 	concatenate existing with delimiter (TEMP"1",TEMP"2",": ")
