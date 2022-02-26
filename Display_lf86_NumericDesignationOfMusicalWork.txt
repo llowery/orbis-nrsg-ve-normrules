@@ -2,19 +2,25 @@ rule "Primo VE - Lds86"
 # 383 Numeric Designation of Musical Work
 # $a Serial number (R), $b Opus number (R)
 # $e - Publisher associated with opus number (NR)
-# ex 36366857, 14698923, 961100812, 957303692
-# ex 09099071
+# ex 36366857 ($a), 14698923 ($b), 961100812 ($a, $b), 957303692 (multiple $b)
+# ex 09099071 ($b, $c, $d), 1227319100 ($3)
 when
-MARC."383" has any "a,b,e"
+	MARC."383" has any "a,b,e"
 then
-set TEMP"1" to MARC."383" sub without sort "a,b,e" wrap subfields
-replace wrapping delimiters (TEMP"1","a","",",")
-replace wrapping delimiters (TEMP"1","b","",",")
-replace wrapping delimiters (TEMP"1","e","(",")")
-replace string by string (TEMP"1",", \\("," \\(")
-replace string by string (TEMP"1",",$","")
-create pnx."display"."lds86" with TEMP"1"
+	set TEMP"1" to MARC."383" subfields "3"
+	set TEMP"2" to MARC."383" sub without sort "a,b,e" wrap subfields
+	replace wrapping delimiters (TEMP"2","a","",",")
+	replace wrapping delimiters (TEMP"2","b","",",")
+	replace wrapping delimiters (TEMP"2","e","(",")")
+	replace string by string (TEMP"2",", \\("," \\(")
+	replace string by string (TEMP"2",",$","")
+# combine $3 and other subfield(s) so $3 comes first; add colon in case missing
+	concatenate existing with delimiter (TEMP"1",TEMP"2",": ")
+# remove extra colon if it was already there in data
+	replace string by string (TEMP"1","::",":")
+	create pnx."display"."lds86" with TEMP"1"
 end
+
 
 rule "Primo VE - Lds86a"
 # 383 Numeric Designation of Musical Work
@@ -22,13 +28,18 @@ rule "Primo VE - Lds86a"
 # $d Thematic index code (NR)
 # ex 04566698, 971479624, 1055535827
 when
-MARC."383" has any "c,d"
+	MARC."383" has any "c,d,3"
 then
-set TEMP"1" to MARC."383" sub without sort "c,d" wrap subfields
-replace wrapping delimiters (TEMP"1","c","",",")
-#replace wrapping delimiters (TEMP"1","b","",",")
-replace wrapping delimiters (TEMP"1","d","(",")")
-replace string by string (TEMP"1",", \\("," \\(")
-replace string by string (TEMP"1",",$","")
-create pnx."display"."lds86" with TEMP"1"
+	set TEMP"1" to MARC."383" subfields "3"
+	set TEMP"2" to MARC."383" sub without sort "c,d" wrap subfields
+	replace wrapping delimiters (TEMP"2","c","",",")
+	#replace wrapping delimiters (TEMP"2","b","",",")
+	replace wrapping delimiters (TEMP"2","d","(",")")
+	replace string by string (TEMP"2",", \\("," \\(")
+	replace string by string (TEMP"2",",$","")
+# combine $3 and other subfield(s) so $3 comes first; add colon in case missing
+	concatenate existing with delimiter (TEMP"1",TEMP"2",": ")
+# remove extra colon if it was already there in data
+	replace string by string (TEMP"1","::",":")
+	create pnx."display"."lds86" with TEMP"1"
 end
