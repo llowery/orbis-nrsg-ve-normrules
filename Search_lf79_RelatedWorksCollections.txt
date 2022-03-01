@@ -1,0 +1,77 @@
+#Field creates search index using 700, 710, 711 with $t and 2ind not = 2 and corresponding 880s, plus 730s with 2ind not = 2 and corresponding 880.
+
+rule "Primo VE Marc - Lsr79"
+	when
+		MARC."700" has any "t" AND NOT
+		MARC."700".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."700" excluding subfields without sorting "[0-9]|x|i|=|f"
+        create pnx."search"."lsr79" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr79_710"
+	when
+		MARC."710" has any "t" AND NOT
+		MARC."710".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."710" excluding subfields without sorting "[0-9]|x|i|=|f"
+        create pnx."search"."lsr79" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr79_711"
+	when
+		MARC."711" has any "t" AND NOT
+		MARC."711".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."711" excluding subfields without sorting "[0-9]|x|i|=|f"
+        create pnx."search"."lsr79" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr79_730"
+	when
+		MARC is "730" AND NOT
+		MARC."730".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."730" excluding subfields without sorting "[0-9]|x|i|=|f"
+        create pnx."search"."lsr79" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr79_880-700"
+	when
+		MARC."880" has any "t" AND
+		MARC."880"."6" match "700-.*" AND NOT
+		MARC."880".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|x|i|=|f"
+        create pnx."search"."lsr79" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr79_880-710"
+	when
+		MARC."880" has any "t" AND
+		MARC."880"."6" match "710-.*" AND NOT
+		MARC."880".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|x|i|=|f"
+        create pnx."search"."lsr79" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr79_880-711"
+	when
+		MARC."880" has any "t" AND
+		MARC."880"."6" match "711-.*" AND NOT
+		MARC."880".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|x|i|=|f"
+        create pnx."search"."lsr79" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr79_880-730"
+	when
+		MARC is "880" AND
+		MARC."880"."6" match "730-.*" AND NOT
+		MARC."880".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|x|i|=|f"
+        create pnx."search"."lsr79" with TEMP"1"
+end
