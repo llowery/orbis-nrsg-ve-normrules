@@ -63,4 +63,3 @@ rule "Primo VE - Genre 380"
 	then
 		create pnx."display"."genre" with MARC "380" subfields "a" delimited by " " remove substring using regex "\\.+$"
 end
-#test
