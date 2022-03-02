@@ -1,6 +1,5 @@
-#Field displays 700, 710, 711 with $t and 2ind not = 2 and corresponding 880s, plus 730s with 2ind not = 2 and corresponding 880.
-
 rule "Primo VE - Lds79"
+#Field displays 700, 710, 711 with $t and 2ind not = 2 and corresponding 880s, plus 730s with 2ind not = 2 and corresponding 880.
 	when
 		MARC."700" has any "t" AND NOT
 		MARC."700".ind"2"  equals "2"
