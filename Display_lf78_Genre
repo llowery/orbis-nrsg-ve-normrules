@@ -53,22 +53,22 @@ rule "Primo VE - Lds78 008/24"
 # nature of contents
 when
     (MARC.control."008"(24-25) equals "5" OR
-    (MARC.control."008"(24-25) equals "6" OR
-    (MARC.control."008"(24-25) equals "c" OR
-    (MARC.control."008"(24-25) equals "d" OR
-    (MARC.control."008"(24-25) equals "e" OR
-    (MARC.control."008"(24-25) equals "f" OR
-    (MARC.control."008"(24-25) equals "i" OR
-    (MARC.control."008"(24-25) equals "j" OR
-    (MARC.control."008"(24-25) equals "k" OR
-    (MARC.control."008"(24-25) equals "o" OR
-    (MARC.control."008"(24-25) equals "p" OR
-    (MARC.control."008"(24-25) equals "r" OR
-    (MARC.control."008"(24-25) equals "s" OR
-    (MARC.control."008"(24-25) equals "t" OR
-    (MARC.control."008"(24-25) equals "w" OR
-    (MARC.control."008"(24-25) equals "y" OR
-    (MARC.control."008"(24-25) equals "z") AND
+    MARC.control."008"(24-25) equals "6" OR
+    MARC.control."008"(24-25) equals "c" OR
+    MARC.control."008"(24-25) equals "d" OR
+    MARC.control."008"(24-25) equals "e" OR
+    MARC.control."008"(24-25) equals "f" OR
+    MARC.control."008"(24-25) equals "i" OR
+    MARC.control."008"(24-25) equals "j" OR
+    MARC.control."008"(24-25) equals "k" OR
+    MARC.control."008"(24-25) equals "o" OR
+    MARC.control."008"(24-25) equals "p" OR
+    MARC.control."008"(24-25) equals "r" OR
+    MARC.control."008"(24-25) equals "s" OR
+    MARC.control."008"(24-25) equals "t" OR
+    MARC.control."008"(24-25) equals "w" OR
+    MARC.control."008"(24-25) equals "y" OR
+    MARC.control."008"(24-25) equals "z") AND
     MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
 then
     set TEMP"1" to position("008",24-25)
@@ -81,22 +81,22 @@ rule "Primo VE - Lds78 008/25"
 # nature of contents
 when
     (MARC.control."008"(25-26) equals "5" OR
-    (MARC.control."008"(25-26) equals "6" OR
-    (MARC.control."008"(25-26) equals "c" OR
-    (MARC.control."008"(25-26) equals "d" OR
-    (MARC.control."008"(25-26) equals "e" OR
-    (MARC.control."008"(25-26) equals "f" OR
-    (MARC.control."008"(25-26) equals "i" OR
-    (MARC.control."008"(25-26) equals "j" OR
-    (MARC.control."008"(25-26) equals "k" OR
-    (MARC.control."008"(25-26) equals "o" OR
-    (MARC.control."008"(25-26) equals "p" OR
-    (MARC.control."008"(25-26) equals "r" OR
-    (MARC.control."008"(25-26) equals "s" OR
-    (MARC.control."008"(25-26) equals "t" OR
-    (MARC.control."008"(25-26) equals "w" OR
-    (MARC.control."008"(25-26) equals "y" OR
-    (MARC.control."008"(25-26) equals "z") AND
+    MARC.control."008"(25-26) equals "6" OR
+    MARC.control."008"(25-26) equals "c" OR
+    MARC.control."008"(25-26) equals "d" OR
+    MARC.control."008"(25-26) equals "e" OR
+    MARC.control."008"(25-26) equals "f" OR
+    MARC.control."008"(25-26) equals "i" OR
+    MARC.control."008"(25-26) equals "j" OR
+    MARC.control."008"(25-26) equals "k" OR
+    MARC.control."008"(25-26) equals "o" OR
+    MARC.control."008"(25-26) equals "p" OR
+    MARC.control."008"(25-26) equals "r" OR
+    MARC.control."008"(25-26) equals "s" OR
+    MARC.control."008"(25-26) equals "t" OR
+    MARC.control."008"(25-26) equals "w" OR
+    MARC.control."008"(25-26) equals "y" OR
+    MARC.control."008"(25-26) equals "z") AND
     MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
 then
     set TEMP"1" to position("008",25-26)
@@ -109,22 +109,22 @@ rule "Primo VE - Lds78 008/26"
 # nature of contents
 when
     (MARC.control."008"(26-27) equals "5" OR
-    (MARC.control."008"(26-27) equals "6" OR
-    (MARC.control."008"(26-27) equals "c" OR
-    (MARC.control."008"(26-27) equals "d" OR
-    (MARC.control."008"(26-27) equals "e" OR
-    (MARC.control."008"(26-27) equals "f" OR
-    (MARC.control."008"(26-27) equals "i" OR
-    (MARC.control."008"(26-27) equals "j" OR
-    (MARC.control."008"(26-27) equals "k" OR
-    (MARC.control."008"(26-27) equals "o" OR
-    (MARC.control."008"(26-27) equals "p" OR
-    (MARC.control."008"(26-27) equals "r" OR
-    (MARC.control."008"(26-27) equals "s" OR
-    (MARC.control."008"(26-27) equals "t" OR
-    (MARC.control."008"(26-27) equals "w" OR
-    (MARC.control."008"(26-27) equals "y" OR
-    (MARC.control."008"(26-27) equals "z") AND
+    MARC.control."008"(26-27) equals "6" OR
+    MARC.control."008"(26-27) equals "c" OR
+    MARC.control."008"(26-27) equals "d" OR
+    MARC.control."008"(26-27) equals "e" OR
+    MARC.control."008"(26-27) equals "f" OR
+    MARC.control."008"(26-27) equals "i" OR
+    MARC.control."008"(26-27) equals "j" OR
+    MARC.control."008"(26-27) equals "k" OR
+    MARC.control."008"(26-27) equals "o" OR
+    MARC.control."008"(26-27) equals "p" OR
+    MARC.control."008"(26-27) equals "r" OR
+    MARC.control."008"(26-27) equals "s" OR
+    MARC.control."008"(26-27) equals "t" OR
+    MARC.control."008"(26-27) equals "w" OR
+    MARC.control."008"(26-27) equals "y" OR
+    MARC.control."008"(26-27) equals "z") AND
     MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
 then
     set TEMP"1" to position("008",26-27)
@@ -137,22 +137,22 @@ rule "Primo VE - Lds78 008/27"
 # nature of contents
 when
     (MARC.control."008"(27-28) equals "5" OR
-    (MARC.control."008"(27-28) equals "6" OR
-    (MARC.control."008"(27-28) equals "c" OR
-    (MARC.control."008"(27-28) equals "d" OR
-    (MARC.control."008"(27-28) equals "e" OR
-    (MARC.control."008"(27-28) equals "f" OR
-    (MARC.control."008"(27-28) equals "i" OR
-    (MARC.control."008"(27-28) equals "j" OR
-    (MARC.control."008"(27-28) equals "k" OR
-    (MARC.control."008"(27-28) equals "o" OR
-    (MARC.control."008"(27-28) equals "p" OR
-    (MARC.control."008"(27-28) equals "r" OR
-    (MARC.control."008"(27-28) equals "s" OR
-    (MARC.control."008"(27-28) equals "t" OR
-    (MARC.control."008"(27-28) equals "w" OR
-    (MARC.control."008"(27-28) equals "y" OR
-    (MARC.control."008"(27-28) equals "z") AND
+    MARC.control."008"(27-28) equals "6" OR
+    MARC.control."008"(27-28) equals "c" OR
+    MARC.control."008"(27-28) equals "d" OR
+    MARC.control."008"(27-28) equals "e" OR
+    MARC.control."008"(27-28) equals "f" OR
+    MARC.control."008"(27-28) equals "i" OR
+    MARC.control."008"(27-28) equals "j" OR
+    MARC.control."008"(27-28) equals "k" OR
+    MARC.control."008"(27-28) equals "o" OR
+    MARC.control."008"(27-28) equals "p" OR
+    MARC.control."008"(27-28) equals "r" OR
+    MARC.control."008"(27-28) equals "s" OR
+    MARC.control."008"(27-28) equals "t" OR
+    MARC.control."008"(27-28) equals "w" OR
+    MARC.control."008"(27-28) equals "y" OR
+    MARC.control."008"(27-28) equals "z") AND
     MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
 then
     set TEMP"1" to position("008",27-28)
@@ -170,7 +170,7 @@ when
     MARC.control."008"(33-34) equals "f" OR
     MARC.control."008"(33-34) equals "j" OR
     MARC.control."008"(33-34) equals "p" OR
-    MARC.control."008"(33-34) equals "s" AND
+    MARC.control."008"(33-34) equals "s") AND
     MARC.control."LDR"(6-8) matches "ab|ai|as"
 then
     set TEMP"1" to position("008",33-34)
