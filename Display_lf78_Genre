@@ -1,8 +1,22 @@
 rule "Primo VE - Lds78"
 # lit text - sound recordings (ex. 1197080110)
 when
-    MARC.control."LDR"(6-7) matches "i|j" AND 
-    MARC.control is "008"
+    (MARC.control."008"(30-31) equals "a" OR
+    MARC.control."008"(30-31) equals "b" OR
+    MARC.control."008"(30-31) equals "c" OR
+    MARC.control."008"(30-31) equals "d" OR
+    MARC.control."008"(30-31) equals "e" OR
+    MARC.control."008"(30-31) equals "f" OR
+    MARC.control."008"(30-31) equals "h" OR
+    MARC.control."008"(30-31) equals "i" OR
+    MARC.control."008"(30-31) equals "j" OR
+    MARC.control."008"(30-31) equals "k" OR
+    MARC.control."008"(30-31) equals "l" OR
+    MARC.control."008"(30-31) equals "m" OR
+    MARC.control."008"(30-31) equals "o" OR
+    MARC.control."008"(30-31) equals "p" OR
+    MARC.control."008"(30-31) equals "t") AND
+    MARC.control."LDR"(6-7) matches "i|j"  
 then
     set TEMP"1" to position("008",30-31)
     add prefix (TEMP"1","$$Tgenre_008_LitTxtSR_")
@@ -12,8 +26,22 @@ end
 
 rule "Primo VE - Lds78 008/31"
 when
-    MARC.control."LDR"(6-7) matches "i|j" AND 
-    MARC.control is "008"
+    (MARC.control."008"(31-32) equals "a" OR
+    MARC.control."008"(31-32) equals "b" OR
+    MARC.control."008"(31-32) equals "c" OR
+    MARC.control."008"(31-32) equals "d" OR
+    MARC.control."008"(31-32) equals "e" OR
+    MARC.control."008"(31-32) equals "f" OR
+    MARC.control."008"(31-32) equals "h" OR
+    MARC.control."008"(31-32) equals "i" OR
+    MARC.control."008"(31-32) equals "j" OR
+    MARC.control."008"(31-32) equals "k" OR
+    MARC.control."008"(31-32) equals "l" OR
+    MARC.control."008"(31-32) equals "m" OR
+    MARC.control."008"(31-32) equals "o" OR
+    MARC.control."008"(31-32) equals "p" OR
+    MARC.control."008"(31-32) equals "t") AND
+    MARC.control."LDR"(6-7) matches "i|j"  
 then
     set TEMP"1" to position("008",31-32)
     add prefix (TEMP"1","$$Tgenre_008_LitTxtSR_")
@@ -24,8 +52,24 @@ end
 rule "Primo VE - Lds78 008/24"
 # nature of contents
 when
-    MARC.control."LDR"(6-8) matches "aa|ac|ad|am" AND
-    MARC.control is "008" 
+    (MARC.control."008"(24-25) equals "5" OR
+    (MARC.control."008"(24-25) equals "6" OR
+    (MARC.control."008"(24-25) equals "c" OR
+    (MARC.control."008"(24-25) equals "d" OR
+    (MARC.control."008"(24-25) equals "e" OR
+    (MARC.control."008"(24-25) equals "f" OR
+    (MARC.control."008"(24-25) equals "i" OR
+    (MARC.control."008"(24-25) equals "j" OR
+    (MARC.control."008"(24-25) equals "k" OR
+    (MARC.control."008"(24-25) equals "o" OR
+    (MARC.control."008"(24-25) equals "p" OR
+    (MARC.control."008"(24-25) equals "r" OR
+    (MARC.control."008"(24-25) equals "s" OR
+    (MARC.control."008"(24-25) equals "t" OR
+    (MARC.control."008"(24-25) equals "w" OR
+    (MARC.control."008"(24-25) equals "y" OR
+    (MARC.control."008"(24-25) equals "z") AND
+    MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
 then
     set TEMP"1" to position("008",24-25)
     add prefix (TEMP"1","$$Tgenre_008_NatureContents_")
@@ -36,8 +80,24 @@ end
 rule "Primo VE - Lds78 008/25"
 # nature of contents
 when
-    MARC.control."LDR"(6-8) matches "aa|ac|ad|am" AND
-    MARC.control is "008" 
+    (MARC.control."008"(25-26) equals "5" OR
+    (MARC.control."008"(25-26) equals "6" OR
+    (MARC.control."008"(25-26) equals "c" OR
+    (MARC.control."008"(25-26) equals "d" OR
+    (MARC.control."008"(25-26) equals "e" OR
+    (MARC.control."008"(25-26) equals "f" OR
+    (MARC.control."008"(25-26) equals "i" OR
+    (MARC.control."008"(25-26) equals "j" OR
+    (MARC.control."008"(25-26) equals "k" OR
+    (MARC.control."008"(25-26) equals "o" OR
+    (MARC.control."008"(25-26) equals "p" OR
+    (MARC.control."008"(25-26) equals "r" OR
+    (MARC.control."008"(25-26) equals "s" OR
+    (MARC.control."008"(25-26) equals "t" OR
+    (MARC.control."008"(25-26) equals "w" OR
+    (MARC.control."008"(25-26) equals "y" OR
+    (MARC.control."008"(25-26) equals "z") AND
+    MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
 then
     set TEMP"1" to position("008",25-26)
     add prefix (TEMP"1","$$Tgenre_008_NatureContents_")
@@ -48,8 +108,24 @@ end
 rule "Primo VE - Lds78 008/26"
 # nature of contents
 when
-    MARC.control."LDR"(6-8) matches "aa|ac|ad|am" AND
-    MARC.control is "008" 
+    (MARC.control."008"(26-27) equals "5" OR
+    (MARC.control."008"(26-27) equals "6" OR
+    (MARC.control."008"(26-27) equals "c" OR
+    (MARC.control."008"(26-27) equals "d" OR
+    (MARC.control."008"(26-27) equals "e" OR
+    (MARC.control."008"(26-27) equals "f" OR
+    (MARC.control."008"(26-27) equals "i" OR
+    (MARC.control."008"(26-27) equals "j" OR
+    (MARC.control."008"(26-27) equals "k" OR
+    (MARC.control."008"(26-27) equals "o" OR
+    (MARC.control."008"(26-27) equals "p" OR
+    (MARC.control."008"(26-27) equals "r" OR
+    (MARC.control."008"(26-27) equals "s" OR
+    (MARC.control."008"(26-27) equals "t" OR
+    (MARC.control."008"(26-27) equals "w" OR
+    (MARC.control."008"(26-27) equals "y" OR
+    (MARC.control."008"(26-27) equals "z") AND
+    MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
 then
     set TEMP"1" to position("008",26-27)
     add prefix (TEMP"1","$$Tgenre_008_NatureContents_")
@@ -60,8 +136,24 @@ end
 rule "Primo VE - Lds78 008/27"
 # nature of contents
 when
-    MARC.control."LDR"(6-8) matches "aa|ac|ad|am" AND
-    MARC.control is "008" 
+    (MARC.control."008"(27-28) equals "5" OR
+    (MARC.control."008"(27-28) equals "6" OR
+    (MARC.control."008"(27-28) equals "c" OR
+    (MARC.control."008"(27-28) equals "d" OR
+    (MARC.control."008"(27-28) equals "e" OR
+    (MARC.control."008"(27-28) equals "f" OR
+    (MARC.control."008"(27-28) equals "i" OR
+    (MARC.control."008"(27-28) equals "j" OR
+    (MARC.control."008"(27-28) equals "k" OR
+    (MARC.control."008"(27-28) equals "o" OR
+    (MARC.control."008"(27-28) equals "p" OR
+    (MARC.control."008"(27-28) equals "r" OR
+    (MARC.control."008"(27-28) equals "s" OR
+    (MARC.control."008"(27-28) equals "t" OR
+    (MARC.control."008"(27-28) equals "w" OR
+    (MARC.control."008"(27-28) equals "y" OR
+    (MARC.control."008"(27-28) equals "z") AND
+    MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
 then
     set TEMP"1" to position("008",27-28)
     add prefix (TEMP"1","$$Tgenre_008_NatureContents_")
@@ -72,8 +164,14 @@ end
 rule "Primo VE - Lds78 008/33"
 # literary form (ex. 1057242876)
 when
-    MARC.control."LDR"(6-8) matches "aa|ac|ad|am" AND
-    MARC.control is "008" 
+    (MARC.control."008"(33-34) equals "1" OR
+    MARC.control."008"(33-34) equals "d" OR
+    MARC.control."008"(33-34) equals "e" OR
+    MARC.control."008"(33-34) equals "f" OR
+    MARC.control."008"(33-34) equals "j" OR
+    MARC.control."008"(33-34) equals "p" OR
+    MARC.control."008"(33-34) equals "s" AND
+    MARC.control."LDR"(6-8) matches "ab|ai|as"
 then
     set TEMP"1" to position("008",33-34)
     add prefix (TEMP"1","$$Tgenre_008_LitF_")
@@ -84,8 +182,10 @@ end
 rule "Primo VE - Lds78 008/34"
 #biography
 when
-    MARC.control."LDR"(6-8) matches "aa|ac|ad|am" AND
-    MARC.control is "008" 
+    (MARC.control."008"(34-35) equals "a" OR
+    MARC.control."008"(34-35) equals "b" OR
+    MARC.control."008"(34-35) equals "c") AND
+    MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
 then
     set TEMP"1" to position("008",34-35)
     add prefix (TEMP"1","$$Tgenre_008_Biog_")
