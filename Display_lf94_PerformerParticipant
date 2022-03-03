@@ -1,5 +1,5 @@
-# OCLC 949929354
 rule "Primo VE - Lds94"
+# OCLC 949929354
 	when
 		MARC."511" has any "a" AND
 		MARC."511".ind"1" equals "0"
