@@ -17,6 +17,7 @@ rule "Primo VE - Lds80"
 end
 
 rule "Primo VE - Lds80_710"
+
 	when
 		MARC."710" has any "t" AND
 		MARC."710".ind"2"  equals "2"
@@ -34,6 +35,7 @@ rule "Primo VE - Lds80_710"
 end
 
 rule "Primo VE - Lds80_711"
+
 	when
 		MARC."711" has any "t" AND
 		MARC."711".ind"2"  equals "2"
@@ -51,6 +53,7 @@ rule "Primo VE - Lds80_711"
 end
 
 rule "Primo VE - Lds80_730"
+
 	when
 		MARC is "730" AND
 		MARC."730".ind"2"  equals "2"
@@ -68,6 +71,7 @@ rule "Primo VE - Lds80_730"
 end
 
 rule "Primo VE - Lds80_880-700"
+
 	when
 		MARC."880" has any "t" AND
 		MARC."880"."6" match "700-.*" AND
@@ -86,6 +90,7 @@ rule "Primo VE - Lds80_880-700"
 end
 
 rule "Primo VE - Lds80_880-710"
+
 	when
 		MARC."880" has any "t" AND
 		MARC."880"."6" match "710-.*" AND
@@ -104,6 +109,7 @@ rule "Primo VE - Lds80_880-710"
 end
 
 rule "Primo VE - Lds80_880-711"
+
 	when
 		MARC."880" has any "t" AND
 		MARC."880"."6" match "711-.*" AND
@@ -122,6 +128,7 @@ rule "Primo VE - Lds80_880-711"
 end
 
 rule "Primo VE - Lds80_880-730"
+
 	when
 		MARC is "880" AND
 		MARC."880"."6" match "730-.*" AND NOT
@@ -141,6 +148,7 @@ end
 
 #uniform title 130 for non-serials and corresponding 880.
 rule "Primo VE - Lds80_130"
+
 	when
 		MARC is "130"."a" AND NOT
 		MARC.control."LDR"(6-8) matches "ab|ai|as"
@@ -152,6 +160,7 @@ rule "Primo VE - Lds80_130"
 end
 
 rule "Primo VE - Lds80_880-130"
+
 	when
 		MARC is "880" AND
 		MARC."880"."6" match "130-.*" AND NOT
@@ -165,6 +174,7 @@ end
 
 # 100+240, 110+240, 111+240 for most other records.
 rule "Primo VE - Lds80_100/240"
+
 	when
 		MARC is "100" AND
 		MARC is "240"
@@ -182,6 +192,7 @@ rule "Primo VE - Lds80_100/240"
 end
 
 rule "Primo VE - Lds80_110/240"
+
 	when
 		MARC is "110" AND
 		MARC is "240"
@@ -199,6 +210,7 @@ rule "Primo VE - Lds80_110/240"
 end
 
 rule "Primo VE - Lds80_111/240"
+
 	when
 		MARC is "111" AND
 		MARC is "240"
@@ -215,13 +227,226 @@ rule "Primo VE - Lds80_111/240"
         create pnx."display"."lds80" with TEMP"1"
 end
 
+rule "Primo VE - Lds80_880-100/880-240a"
+
+#If no AGR form of name, use AGR form of title for display and search.
+	when
+		(MARC is "100" AND NOT MARC."100"."6" match "880-.*") AND
+		MARC is "240" AND
+		MARC is "880" AND
+		MARC."880"."6" match "240-.*"
+	then
+		set TEMP"1" to MARC."880" excluding numeric subfields
+		set TEMP"2" to MARC."880" excluding subfields without sorting "[0-9]|f|="
+		add prefix (TEMP"2","$$Q")
+		remove substring using regex (TEMP"2","^$$Q$")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."lds80" with TEMP"1"
+end
+
+rule "Primo VE - Lds80_880-100/880-240b"
+priority 95
+#If name and title have AGR, get AGR form of name in 880-100, set beginning of display field.
+	when
+		(MARC is "100" AND MARC."100"."6" match "880-.*") AND
+		(MARC is "240" AND MARC."240"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "100-.*"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|e|="
+		create pnx."display"."lds80" with TEMP"1"
+end
+
+rule "Primo VE - Lds80_880-100/880-240c"
+priority 90
+#If name and title have AGR, get AGR form of title in 880-240, add to display created by last rule.
+	when
+		(MARC is "100" AND MARC."100"."6" match "880-.*") AND
+		(MARC is "240" AND MARC."240"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "240-.*"
+	then
+		set TEMP"1" to MARC."880" excluding numeric subfields
+		append TEMP"1" to pnx."display"."lds80" delimited by " "
+end
+
+rule "Primo VE - Lds80_880-100/880-240d"
+priority 85
+#If name and title have AGR, get AGR form of name in 880-100, set beginning of search version of field.
+	when
+		(MARC is "100" AND MARC."100"."6" match "880-.*") AND
+		(MARC is "240" AND MARC."240"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "100-.*"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|e|f|="
+		add prefix (TEMP"1","$$Q")
+		remove substring using regex (TEMP"1","^$$Q$")
+		append TEMP"1" to pnx."display"."lds80" delimited by ""
+end
+
+rule "Primo VE - Lds80_880-100/880-240e"
+priority 80
+#If name and title have AGR, get AGR form of title in 880-240, add to search string created by last rule.
+	when
+		(MARC is "100" AND MARC."100"."6" match "880-.*") AND
+		(MARC is "240" AND MARC."240"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "240-.*"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|f|="
+		append TEMP"1" to pnx."display"."lds80" delimited by " "
+end
+
+rule "Primo VE - Lds80_880-110/880-240a"
+
+#If no AGR form of name, use AGR form of title for display and search.
+	when
+		(MARC is "110" AND NOT MARC."110"."6" match "880-.*") AND
+		MARC is "240" AND
+		MARC is "880" AND
+		MARC."880"."6" match "240-.*"
+	then
+		set TEMP"1" to MARC."880" excluding numeric subfields
+		set TEMP"2" to MARC."880" excluding subfields without sorting "[0-9]|f|="
+		add prefix (TEMP"2","$$Q")
+		remove substring using regex (TEMP"2","^$$Q$")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."lds80" with TEMP"1"
+end
+
+rule "Primo VE - Lds80_880-110/880-240b"
+priority 75
+#If name and title have AGR, get AGR form of name in 880-110, set beginning of display field.
+	when
+		(MARC is "110" AND MARC."110"."6" match "880-.*") AND
+		(MARC is "240" AND MARC."240"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "110-.*"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|e|="
+		create pnx."display"."lds80" with TEMP"1"
+end
+
+rule "Primo VE - Lds80_880-110/880-240c"
+priority 70
+#If name and title have AGR, get AGR form of title in 880-240, add to display created by last rule.
+	when
+		(MARC is "110" AND MARC."110"."6" match "880-.*") AND
+		(MARC is "240" AND MARC."240"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "240-.*"
+	then
+		set TEMP"1" to MARC."880" excluding numeric subfields
+		append TEMP"1" to pnx."display"."lds80" delimited by " "
+end
+
+rule "Primo VE - Lds80_880-110/880-240d"
+priority 65
+#If name and title have AGR, get AGR form of name in 880-110, set beginning of search version of field.
+	when
+		(MARC is "110" AND MARC."110"."6" match "880-.*") AND
+		(MARC is "240" AND MARC."240"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "110-.*"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|e|f|="
+		add prefix (TEMP"1","$$Q")
+		remove substring using regex (TEMP"1","^$$Q$")
+		append TEMP"1" to pnx."display"."lds80" delimited by ""
+end
+
+rule "Primo VE - Lds80_880-110/880-240e"
+priority 60
+#If name and title have AGR, get AGR form of title in 880-240, add to search string created by last rule.
+	when
+		(MARC is "110" AND MARC."110"."6" match "880-.*") AND
+		(MARC is "240" AND MARC."240"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "240-.*"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|f|="
+		append TEMP"1" to pnx."display"."lds80" delimited by " "
+end
+
+rule "Primo VE - Lds80_880-111/880-240a"
+
+#If no AGR form of name, use AGR form of title for display and search.
+	when
+		(MARC is "111" AND NOT MARC."111"."6" match "880-.*") AND
+		MARC is "240" AND
+		MARC is "880" AND
+		MARC."880"."6" match "240-.*"
+	then
+		set TEMP"1" to MARC."880" excluding numeric subfields
+		set TEMP"2" to MARC."880" excluding subfields without sorting "[0-9]|f|="
+		add prefix (TEMP"2","$$Q")
+		remove substring using regex (TEMP"2","^$$Q$")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."lds80" with TEMP"1"
+end
+
+rule "Primo VE - Lds80_880-111/880-240b"
+priority 55
+#If name and title have AGR, get AGR form of name in 880-111, set beginning of display field.
+	when
+		(MARC is "111" AND MARC."111"."6" match "880-.*") AND
+		(MARC is "240" AND MARC."240"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "111-.*"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|e|="
+		create pnx."display"."lds80" with TEMP"1"
+end
+
+rule "Primo VE - Lds80_880-111/880-240c"
+priority 50
+#If name and title have AGR, get AGR form of title in 880-240, add to display created by last rule.
+	when
+		(MARC is "111" AND MARC."111"."6" match "880-.*") AND
+		(MARC is "240" AND MARC."240"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "240-.*"
+	then
+		set TEMP"1" to MARC."880" excluding numeric subfields
+		append TEMP"1" to pnx."display"."lds80" delimited by " "
+end
+
+rule "Primo VE - Lds80_880-111/880-240d"
+priority 45
+#If name and title have AGR, get AGR form of name in 880-111, set beginning of search version of field.
+	when
+		(MARC is "111" AND MARC."111"."6" match "880-.*") AND
+		(MARC is "240" AND MARC."240"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "111-.*"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|e|f|="
+		add prefix (TEMP"1","$$Q")
+		remove substring using regex (TEMP"1","^$$Q$")
+		append TEMP"1" to pnx."display"."lds80" delimited by ""
+end
+
+rule "Primo VE - Lds80_880-111/880-240e"
+priority 40
+#If name and title have AGR, get AGR form of title in 880-240, add to search string created by last rule.
+	when
+		(MARC is "111" AND MARC."111"."6" match "880-.*") AND
+		(MARC is "240" AND MARC."240"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "240-.*"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|f|="
+		append TEMP"1" to pnx."display"."lds80" delimited by " "
+end
+
 #100+245 for music items
 rule "Primo VE - Lds80_100/245_Music"
+
 	when
+		(MARC.control."LDR"(6-7) matches "c|j" AND NOT MARC is "240") AND
 		MARC is "100" AND
-		MARC is "245" AND
-		MARC.control."LDR"(6-7) matches "c|j" AND NOT
-		MARC is "240"
+		MARC is "245"
 	then
 	    set TEMP"1" to MARC."100" excluding subfields without sorting "[0-9]|e|="
         set TEMP"2" to MARC."245" excluding numeric subfields
@@ -234,4 +459,78 @@ rule "Primo VE - Lds80_100/245_Music"
         concatenate with delimiter (TEMP"1",TEMP"3","")
         create pnx."display"."lds80" with TEMP"1"
 end
-	
+
+rule "Primo VE - Lds80_880-100/880-245_Music_a"
+
+#If no AGR form of name, use AGR form of title for display and search.
+	when
+		(MARC.control."LDR"(6-7) matches "c|j" AND NOT MARC is "240") AND
+		(MARC is "100" AND NOT MARC."100"."6" match "880-.*") AND
+		MARC is "245" AND
+		MARC is "880" AND
+		MARC."880"."6" match "245-.*"
+	then
+		set TEMP"1" to MARC."880" excluding numeric subfields
+		set TEMP"2" to MARC."880" excluding subfields without sorting "[0-9]|f|="
+		add prefix (TEMP"2","$$Q")
+		remove substring using regex (TEMP"2","^$$Q$")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		create pnx."display"."lds80" with TEMP"1"
+end
+
+rule "Primo VE - Lds80_880-100/880-245_Music_b"
+priority 35
+#If name and title have AGR, get AGR form of name in 880-100, set beginning of display field.
+	when
+		(MARC.control."LDR"(6-7) matches "c|j" AND NOT MARC is "240") AND
+		(MARC is "100" AND MARC."100"."6" match "880-.*") AND
+		(MARC is "245" AND MARC."245"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "100-.*"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|e|="
+		create pnx."display"."lds80" with TEMP"1"
+end
+
+rule "Primo VE - Lds80_880-100/880-245_Music_c"
+priority 30
+#If name and title have AGR, get AGR form of title in 880-245, add to display created by last rule.
+	when
+		(MARC.control."LDR"(6-7) matches "c|j" AND NOT MARC is "240") AND
+		(MARC is "100" AND MARC."100"."6" match "880-.*") AND
+		(MARC is "245" AND MARC."245"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "245-.*"
+	then
+		set TEMP"1" to MARC."880" excluding numeric subfields
+		append TEMP"1" to pnx."display"."lds80" delimited by " "
+end
+
+rule "Primo VE - Lds80_880-100/880-245_Music_d"
+priority 25
+#If name and title have AGR, get AGR form of name in 880-100, set beginning of search version of field.
+	when
+		(MARC.control."LDR"(6-7) matches "c|j" AND NOT MARC is "240") AND
+		(MARC is "100" AND MARC."100"."6" match "880-.*") AND
+		(MARC is "245" AND MARC."245"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "100-.*"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|e|f|="
+		add prefix (TEMP"1","$$Q")
+		remove substring using regex (TEMP"1","^$$Q$")
+		append TEMP"1" to pnx."display"."lds80" delimited by ""
+end
+
+rule "Primo VE - Lds80_880-100/880-245_Music_e"
+priority 20
+#If name and title have AGR, get AGR form of title in 880-245, add to search string created by last rule.
+	when
+		(MARC is "100" AND MARC."100"."6" match "880-.*") AND
+		(MARC is "245" AND MARC."245"."6" match "880-.*") AND
+		MARC is "880" AND
+		MARC."880"."6" match "245-.*"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|f|="
+		append TEMP"1" to pnx."display"."lds80" delimited by " "
+end
