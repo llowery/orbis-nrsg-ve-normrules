@@ -1,5 +1,5 @@
 rule "Primo VE - Lds79"
-#Field displays 700, 710, 711 with $t and 2ind not = 2 and corresponding 880s, plus 730s with 2ind not = 2 and corresponding 880.
+#Field displays 7700, 710, 711, 952, 953, 954 with $t and 2ind not = 2 and corresponding 880s, plus 730s with 2ind not = 2 and corresponding 880.
 
 	when
 		MARC."700" has any "t" AND NOT
@@ -126,6 +126,111 @@ rule "Primo VE - Lds79_880-730"
 	when
 		MARC is "880" AND
 		MARC."880"."6" match "730-.*" AND NOT
+		MARC."880".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."880" subfields "i"
+		set TEMP"2" to MARC."880"  excluding subfields without sorting "[0-9]|x|i|="
+		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
+		remove string (TEMP"1"," \\(work\\)")
+		remove string (TEMP"1"," \\(expression\\)")
+		set TEMP"3" to MARC."880" excluding subfields without sorting "[0-9]|x|i|=|f"
+		add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds79" with TEMP"1"
+end
+
+rule "Primo VE - Lds79_952"
+	when
+		MARC."952" has any "t" AND NOT
+		MARC."952".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."952" subfields "i"
+		set TEMP"2" to MARC."952"  excluding subfields without sorting "[0-9]|x|i|="
+		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
+		remove string (TEMP"1"," \\(work\\)")
+		remove string (TEMP"1"," \\(expression\\)")
+		set TEMP"3" to MARC."952" excluding subfields without sorting "[0-9]|x|i|=|f"
+		add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds79" with TEMP"1"
+end
+
+rule "Primo VE - Lds79_880-952"
+	when
+		MARC."880" has any "t" AND
+		MARC."880"."6" match "952-.*" AND NOT
+		MARC."880".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."880" subfields "i"
+		set TEMP"2" to MARC."880"  excluding subfields without sorting "[0-9]|x|i|="
+		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
+		remove string (TEMP"1"," \\(work\\)")
+		remove string (TEMP"1"," \\(expression\\)")
+		set TEMP"3" to MARC."880" excluding subfields without sorting "[0-9]|x|i|=|f"
+		add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds79" with TEMP"1"
+end
+
+rule "Primo VE - Lds79_953"
+	when
+		MARC."953" has any "t" AND NOT
+		MARC."953".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."953" subfields "i"
+		set TEMP"2" to MARC."953"  excluding subfields without sorting "[0-9]|x|i|="
+		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
+		remove string (TEMP"1"," \\(work\\)")
+		remove string (TEMP"1"," \\(expression\\)")
+		set TEMP"3" to MARC."953" excluding subfields without sorting "[0-9]|x|i|=|f"
+		add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds79" with TEMP"1"
+end
+
+rule "Primo VE - Lds79_880-953"
+	when
+		MARC."880" has any "t" AND
+		MARC."880"."6" match "953-.*" AND NOT
+		MARC."880".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."880" subfields "i"
+		set TEMP"2" to MARC."880"  excluding subfields without sorting "[0-9]|x|i|="
+		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
+		remove string (TEMP"1"," \\(work\\)")
+		remove string (TEMP"1"," \\(expression\\)")
+		set TEMP"3" to MARC."880" excluding subfields without sorting "[0-9]|x|i|=|f"
+		add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds79" with TEMP"1"
+end
+
+rule "Primo VE - Lds79_954"
+	when
+		MARC."954" has any "t" AND NOT
+		MARC."954".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."954" subfields "i"
+		set TEMP"2" to MARC."954"  excluding subfields without sorting "[0-9]|x|i|="
+		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
+		remove string (TEMP"1"," \\(work\\)")
+		remove string (TEMP"1"," \\(expression\\)")
+		set TEMP"3" to MARC."954" excluding subfields without sorting "[0-9]|x|i|=|f"
+		add prefix (TEMP"3","$$Q")
+        remove substring using regex (TEMP"3","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds79" with TEMP"1"
+end
+
+rule "Primo VE - Lds79_880-954"
+	when
+		MARC."880" has any "t" AND
+		MARC."880"."6" match "954-.*" AND NOT
 		MARC."880".ind"2"  equals "2"
 	then
 		set TEMP"1" to MARC."880" subfields "i"
