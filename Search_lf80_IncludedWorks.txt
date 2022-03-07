@@ -1,5 +1,5 @@
 rule "Primo VE Marc - Lsr80"
-#Field provides Name+title search for 700, 710, 711 with $t and 2ind = 2 and corresponding 880s, plus 730s with 2ind = 2 and corresponding 880.  Also includes uniform title 130 and corresponding 880 for non-serials, 100+240 for most other records, and 100+245 for music items to provide hyperlink retrieval based on Name+Title searching.
+#Field provides Name+title search for 700, 710, 711 with $t and 2ind = 2 and corresponding 880s, plus 730s with 2ind = 2 and corresponding 880.  Also includes uniform title 130 and corresponding 880 for non-serials, 100+240 for most other records, 100+245 for music items, and local 952, 953, 954, and 955 (and corresponding 880s) to provide hyperlink retrieval based on Name+Title searching.
     when
 		MARC."700" has any "t" AND
 		MARC."700".ind"2"  equals "2"
@@ -315,4 +315,88 @@ priority 60
 	then
 		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|f|="
 		append TEMP"1" to pnx."search"."lsr80" delimited by " "
+end
+
+rule "Primo VE Marc - Lsr80_952"
+
+	when
+		MARC."952" has any "t" AND
+		MARC."952".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."952" excluding subfields without sorting "[0-9]|x|i|=|f"
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr80_880-952"
+
+	when
+		MARC."880" has any "t" AND
+		MARC."880"."6" match "952-.*" AND
+		MARC."880".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|x|i|=|f"
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr80_953"
+
+	when
+		MARC."953" has any "t" AND
+		MARC."953".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."953" excluding subfields without sorting "[0-9]|x|i|=|f"
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr80_880-953"
+
+	when
+		MARC."880" has any "t" AND
+		MARC."880"."6" match "953-.*" AND
+		MARC."880".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|x|i|=|f"
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr80_954"
+
+	when
+		MARC."954" has any "t" AND
+		MARC."954".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."954" excluding subfields without sorting "[0-9]|x|i|=|f"
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr80_880-954"
+
+	when
+		MARC."880" has any "t" AND
+		MARC."880"."6" match "954-.*" AND
+		MARC."880".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|x|i|=|f"
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr80_955"
+
+	when
+		MARC."955" has any "t" AND
+		MARC."955".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."955" excluding subfields without sorting "[0-9]|x|i|=|f"
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr80_880-955"
+
+	when
+		MARC."880" has any "t" AND
+		MARC."880"."6" match "955-.*" AND
+		MARC."880".ind"2"  equals "2"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|x|i|=|f"
+		create pnx."search"."lsr80" with TEMP"1"
 end
