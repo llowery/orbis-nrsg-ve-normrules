@@ -124,7 +124,7 @@ then
 end
 
 rule "Primo VE - Lds78 008/24"
-# nature of contents OCLC 58919862
+# nature of contents OCLC 1055568196
 when
     (MARC.control."008"(24-25) equals "5" OR
     MARC.control."008"(24-25) equals "6" OR
@@ -236,7 +236,7 @@ then
 end
 
 rule "Primo VE - Lds78 008/33"
-# literary form (ex. 1057242876)
+# literary form OCLC 1057242876
 when
     (MARC.control."008"(33-34) equals "1" OR
     MARC.control."008"(33-34) equals "d" OR
