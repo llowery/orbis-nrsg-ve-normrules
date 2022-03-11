@@ -1,9 +1,5 @@
-#lcgft OCLC 774607605 
-#fast OCLC 05264690 
-#655 _0 OCLC 43354922 
-#008 natcont 58919862
-
-rule "Primo VE - Genre 655 #7 lcgft"
+rule "Primo VE - Lds78 655 #7 lcgft"
+#655_7 lcgft OCLC 774607605 
 	when
 		MARC."655" has any "a" AND
 		MARC."655".ind"2" equals "7" AND  
@@ -13,6 +9,7 @@ rule "Primo VE - Genre 655 #7 lcgft"
 end
 
 rule "Primo VE - Genre 655 #7"
+#655_7 fast OCLC 05264690 
 	when
 		MARC."655" has any "a" AND
 		MARC."655".ind"2" equals "7" AND  
@@ -45,6 +42,7 @@ rule "Primo VE - Genre 655 #7"
 end
 
 rule "Primo VE - Genre 655 #0,2,4"
+#655 _0 OCLC 43354922 
 	when
 		MARC."655" has any "a" AND
 		(MARC."655".ind"2" equals "0" OR
@@ -74,8 +72,8 @@ rule "Primo VE - Genre 694"
 		create pnx."display"."genre" with TEMP"1"
 end
 
-rule "Primo VE - Lds78"
-# lit text - sound recordings (ex. 1197080110)
+rule "Primo VE - Lds78 008/30"
+# lit text - sound recordings OCLC 1197080110
 when
     (MARC.control."008"(30-31) equals "a" OR
     MARC.control."008"(30-31) equals "b" OR
@@ -126,7 +124,7 @@ then
 end
 
 rule "Primo VE - Lds78 008/24"
-# nature of contents
+# nature of contents OCLC 58919862
 when
     (MARC.control."008"(24-25) equals "5" OR
     MARC.control."008"(24-25) equals "6" OR
