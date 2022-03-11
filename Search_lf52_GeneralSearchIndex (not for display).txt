@@ -300,6 +300,20 @@ rule "Primo VE Marc - Lsr52_lds88_880-245c"
 		create pnx."search"."lsr52" with TEMP"1"
 end
 
+rule "Primo VE Marc - Lsr52_lds87_382"
+	when
+		MARC."382" has any "a,b,e,n,3"
+	then
+		create pnx."search"."lsr52" with MARC."382" excluding num subfields without sort
+end
+
+rule "Primo VE Marc - Lsr52_lds84_384a"
+	when
+		MARC is "384"."a"
+	then
+		create pnx."search"."lsr52" with MARC."384"."a"
+end
+
 rule "Primo VE Marc - Lsr52_lds74_536"
 	when
 		MARC is "536"
