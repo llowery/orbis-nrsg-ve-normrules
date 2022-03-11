@@ -1,4 +1,4 @@
-rule "Primo VE - Lds78 655 #7 lcgft"
+rule "Primo VE - Lds78"
 #655_7 lcgft OCLC 774607605 
 	when
 		MARC."655" has any "a" AND
@@ -8,7 +8,7 @@ rule "Primo VE - Lds78 655 #7 lcgft"
 		create pnx."display"."genre" with MARC "655" subfields "a" delimited by " " remove substring using regex "\\.+$"
 end
 
-rule "Primo VE - Genre 655 #7"
+rule "Primo VE - Lds78 655 #7 except lcgft"
 #655_7 fast OCLC 05264690 
 	when
 		MARC."655" has any "a" AND
@@ -41,7 +41,7 @@ rule "Primo VE - Genre 655 #7"
 		create pnx."display"."genre" with TEMP"1"
 end
 
-rule "Primo VE - Genre 655 #0,2,4"
+rule "Primo VE - Lds78 655 #0,2,4"
 #655 _0 OCLC 43354922 
 	when
 		MARC."655" has any "a" AND
@@ -55,14 +55,14 @@ rule "Primo VE - Genre 655 #0,2,4"
 		create pnx."display"."genre" with TEMP"1"
 end
 
-rule "Primo VE - Genre 380"
+rule "Primo VE - Lds78 380"
 	when
 		MARC."380" has any "a"
 	then
 		create pnx."display"."genre" with MARC "380" subfields "a" delimited by " " remove substring using regex "\\.+$"
 end
 
-rule "Primo VE - Genre 694"
+rule "Primo VE - Lds78 694"
 	when
 		MARC."694" has any "a" AND "a"
 	then
