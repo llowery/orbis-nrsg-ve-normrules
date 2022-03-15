@@ -105,7 +105,7 @@ end
 rule "videocassette - 008, LDR, 007, 3xx, 5xx"
 priority 60
 when
-    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{23,1}.o")) 
+    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{29,1}.o")) 
     AND 
     (((existsControl "LDR.{6,1}.g") AND (existsControl "007.{0,2}.vf"))
     OR
@@ -118,7 +118,7 @@ end
 rule "laserdisc - 008, LDR, 007, 3xx, 5xx"
 priority 55
 when
-    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{23,1}.o"))
+    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{29,1}.o"))
     AND 
     (((existsControl "LDR.{6,1}.g") AND (existsControl "007.{0,5}.v***g"))
     OR
