@@ -1,7 +1,7 @@
 rule "dvdvideo - 008, LDR, 007, 3xx, 5xx"
 when
     #Type of visual material is videorecording AND not online form
-    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{23,1}.o"))
+    (((existsControl "008.{33,1}.v") AND (not existsControl "008.{29,1}.o"))
     AND 
     #Projected medium AND videorecording with DVD format in 007
     (((existsControl "LDR.{6,1}.g") AND (existsControl "007.{0,5}.v***v"))
