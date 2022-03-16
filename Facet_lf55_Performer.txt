@@ -1,0 +1,22 @@
+rule "Primo VE Marc - Lsr55"
+	when
+		MARC is "100"."a" AND
+		MARC."100"."4" match "(act|prf)"
+	then
+		set TEMP"1" to MARC "100" sub without sort "a,b,c,d,q"
+		replace string by string (TEMP"1",",$","")
+		replace string by string (TEMP"1","([a-z0-9])\\.$","$1")
+		create pnx."search"."lsr55" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr55a"
+# ex 
+	when
+		MARC is "700"."a" AND
+		MARC."700"."4" match "(act|prf)"
+	then
+		set TEMP"1" to MARC "700" sub without sort "a,b,c,d,q"
+		replace string by string (TEMP"1",",$","")
+		replace string by string (TEMP"1","([a-z0-9])\\.$","$1")
+		create pnx."search"."lsr55" with TEMP"1"
+end
