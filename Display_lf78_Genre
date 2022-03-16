@@ -1,4 +1,4 @@
-rule "Primo VE - Lds78 380"
+rule "Primo VE - Lds78"
 	when
 		MARC."380" has any "a"
 	then
