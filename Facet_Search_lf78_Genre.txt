@@ -1,0 +1,9 @@
+rule "Primo VE Marc - Lsr78"
+	when
+		MARC is "380"."a" AND
+        MARC."380"."2" match "lcgft"
+	then
+		create pnx."search"."lsr78" with MARC "380"."a"
+end
+
+
