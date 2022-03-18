@@ -1,12 +1,23 @@
-rule "Primo VE Marc - Lsr78"
-    when
-        MARC is "380"."a" AND
-        MARC."380"."2" match "lcgft"
+rule "Primo VE Marc - Lsr54"
+#655_7 lcgft OCLC 774607605 
+	when
+		MARC."655" has any "a" AND
+		MARC."655".ind"2" equals "7" AND  
+		(MARC."655"."2" match "lcgft" OR
+        MARC."655"."2" match "fast")
     then
-        create pnx."search"."lsr78" with MARC "380"."a"
+		create pnx."search"."lsr54" with MARC "655" subfields "a" delimited by " " remove substring using regex "\\.+$"
 end
 
-rule "Primo VE Marc - Lsr78 008/30"
+rule "Primo VE Marc - Lsr54 380"     
+    when         
+        MARC is "380"."a" AND         
+        MARC."380"."2" match "lcgft"     
+    then         
+        create pnx."search"."lsr54" with MARC "380"."a" 
+end
+
+rule "Primo VE Marc - Lsr54 008/30"
 # lit text - sound recordings OCLC 1197080110
     when
         (MARC.control."008"(30-31) equals "a" OR
@@ -29,10 +40,10 @@ rule "Primo VE Marc - Lsr78 008/30"
         set TEMP"1" to position("008",30-31)
         add prefix (TEMP"1","$$Tgenre_008_LitTxtSR_")
         add suffix (TEMP"1","$$")
-        create pnx."search"."lsr78" with TEMP"1"
+        create pnx."search"."lsr54" with TEMP"1"
 end
 
-rule "Primo VE Marc - Lsr78 008/31"
+rule "Primo VE Marc - Lsr54 008/31"
     when
         (MARC.control."008"(31-32) equals "a" OR
         MARC.control."008"(31-32) equals "b" OR
@@ -54,10 +65,10 @@ rule "Primo VE Marc - Lsr78 008/31"
         set TEMP"1" to position("008",31-32)
         add prefix (TEMP"1","$$Tgenre_008_LitTxtSR_")
         add suffix (TEMP"1","$$")
-        create pnx."search"."lsr78" with TEMP"1"
+        create pnx."search"."lsr54" with TEMP"1"
 end
 
-rule "Primo VE Marc - Lsr78 008/24"
+rule "Primo VE Marc - Lsr54 008/24"
 # nature of contents OCLC 1055568196
     when
         (MARC.control."008"(24-25) equals "5" OR
@@ -82,10 +93,10 @@ rule "Primo VE Marc - Lsr78 008/24"
         set TEMP"1" to position("008",24-25)
         add prefix (TEMP"1","$$Tgenre_008_NatureContents_")
         add suffix (TEMP"1","$$")
-        create pnx."search"."lsr78" with TEMP"1"
+        create pnx."search"."lsr54" with TEMP"1"
 end
 
-rule "Primo VE Marc - Lsr78 008/25"
+rule "Primo VE Marc - Lsr54 008/25"
 # nature of contents
     when
         (MARC.control."008"(25-26) equals "5" OR
@@ -110,10 +121,10 @@ rule "Primo VE Marc - Lsr78 008/25"
         set TEMP"1" to position("008",25-26)
         add prefix (TEMP"1","$$Tgenre_008_NatureContents_")
         add suffix (TEMP"1","$$")
-        create pnx."search"."lsr78" with TEMP"1"
+        create pnx."search"."lsr54" with TEMP"1"
 end
 
-rule "Primo VE Marc - Lsr78 008/26"
+rule "Primo VE Marc - Lsr54 008/26"
 # nature of contents
     when
         (MARC.control."008"(26-27) equals "5" OR
@@ -138,10 +149,10 @@ rule "Primo VE Marc - Lsr78 008/26"
         set TEMP"1" to position("008",26-27)
         add prefix (TEMP"1","$$Tgenre_008_NatureContents_")
         add suffix (TEMP"1","$$")
-        create pnx."search"."lsr78" with TEMP"1"
+        create pnx."search"."lsr54" with TEMP"1"
 end
 
-rule "Primo VE Marc - Lsr78 008/27"
+rule "Primo VE Marc - Lsr54 008/27"
 # nature of contents
     when
         (MARC.control."008"(27-28) equals "5" OR
@@ -166,10 +177,10 @@ rule "Primo VE Marc - Lsr78 008/27"
         set TEMP"1" to position("008",27-28)
         add prefix (TEMP"1","$$Tgenre_008_NatureContents_")
         add suffix (TEMP"1","$$")
-        create pnx."search"."lsr78" with TEMP"1"
+        create pnx."search"."lsr54" with TEMP"1"
 end
 
-rule "Primo VE Marc - Lsr78 008/33"
+rule "Primo VE Marc - Lsr54 008/33"
 # literary form OCLC 1057242876
     when
         (MARC.control."008"(33-34) equals "1" OR
@@ -184,10 +195,10 @@ rule "Primo VE Marc - Lsr78 008/33"
         set TEMP"1" to position("008",33-34)
         add prefix (TEMP"1","$$Tgenre_008_LitF_")
         add suffix (TEMP"1","$$")
-        create pnx."search"."lsr78" with TEMP"1"
+        create pnx."search"."lsr54" with TEMP"1"
 end
 
-rule "Primo VE Marc - Lsr78 008/34"
+rule "Primo VE Marc - Lsr54 008/34"
 #biography
     when
         (MARC.control."008"(34-35) equals "a" OR
@@ -198,5 +209,5 @@ rule "Primo VE Marc - Lsr78 008/34"
         set TEMP"1" to position("008",34-35)
         add prefix (TEMP"1","$$Tgenre_008_Biog_")
         add suffix (TEMP"1","$$")
-        create pnx."search"."lsr78" with TEMP"1"
+        create pnx."search"."lsr54" with TEMP"1"
 end
