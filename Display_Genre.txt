@@ -2,4 +2,5 @@ rule "Primo VE - Genre"
 	when 
 		MARC is "XXX"."a"     
 	then
-		create pnx."display"."Genre" with MARC "XXX"."a" end
+		create pnx."display"."Genre" with MARC "XXX"."a" 
+end
