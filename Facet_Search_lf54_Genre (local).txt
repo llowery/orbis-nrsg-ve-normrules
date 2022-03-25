@@ -1,12 +1,12 @@
 rule "Primo VE Marc - Lsr54"
 #655_7 lcgft OCLC 774607605 
-	when
-		MARC."655" has any "a" AND
-		MARC."655".ind"2" equals "7" AND  
-		(MARC."655"."2" match "lcgft" OR
+    when
+	    MARC."655" has any "a" AND
+	    MARC."655".ind"2" equals "7" AND  
+	    (MARC."655"."2" match "lcgft" OR
         MARC."655"."2" match "fast")
     then
-		create pnx."search"."lsr54" with MARC "655" subfields "a" delimited by " " remove substring using regex "\\.+$"
+        create pnx."search"."lsr54" with MARC "655" subfields "a" delimited by " " remove substring using regex "\\.+$"
 end
 
 rule "Primo VE Marc - Lsr54 380"     
