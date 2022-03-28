@@ -41,7 +41,7 @@ rule "Primo VE - Lds78 655 #7 except lcgft"
 		create pnx."display"."lds78" with TEMP"1"
 end
 
-rule "Primo VE - Lds78 655 #0,2,4"
+rule "Primo VE - Lds78 655 #0,4"
 #655 _0 OCLC 43354922 
 	when
 		MARC."655" has any "a" AND
