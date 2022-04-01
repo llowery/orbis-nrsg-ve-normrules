@@ -1,6 +1,14 @@
 rule "Primo VE - Language 008 no 546"
 #  041 subfields displayed and searched in language field in PBO: a,d,i,j,p,q,r
-# Example OCL numbers
+# 4/1/22: VE OTB language facet and search fields include 041 subfields a, b, d, e, f, g, j OR 008/35-37
+# This field should be combined with Language (Local) field for display
+# Language (Local) displays 546 language note
+# This field has been edited to display 008/041 languages only IF
+# 1) No 546 exists
+# 2) 546 contains a pattern that indicates that it does not name the language of the resource
+# a) variations on "closed captions"
+# b) begins with "translated from"
+# Example OCLC numbers
 # 02164044 008 only
 # 42686496 546 captioned
 # 1158419826 translated
