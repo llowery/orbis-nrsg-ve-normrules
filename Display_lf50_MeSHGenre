@@ -6,7 +6,7 @@ rule "Primo VE - Lds50"
 		set TEMP"1" to MARC."655" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
 		set TEMP"2" to MARC."655" subfields "x-z" delimited by " -- " remove substring using regex "\\.+$"
 		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
-        create pnx."display"."lds50" with TEMP"1"
+		create pnx."display"."lds50" with TEMP"1"
 end
 
 rule "Primo VE - MESH 880-655"
@@ -18,5 +18,5 @@ rule "Primo VE - MESH 880-655"
 		set TEMP"1" to MARC."880" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
 		set TEMP"2" to MARC."880" subfields "x-z" delimited by " -- " remove substring using regex "\\.+$"
 		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
-        create pnx."display"."lds50" with TEMP"1"
+		create pnx."display"."lds50" with TEMP"1"
 end
