@@ -1,4 +1,6 @@
 rule "Primo VE - Lds90"
+# 041$h original language
+# uses OTB language translation table; use translations must be checked
 priority 2
 when
 	MARC is "041"."h"
@@ -12,6 +14,7 @@ then
 end
 
 rule "Primo VE - Lds90 546"
+# 546 - Language Note
 priority 1
 when
 	MARC is "546"."a"
