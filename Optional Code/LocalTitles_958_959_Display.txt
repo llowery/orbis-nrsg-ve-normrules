@@ -1,5 +1,6 @@
 rule "Primo VE - LdsXX"
 #Displays local title fields 958, 959, and associated 880s.
+#Replace XX with the desired local field number.
 	when
 		MARC is "958"
 	then
