@@ -1,8 +1,7 @@
 rule "Primo VE - LdsXX"
 #Displays local series field 961 and associated 880.
-#Replace "XX" in rule names and "create" lines with your desired local field number.
 	when
-		MARC is "961"
+		MARC is "961"."t"
 	then
 		set TEMP"1" to MARC."961" excluding subfields without sorting "[0-9]|x|w"
 		remove string (TEMP"1"," \\(work\\)")
@@ -16,6 +15,7 @@ end
 
 rule "Primo VE - LdsXX_880-961"
 	when
+		MARC is "880"."t" AND
 		MARC."880"."6" match "961-.*"
 	then
 		set TEMP"1" to MARC."880"  excluding subfields without sorting "[0-9]|x|w"
