@@ -1,7 +1,8 @@
 rule "Primo VE Marc - LsrXX"
 #Indexes local series field 961 and associated 880 for search alongside other series fields.
+#Replace XX with desired local field number.
 	when
-		MARC is "961"
+		MARC is "961"."t"
 	then
 		set TEMP"1" to MARC."961" excluding subfields without sorting "[0-9]|v|x|w"
 		create pnx."search"."lsrXX" with TEMP"1"
@@ -9,6 +10,7 @@ end
 
 rule "Primo VE Marc - LsrXX_880-961"
 	when
+		MARC is "880"."t" AND
 		MARC."880"."6" match "961-.*"
 	then
 		set TEMP"1" to MARC."880"  excluding subfields without sorting "[0-9]|v|x|w"
