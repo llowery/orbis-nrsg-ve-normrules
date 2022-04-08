@@ -1,5 +1,6 @@
 rule "Primo VE Marc - LsrXX"
-#Displays local title fields 958, 959, and associated 880s.
+#Indexes local title fields 958, 959, and associated 880s for search in VE.
+#Replace "XX" with desired local field number.
 	when
 		MARC is "958"
 	then
