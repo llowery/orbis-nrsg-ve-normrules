@@ -1,20 +1,6 @@
-#Difference from OTB: Remove 730 to prevent duplication with NRSG Includes and Related Works and Collections fields.
-
-rule "Primo VE - addtitle 246"
-	when
-		MARC."246" has any "i,a,b,f,g,n,p"
-	then
-		create pnx."display"."addtitle" with MARC."246" sub without sort "i,a,b,f,g,n,p"
-end
-
-rule "Primo VE - addtitle 247"
-	when
-		MARC."247" has any "i,a,b,f,g,n,p"
-	then
-		create pnx."display"."addtitle" with MARC."247" sub without sort "i,a,b,f,g,n,p"
-end
-
 rule "Primo VE - addtitle 740"
+#Removed 730 (in Related Works and Collections and Included Works)
+#Removed 246 and 247 (in Alternate Form of Title)
 	when
 		MARC is "740"
 	then
@@ -26,23 +12,6 @@ rule "Primo VE - addtitle 840"
 		MARC is "840"
 	then
 		create pnx."display"."addtitle" with MARC."840" excluding num subfields without sort
-end
-
-rule "Primo VE - addtitle 880-246"
-	when
-		MARC."880" has any "i,a,b,f,g,n,p" AND
-		MARC."880"."6" match "246-.*"
-
-	then
-		create pnx."display"."addtitle" with MARC."880" sub without sort "i,a,b,f,g,n,p"
-end
-
-rule "Primo VE - addtitle 880-247"
-	when
-		MARC."880" has any "i,a,b,f,g,n,p" AND
-		MARC."880"."6" match "247-.*"
-	then
-		create pnx."display"."addtitle" with MARC."880" sub without sort "i,a,b,f,g,n,p"
 end
 
 rule "Primo VE - addtitle 880-740"
