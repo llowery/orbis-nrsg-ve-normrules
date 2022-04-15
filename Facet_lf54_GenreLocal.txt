@@ -20,9 +20,7 @@ end
 rule "Primo VE Marc - Lsr54 600"
     when
 	    MARC."600" has any "v" AND
-	    MARC."600".ind"2" equals "7" AND  
-	    (MARC."600"."2" match "lcgft" OR
-        MARC."600"."2" match "fast")
+	    MARC."600".ind"2" equals "0"
     then
         create pnx."search"."lsr54" with MARC "600" subfields "v" delimited by " " remove substring using regex "\\.+$"
 end
@@ -30,9 +28,7 @@ end
 rule "Primo VE Marc - Lsr54 610"
     when
 	    MARC."610" has any "v" AND
-	    MARC."610".ind"2" equals "7" AND  
-	    (MARC."610"."2" match "lcgft" OR
-        MARC."610"."2" match "fast")
+	    MARC."610".ind"2" equals "0" 
     then
         create pnx."search"."lsr54" with MARC "610" subfields "v" delimited by " " remove substring using regex "\\.+$"
 end
@@ -40,9 +36,7 @@ end
 rule "Primo VE Marc - Lsr54 611"
     when
 	    MARC."611" has any "v" AND
-	    MARC."611".ind"2" equals "7" AND  
-	    (MARC."611"."2" match "lcgft" OR
-        MARC."611"."2" match "fast")
+	    MARC."611".ind"2" equals "0" 
     then
         create pnx."search"."lsr54" with MARC "611" subfields "v" delimited by " " remove substring using regex "\\.+$"
 end
@@ -50,9 +44,7 @@ end
 rule "Primo VE Marc - Lsr54 630"
     when
 	    MARC."630" has any "v" AND
-	    MARC."630".ind"2" equals "7" AND  
-	    (MARC."630"."2" match "lcgft" OR
-        MARC."630"."2" match "fast")
+	    MARC."630".ind"2" equals "0"
     then
         create pnx."search"."lsr54" with MARC "630" subfields "v" delimited by " " remove substring using regex "\\.+$"
 end
@@ -60,9 +52,7 @@ end
 rule "Primo VE Marc - Lsr54 650"
     when
 	    MARC."650" has any "v" AND
-	    MARC."650".ind"2" equals "7" AND  
-	    (MARC."650"."2" match "lcgft" OR
-        MARC."650"."2" match "fast")
+	    MARC."650".ind"2" equals "0"
     then
         create pnx."search"."lsr54" with MARC "650" subfields "v" delimited by " " remove substring using regex "\\.+$"
 end
@@ -70,9 +60,7 @@ end
 rule "Primo VE Marc - Lsr54 651"
     when
 	    MARC."651" has any "v" AND
-	    MARC."651".ind"2" equals "7" AND  
-	    (MARC."651"."2" match "lcgft" OR
-        MARC."651"."2" match "fast")
+	    MARC."651".ind"2" equals "0" 
     then
         create pnx."search"."lsr54" with MARC "651" subfields "v" delimited by " " remove substring using regex "\\.+$"
 end
