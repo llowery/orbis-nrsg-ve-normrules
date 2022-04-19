@@ -84,6 +84,8 @@ rule "Primo VE Marc - Lsr85b"
 		create pnx."search"."lsr85" with TEMP"1"
 end
 
+#fast 42868193
+
 rule "Primo VE Marc - Lsr85c"
 # $l - Ending date created (NR)
 # This rule groups dates at the DECADE or half-century level
@@ -207,6 +209,55 @@ rule "Primo VE Marc - Lsr85g"
 		# revise patterns that match strings in translation table to have proper prefix
 		replace string by string (TEMP"1","CHECK_(20[0-9])","original_date_046_decade_$1")
 		replace string by string (TEMP"1","CHECK_(1[8-9][0-9])","original_date_046_decade_$1")
+		# delete anything that doesn't match pattern that will be in translation table
+		replace string by string (TEMP"1","CHECK_.*","")
+		create pnx."search"."lsr85" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr85h"
+# 388 - Time Period of Creation (R)
+# 1st indicator 1 = Creation of work
+# $a in form ??? century
+# ex 00823649 (Nineteenth century), 06085797 (not century)
+	when
+		MARC is "388"."a" AND
+		MARC."388".ind"1" equals "1" AND
+		MARC."388"."a" match ".*entury"
+	then
+		set TEMP"1" to MARC "388"."a"
+		lower case (TEMP"1")
+		# add CHECK_ to beginning of string
+		add prefix (TEMP"1","CHECK_")
+		# brute force replace centuries
+		replace string by string (TEMP"1","CHECK_twenty( |-)first century","original_date_046_century_20")
+		replace string by string (TEMP"1","CHECK_twentieth century","original_date_046_century_19")
+		replace string by string (TEMP"1","CHECK_nineteenth century","original_date_046_century_18")
+		replace string by string (TEMP"1","CHECK_eighteenth century","original_date_046_century_17")
+		replace string by string (TEMP"1","CHECK_seventeenth century","original_date_046_century_16")
+		replace string by string (TEMP"1","CHECK_sixteenth century","original_date_046_century_15")
+		# delete anything that doesn't match pattern
+		replace string by string (TEMP"1","CHECK_.*","")
+		create pnx."search"."lsr85" with TEMP"1"
+end
+
+rule "Primo VE Marc - Lsr85i"
+# 388 - Time Period of Creation (R)
+# 1st indicator 1 = Creation of work
+# has $2 fast
+# ex 24174689
+	when
+		MARC is "388"."a" AND
+		MARC."388".ind"1" equals "1" AND
+		MARC."388"."2" match "fast"
+	then
+		set TEMP"1" to MARC "388"."a"
+		# keep only first two characters
+		replace string by string (TEMP"1","(^.{2}).*","$1")
+		# add CHECK_ to beginning of string
+		add prefix (TEMP"1","CHECK_")
+		# revise patterns that match strings in translation table to have proper prefix
+		replace string by string (TEMP"1","CHECK_([0-2][0-9])","original_date_046_century_$1")
+		replace string by string (TEMP"1","CHECK_-.*","original_date_046_century_BCE")
 		# delete anything that doesn't match pattern that will be in translation table
 		replace string by string (TEMP"1","CHECK_.*","")
 		create pnx."search"."lsr85" with TEMP"1"
