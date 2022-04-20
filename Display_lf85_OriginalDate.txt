@@ -10,6 +10,7 @@ rule "Primo VE - Lds85"
 # in the pattern yyyy, yyyy-mm, or yyyymmdd (4 for the year, 2 for the month, and 2 for the day)
 # unless subfield $2 (Source of date) specifies another date scheme.
 # https://www.loc.gov/marc/authority/ad046.html
+# ex 27645172, 976496254
 
 	when
 		MARC."046" has any "k,l" AND
@@ -19,8 +20,12 @@ rule "Primo VE - Lds85"
 	then
 		#get beginning year from $k
 		set TEMP"1" to MARC."046" subfields "k"
+		#remove leading zero
+		replace string by string (TEMP"1","^0+","")
 		#get ending year from $l
 		set TEMP"2" to MARC."046" subfields "l"
+		#remove leading zero
+		replace string by string (TEMP"2","^0+","")
 		
 		concatenate with delimiter (TEMP"1",TEMP"2","-")
 		create pnx."display"."lds85" with TEMP"1"
@@ -33,7 +38,7 @@ rule "Primo VE - Lds85a"
 # ex 1013746921 ($k edtf)
 	when
 		MARC."046" has any "k,l" AND
-		MARC."046"."k" match "\\d{4}-\\d{2}" AND NOT
+		MARC."046"."k" match "\\d{4}(-)?\\d{2}" AND NOT
 		MARC."046".ind"1" equals "2" AND NOT
 		MARC."046"."o" match ".*"
 	then
@@ -75,7 +80,7 @@ rule "Primo VE - Lds85b"
 	when
 		MARC."046" has any "k,l" AND
 		(MARC."046"."k" match "\\d{8}" OR
-		MARC."046"."k" match "\\d{4}-\\d{2}-\\d{2}") AND NOT
+		MARC."046"."k" match "\\d{4}(-)?\\d{2}(-)?\\d{2}") AND NOT
 		MARC."046".ind"1" equals "2" AND NOT
 		MARC."046"."o" match ".*"
 	then
@@ -170,8 +175,12 @@ rule "Primo VE - Lds85d"
 	then
 		#get beginning year from $o
 		set TEMP"1" to MARC."046" subfields "o"
+		#remove leading zero
+		replace string by string (TEMP"1","^0+","")
 		#get ending year from $p
 		set TEMP"2" to MARC."046" subfields "p"
+		#remove leading zero
+		replace string by string (TEMP"2","^0+","")
 		
 		concatenate with delimiter (TEMP"1",TEMP"2","-")
 		create pnx."display"."lds85" with TEMP"1"
@@ -181,12 +190,11 @@ rule "Primo VE - Lds85e"
 # 046 - Special Coded Dates YEAR + MONTH
 # $o - Single or starting date for aggregated content (NR)
 # $p - Ending date for aggregated content (NR)
-# ex 145085918, 72044224
+# ex 17202441 ($p not currently displaying), 607381475 ($p not yet)
 	when
 		MARC."046" has any "o,p" AND
-		MARC."046"."o" match "\\d{4}-\\d{2}" AND NOT
-		MARC."046".ind"1" equals "2" AND NOT
-		MARC."046"."o" match ".*"
+		MARC."046"."o" match "\\d{4}(-)?\\d{2}" AND NOT
+		MARC."046".ind"1" equals "2"
 	then
 		#get year from first date in $o
 		set TEMP"1" to MARC."046" subfields "o"
@@ -222,11 +230,11 @@ rule "Primo VE - Lds85f"
 # 046 - Special Coded Dates YEAR + MONTH + DATE
 # $o - Single or starting date for aggregated content (NR)
 # $p - Ending date for aggregated content (NR)
-# ex 
+# ex 867763999, 1265304461
 	when
 		MARC."046" has any "o,p" AND
 		(MARC."046"."o" match "\\d{8}" OR
-		MARC."046"."o" match "\\d{4}-\\d{2}-\\d{2}") AND NOT
+		MARC."046"."o" match "\\d{4}(-)?\\d{2}(-)?\\d{2}") AND NOT
 		MARC."046".ind"1" equals "2"
 	then
 		#get year from first date in $o
@@ -269,7 +277,7 @@ rule "Primo VE - Lds85g"
 # 046 - Special Coded Dates CENTURY
 # $o - Single or starting date for aggregated content (NR)
 # $p - Ending date for aggregated content (NR)
-# ex 40526220
+# ex 40526220, 976406351
 	when
 		MARC."046" has any "o,p" AND
 		MARC."046"."o" match "-?\\d{2}" AND NOT
