@@ -305,3 +305,26 @@ rule "Primo VE - Lds85g"
 		concatenate with delimiter (TEMP"1",TEMP"2","-")
 		create pnx."display"."lds85" with TEMP"1"
 end
+
+rule "Primo VE - Lds85h"
+# 388 - Time Period of Creation (R)
+# ex 20422479, 00964811, 824957430, 08868497
+when
+	MARC."388" has any "a,3" AND NOT
+	MARC."388".ind"1" equals "2"	
+then
+	set TEMP"1" to MARC."388" subfields "3"
+	set TEMP"2" to MARC."388" sub without sort "a" wrap subfields
+
+	replace wrapping delimiters (TEMP"2","a","",";")
+	# remove semicolon from end
+	replace string by string (TEMP"2",";$","")
+
+	# combine $3 and $a so $3 comes first; add colon in case missing
+		concatenate existing with delimiter (TEMP"1",TEMP"2",": ")
+	# remove extra colon if it was already there in data
+		replace string by string (TEMP"1","::",":")
+		
+	create pnx."display"."lds85" with TEMP"1"
+
+end
