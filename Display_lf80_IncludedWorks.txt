@@ -449,10 +449,12 @@ rule "Primo VE - Lds80_100/245_Music"
 		MARC is "245"
 	then
 	    set TEMP"1" to MARC."100" excluding subfields without sorting "[0-9]|e|="
-        set TEMP"2" to MARC."245" excluding numeric subfields
+        set TEMP"2" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"2","(/|:|;|=|,| )+$")
         concatenate with delimiter (TEMP"1",TEMP"2"," ")
         set TEMP"3" to MARC."100" excluding subfields without sorting "[0-9]|e|f|="
-        set TEMP"4" to MARC."245" excluding subfields without sorting "[0-9]|f|="
+        set TEMP"4" to MARC."245" sub without sort "a,f,g,k,n,p,s"
         concatenate with delimiter (TEMP"3",TEMP"4"," ")
         add prefix (TEMP"3","$$Q")
         remove substring using regex (TEMP"3","^$$Q$")
