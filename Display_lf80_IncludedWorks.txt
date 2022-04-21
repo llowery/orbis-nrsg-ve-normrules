@@ -4,12 +4,8 @@ rule "Primo VE - Lds80"
 		MARC."700" has any "t" AND
 		MARC."700".ind"2"  equals "2"
 	then
-		set TEMP"1" to MARC."700" subfields "i"
-		set TEMP"2" to MARC."700" excluding subfields without sorting "[0-9]|x|i|="
-		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
-		remove string (TEMP"1"," \\(work\\)")
-		remove string (TEMP"1"," \\(expression\\)")
-		set TEMP"3" to MARC."700" excluding subfields  without sorting "[0-9]|x|i|f|="
+		set TEMP"1" to MARC."700" excluding subfields without sorting "[0-9]|x|i|="
+		set TEMP"3" to MARC."700" excluding subfields without sorting "[0-9]|x|i|f|="
 		add prefix (TEMP"3","$$Q")
         remove substring using regex (TEMP"3","^$$Q$")
         concatenate with delimiter (TEMP"1",TEMP"3","")
@@ -22,11 +18,7 @@ rule "Primo VE - Lds80_710"
 		MARC."710" has any "t" AND
 		MARC."710".ind"2"  equals "2"
 	then
-		set TEMP"1" to MARC."710" subfields "i"
-		set TEMP"2" to MARC."710"  excluding subfields without sorting "[0-9]|x|i|="
-		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
-		remove string (TEMP"1"," \\(work\\)")
-		remove string (TEMP"1"," \\(expression\\)")
+		set TEMP"1" to MARC."710"  excluding subfields without sorting "[0-9]|x|i|="
 		set TEMP"3" to MARC."710" excluding subfields without sorting "[0-9]|x|i|=|f"
 		add prefix (TEMP"3","$$Q")
         remove substring using regex (TEMP"3","^$$Q$")
@@ -40,11 +32,7 @@ rule "Primo VE - Lds80_711"
 		MARC."711" has any "t" AND
 		MARC."711".ind"2"  equals "2"
 	then
-		set TEMP"1" to MARC."711" subfields "i"
-		set TEMP"2" to MARC."711"  excluding subfields without sorting "[0-9]|x|i|="
-		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
-		remove string (TEMP"1"," \\(work\\)")
-		remove string (TEMP"1"," \\(expression\\)")
+		set TEMP"1" to MARC."711"  excluding subfields without sorting "[0-9]|x|i|="
 		set TEMP"3" to MARC."711" excluding subfields without sorting "[0-9]|x|i|=|f"
 		add prefix (TEMP"3","$$Q")
         remove substring using regex (TEMP"3","^$$Q$")
@@ -58,11 +46,7 @@ rule "Primo VE - Lds80_730"
 		MARC is "730" AND
 		MARC."730".ind"2"  equals "2"
 	then
-		set TEMP"1" to MARC."730" subfields "i"
-		set TEMP"2" to MARC."730"  excluding subfields without sorting "[0-9]|x|i|="
-		concatenate existing with delimiter (TEMP"1",TEMP"2"," ")
-		remove string (TEMP"1"," \\(work\\)")
-		remove string (TEMP"1"," \\(expression\\)")
+		set TEMP"1" to MARC."730"  excluding subfields without sorting "[0-9]|x|i|="
 		set TEMP"3" to MARC."730" excluding subfields without sorting "[0-9]|x|i|=|f"
 		add prefix (TEMP"3","$$Q")
         remove substring using regex (TEMP"3","^$$Q$")
