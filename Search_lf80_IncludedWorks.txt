@@ -262,16 +262,17 @@ priority 70
 		append TEMP"1" to pnx."search"."lsr80" delimited by " "
 end
 
-#100+245 for music items
-rule "Primo VE Marc - Lsr80_100/245_Music"
+#100+245
+rule "Primo VE Marc - Lsr80_100/245"
 
 	when
-		(MARC.control."LDR"(6-7) matches "c|j" AND NOT MARC is "240") AND
-		MARC is "100" AND
-		MARC is "245"
+		(MARC is "245" AND NOT MARC is "240") AND
+		MARC is "100"
 	then
 		set TEMP"1" to MARC."100" excluding subfields without sorting "[0-9]|e|f|="
-		set TEMP"2" to MARC."245" excluding subfields without sorting "[0-9]|f|="
+        set TEMP"2" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"2","(/|:|;|=|,| )+$")
 		concatenate with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."search"."lsr80" with TEMP"1"
 end
