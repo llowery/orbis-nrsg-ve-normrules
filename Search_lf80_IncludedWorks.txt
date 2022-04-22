@@ -262,12 +262,18 @@ priority 70
 		append TEMP"1" to pnx."search"."lsr80" delimited by " "
 end
 
-#100+245
+#100+245 2nd indicator not 1-6
 rule "Primo VE Marc - Lsr80_100/245"
 
 	when
 		(MARC is "245" AND NOT MARC is "240") AND
-		MARC is "100"
+		MARC is "100" AND NOT
+		MARC."245".ind"2" equals "1" AND NOT
+		MARC."245".ind"2" equals "2" AND NOT
+		MARC."245".ind"2" equals "3" AND NOT
+		MARC."245".ind"2" equals "4" AND NOT
+		MARC."245".ind"2" equals "5" AND NOT
+		MARC."245".ind"2" equals "6"
 	then
 		set TEMP"1" to MARC."100" excluding subfields without sorting "[0-9]|e|f|="
         set TEMP"2" to MARC."245" sub without sort "a,f,g,k,n,p,s"
@@ -276,6 +282,116 @@ rule "Primo VE Marc - Lsr80_100/245"
 		concatenate with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."search"."lsr80" with TEMP"1"
 end
+
+#100+245 2nd indicator = 1
+rule "Primo VE Marc - Lsr80_100/245_a"
+
+	when
+		(MARC is "245" AND NOT MARC is "240") AND
+		MARC is "100" AND
+		MARC."245".ind"2" equals "1"
+	then
+		set TEMP"1" to MARC."100" excluding subfields without sorting "[0-9]|e|f|="
+        set TEMP"2" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"2","(/|:|;|=|,| )+$")
+		# remove initial article from title
+		remove substring using regex (TEMP"2","^.")
+		concatenate with delimiter (TEMP"1",TEMP"2"," ")
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+#100+245 2nd indicator = 2
+rule "Primo VE Marc - Lsr80_100/245_b"
+
+	when
+		(MARC is "245" AND NOT MARC is "240") AND
+		MARC is "100" AND
+		MARC."245".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."100" excluding subfields without sorting "[0-9]|e|f|="
+        set TEMP"2" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"2","(/|:|;|=|,| )+$")
+		# remove initial article from title
+		remove substring using regex (TEMP"2","^.{2}")
+		concatenate with delimiter (TEMP"1",TEMP"2"," ")
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+#100+245 2nd indicator = 3
+rule "Primo VE Marc - Lsr80_100/245_c"
+
+	when
+		(MARC is "245" AND NOT MARC is "240") AND
+		MARC is "100" AND
+		MARC."245".ind"2" equals "3"
+	then
+		set TEMP"1" to MARC."100" excluding subfields without sorting "[0-9]|e|f|="
+        set TEMP"2" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"2","(/|:|;|=|,| )+$")
+		# remove initial article from title
+		remove substring using regex (TEMP"2","^.{3}")
+		concatenate with delimiter (TEMP"1",TEMP"2"," ")
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+#100+245 2nd indicator = 4
+rule "Primo VE Marc - Lsr80_100/245_d"
+
+	when
+		(MARC is "245" AND NOT MARC is "240") AND
+		MARC is "100" AND
+		MARC."245".ind"2" equals "4"
+	then
+		set TEMP"1" to MARC."100" excluding subfields without sorting "[0-9]|e|f|="
+        set TEMP"2" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"2","(/|:|;|=|,| )+$")
+		# remove initial article from title
+		remove substring using regex (TEMP"2","^.{4}")
+		concatenate with delimiter (TEMP"1",TEMP"2"," ")
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+#100+245 2nd indicator = 5
+rule "Primo VE Marc - Lsr80_100/245_e"
+
+	when
+		(MARC is "245" AND NOT MARC is "240") AND
+		MARC is "100" AND
+		MARC."245".ind"2" equals "5"
+	then
+		set TEMP"1" to MARC."100" excluding subfields without sorting "[0-9]|e|f|="
+        set TEMP"2" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"2","(/|:|;|=|,| )+$")
+		# remove initial article from title
+		remove substring using regex (TEMP"2","^.{5}")
+		concatenate with delimiter (TEMP"1",TEMP"2"," ")
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+#100+245 2nd indicator = 6
+rule "Primo VE Marc - Lsr80_100/245_f"
+
+	when
+		(MARC is "245" AND NOT MARC is "240") AND
+		MARC is "100" AND
+		MARC."245".ind"2" equals "6"
+	then
+		set TEMP"1" to MARC."100" excluding subfields without sorting "[0-9]|e|f|="
+        set TEMP"2" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"2","(/|:|;|=|,| )+$")
+		# remove initial article from title
+		remove substring using regex (TEMP"2","^.{6}")
+		concatenate with delimiter (TEMP"1",TEMP"2"," ")
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+
 
 rule "Primo VE Marc - Lsr80_880-100/880-245_Music_a"
 
