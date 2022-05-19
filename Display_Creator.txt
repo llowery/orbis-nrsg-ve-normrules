@@ -1,10 +1,11 @@
 rule "Primo VE Display - Creator 100"
 #otb rules
+#Difference from OTB: 100 = add d,e,j,q,u to condition. 110 = add d,e,n to condition; limit display form to a,b,c,d,e,n subfields.  111 = add d,e,n,j,q to condition; limit display form to a,c,d,e,n,j,q subfields.  880-100 = add j,q to condition. 880-111 = add e, q to condition.
 priority 10
 	when
 		MARC."100" has any "a,b,c,d,e,j,q,u"
 	then
-		set TEMP"1" to MARC."100" excluding num subfields without sort
+	    set TEMP"1" to MARC."100" excluding num subfields without sort
 		set TEMP"2" to MARC."100" sub without sort "a"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
 		add prefix (TEMP"2","$$Q")
@@ -20,10 +21,10 @@ priority 20
 	when
 		MARC."110" has any "a,b,c,d,e,n"
 	then
-		set TEMP"1" to MARC."110" sub without sort "a,b,c,d,e,n"
-		set TEMP"2" to MARC."110" sub without sort "a"
-		remove string (TEMP"1",";@@^")
-		remove string (TEMP"2",";()?*@@^")
+	    set TEMP"1" to MARC."110" sub without sort "a,b,c,d,e,n"
+		set TEMP"2" to MARC."110" sub without sort "a,b"
+		replace string by string (TEMP"1",";"," ")
+#		replace string by string (TEMP"2",";()?*"," ")
 		remove substring using regex (TEMP"2","[.,/=]+$")
 		add prefix (TEMP"2","$$Q")
 		concatenate with delimiter (TEMP"1",TEMP"2","")
@@ -37,10 +38,10 @@ priority 30
 	when
 		MARC."111" has any "a,c,d,e,n,j,q" 
 	then
-		set TEMP"1" to MARC."111" sub without sort "a,c,d,e,n,j,q"
+	    set TEMP"1" to MARC."111" sub without sort "a,c,d,e,n,j,q"
 		set TEMP"2" to MARC."111" sub without sort "a"
-		remove string (TEMP"1",";@@^")
-		remove string (TEMP"2",";()?*@@^")
+		replace string by string (TEMP"1",";"," ")
+#		replace string by string (TEMP"2",";()?*"," ")
 		remove substring using regex (TEMP"2","[.,/=]+$")
 		add prefix (TEMP"2","$$Q")
 		concatenate with delimiter (TEMP"1",TEMP"2","")
@@ -55,12 +56,12 @@ priority 10
 		MARC."880" has any "a,b,c,d,n,j,q" AND
 		MARC."880"."6" match "100-.*"
 	then
-		set TEMP"1" to MARC."880" excluding num subfields without sort
+	    set TEMP"1" to MARC."880" excluding num subfields without sort
 		set TEMP"2" to MARC."880" sub without sort "a"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
-		add prefix (TEMP"2","$$Q")
-		remove substring using regex (TEMP"2","^$$Q$")
-		concatenate with delimiter (TEMP"1",TEMP"2","")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
 		set TEMP"3" to multilingual by "880" "Creator" "display"
 		concatenate with delimiter (TEMP"1",TEMP"3","")
 		set pnx."display"."alternate_creator" to TEMP"1"
@@ -72,12 +73,12 @@ priority 20
 		MARC."880" has any "a,b,c,d,n" AND
 		MARC."880"."6" match "110-.*"
 	then
-		set TEMP"1" to MARC."880" excluding num subfields without sort
-		set TEMP"2" to MARC."880" sub without sort "a"
+	    set TEMP"1" to MARC."880" excluding num subfields without sort
+		set TEMP"2" to MARC."880" sub without sort "a,b"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
-		add prefix (TEMP"2","$$Q")
-		remove substring using regex (TEMP"2","^$$Q$")
-		concatenate with delimiter (TEMP"1",TEMP"2","")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
 		set TEMP"3" to multilingual by "880" "Creator" "display"
 		concatenate with delimiter (TEMP"1",TEMP"3","")
 		set pnx."display"."alternate_creator" to TEMP"1"
@@ -89,12 +90,12 @@ priority 30
 		MARC."880" has any "a,b,c,d,e,n,q" AND
 		MARC."880"."6" match "111-.*"
 	then
-		set TEMP"1" to MARC."880" excluding num subfields without sort
+	    set TEMP"1" to MARC."880" excluding num subfields without sort
 		set TEMP"2" to MARC."880" sub without sort "a"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
-		add prefix (TEMP"2","$$Q")
-		remove substring using regex (TEMP"2","^$$Q$")
-		concatenate with delimiter (TEMP"1",TEMP"2","")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^$$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
 		set TEMP"3" to multilingual by "880" "Creator" "display"
 		concatenate with delimiter (TEMP"1",TEMP"3","")
 		set pnx."display"."alternate_creator" to TEMP"1"
