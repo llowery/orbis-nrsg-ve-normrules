@@ -1,1 +1,1 @@
-./Display_lf99_Summary.txt
+https://github.com/llowery/orbis-nrsg-ve-normrules/blob/main/Display_lf99_Summary.txt
