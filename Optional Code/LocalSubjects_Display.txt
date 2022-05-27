@@ -1,0 +1,77 @@
+rule "Primo VE - Lds05"
+	when
+		MARC."690" has any "a-z" 
+	then
+		set TEMP"1" to MARC."690" subfields "a-u" delimited by " " remove substring using regex "\\.+$"
+		set TEMP"2" to MARC."690" sub without sorting "v,x-z" delimited by " -- "
+		remove substring using regex (TEMP"2","\\.+$")		
+		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+		set TEMP"3" to multilingual by "690" "Lds05" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		create pnx."display"."lds05" with TEMP"1"
+end
+
+rule "Primo VE - Lds05 691"
+	when
+		MARC."691" has any "a-z"
+	then
+		set TEMP"1" to MARC."691" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+		set TEMP"2" to MARC."691" sub without sorting "v,x-z" delimited by " -- "
+		remove substring using regex (TEMP"2","\\.+$")
+		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+		set TEMP"3" to multilingual by "691" "Lds05" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		create pnx."display"."lds05" with TEMP"1"
+end
+
+rule "Primo VE - Lds05 696"
+	when
+		MARC."696" has any "a-z"
+	then
+		set TEMP"1" to MARC."696" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+		set TEMP"2" to MARC."696" sub without sorting "v,x-z" delimited by " -- "
+		remove substring using regex (TEMP"2","\\.+$")
+		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+		set TEMP"3" to multilingual by "696" "Lds05" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		create pnx."display"."lds05" with TEMP"1"
+end
+
+rule "Primo VE Display - Lds05 697"
+	when
+		MARC."697" has any "a-z" 
+	then
+		set TEMP"1" to MARC."697" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+		set TEMP"2" to MARC."697" sub without sorting "v,x-z" delimited by " -- "
+		remove substring using regex (TEMP"2","\\.+$")
+		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+		set TEMP"3" to multilingual by "697" "Lds05" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		create pnx."display"."lds05" with TEMP"1"
+end
+
+rule "Primo VE Display - Lds05 698"
+	when
+		MARC."698" has any "a-z" 
+	then
+		set TEMP"1" to MARC."698" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+		set TEMP"2" to MARC."698" sub without sorting "v,x-z" delimited by " -- "
+		remove substring using regex (TEMP"2","\\.+$")
+		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+		set TEMP"3" to multilingual by "698" "Lds05" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		create pnx."display"."lds05" with TEMP"1"
+end
+
+rule "Primo VE Display - Lds05 699"
+	when
+		MARC."693" has any "a-z"
+	then
+		set TEMP"1" to MARC."699" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+		set TEMP"2" to MARC."699" sub without sorting "v,x-z" delimited by " -- "
+		remove substring using regex (TEMP"2","\\.+$")
+		concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+		set TEMP"3" to multilingual by "699" "Lds05" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		create pnx."display"."lds05" with TEMP"1"
+end
