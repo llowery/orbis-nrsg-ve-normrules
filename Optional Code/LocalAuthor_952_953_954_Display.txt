@@ -4,7 +4,7 @@ rule "Primo VE - Lds25"
 		MARC."952"."a" match ".*" AND NOT
 		MARC."952"."t" match ".*"
 	then
-	create pnx."display"."lds25" with MARC "952" sub without sort "a,b,c,d,e,j,q,u" 
+		create pnx."display"."lds25" with MARC "952" sub without sort "a,b,c,d,e,j,q,u" 
 end
 
 rule "Primo VE - Lds25"
