@@ -1,26 +1,47 @@
 rule "Primo VE - Lds25"
+priority 10
 	when
 		MARC."952" has any "a,b,c,d,e,j,q,u"
-		MARC."952"."a" match ".*" AND NOT
-		MARC."952"."t" match ".*"
 	then
-		create pnx."display"."lds25" with MARC "952" sub without sort "a,b,c,d,e,j,q,u" 
+	    set TEMP"1" to MARC."952" excluding num subfields without sort
+		set TEMP"2" to MARC."952" sub without sort "a"
+		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
+		add prefix (TEMP"2","$$Q")
+		remove substring using regex (TEMP"2","^$$Q$")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		set TEMP"3" to multilingual by "952" "lds25" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		set pnx."display"."lds25" to TEMP"1"
 end
 
 rule "Primo VE - Lds25 953"
+priority 20
 	when
-		MARC "953" has any "a,b,c,d,e,n"
-		MARC."953"."a" match ".*" AND NOT
-		MARC."953"."t" match ".*"
+		MARC."953" has any "a,b,c,d,e,n"
 	then
-		create pnx."display"."lds25" with MARC "953" sub without sort "a,b,c,d,e,n"
+	    set TEMP"1" to MARC."953" sub without sort "a,b,c,d,e,n"
+		set TEMP"2" to MARC."953" sub without sort "a,b"
+		replace string by string (TEMP"1",";"," ")
+		remove substring using regex (TEMP"2","[.,/=]+$")
+		add prefix (TEMP"2","$$Q")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		set TEMP"3" to multilingual by "953" "lds25" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		set pnx."display"."lds25" to TEMP"1"
 end
 
 rule "Primo VE - Lds25 954"
+priority 30
 	when
-		MARC "954" has any "a,b,c,d,e,j,n,q"
-		MARC."954"."a" match ".*" AND NOT
-		MARC."954"."t" match ".*"
+		MARC."954" has any "a,c,d,e,n,j,q" 
 	then
-		create pnx."display"."lds25" with MARC "954" sub without sort "a,b,c,d,e,n"
+	    set TEMP"1" to MARC."954" sub without sort "a,c,d,e,n,j,q"
+		set TEMP"2" to MARC."954" sub without sort "a"
+		replace string by string (TEMP"1",";"," ")
+		remove substring using regex (TEMP"2","[.,/=]+$")
+		add prefix (TEMP"2","$$Q")
+		concatenate with delimiter (TEMP"1",TEMP"2","")
+		set TEMP"3" to multilingual by "954" "lds25" "display"
+		concatenate with delimiter (TEMP"1",TEMP"3","")
+		set pnx."display"."lds25" to TEMP"1"
 end
