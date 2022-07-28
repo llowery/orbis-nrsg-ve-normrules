@@ -7,7 +7,7 @@ rule "Primo VE - Lds25"
 		create pnx."display"."lds25" with MARC "952" sub without sort "a,b,c,d,e,j,q,u" 
 end
 
-rule "Primo VE - Lds25"
+rule "Primo VE - Lds25 953"
 	when
 		MARC "953" has any "a,b,c,d,e,n"
 		MARC."953"."a" match ".*" AND NOT
@@ -16,11 +16,11 @@ rule "Primo VE - Lds25"
 		create pnx."display"."lds25" with MARC "953" sub without sort "a,b,c,d,e,n"
 end
 
-rule "Primo VE - Lds25"
+rule "Primo VE - Lds25 954"
 	when
 		MARC "954" has any "a,b,c,d,e,j,n,q"
 		MARC."954"."a" match ".*" AND NOT
 		MARC."954"."t" match ".*"
 	then
-		create pnx."display"."lds25" with MARC "953" sub without sort "a,b,c,d,e,n"
+		create pnx."display"."lds25" with MARC "954" sub without sort "a,b,c,d,e,n"
 end
