@@ -745,7 +745,7 @@ rule "Primo VE Marc - Lsr80_880-110/880-245_Music_a"
 end
 
 rule "Primo VE Marc - Lsr80_880-110/880-245_Music_b"
-priority 65
+priority 55
 #If name and title have AGR, get AGR form of name in 880-110, set beginning of search version of field.
 	when
 		(MARC.control."LDR"(6-7) matches "c|j" AND NOT MARC is "240") AND
@@ -759,7 +759,7 @@ priority 65
 end
 
 rule "Primo VE Marc - Lsr80_880-110/880-245_Music_c"
-priority 60
+priority 50
 #If name and title have AGR, get AGR form of title in 880-245, add to search string created by last rule.
 	when
 		(MARC is "110" AND MARC."110"."6" match "880-.*") AND
@@ -786,7 +786,7 @@ rule "Primo VE Marc - Lsr80_880-111/880-245_Music_a"
 end
 
 rule "Primo VE Marc - Lsr80_880-111/880-245_Music_b"
-priority 65
+priority 45
 #If name and title have AGR, get AGR form of name in 880-111, set beginning of search version of field.
 	when
 		(MARC.control."LDR"(6-7) matches "c|j" AND NOT MARC is "240") AND
@@ -800,7 +800,7 @@ priority 65
 end
 
 rule "Primo VE Marc - Lsr80_880-111/880-245_Music_c"
-priority 60
+priority 40
 #If name and title have AGR, get AGR form of title in 880-245, add to search string created by last rule.
 	when
 		(MARC is "111" AND MARC."111"."6" match "880-.*") AND
