@@ -4,7 +4,7 @@ rule "Primo VE - Lds98"
 		MARC is "385"."a"
 	then
               set TEMP"1" to MARC "385"."a"		
-              append TEMP"1" to pnx."display"."lds98" delimited by "; "
+                create pnx."display"."lds98" with TEMP"1"
 end
 ################The rules below use the 22nd character of 008 as a lookup table################
 ################The rules below exclude SE (Continuing Resources), MP (Maps), and MX (Mixed Materials)################
