@@ -104,7 +104,7 @@ rule "Primo VE - Lds80_880-730"
 
 	when
 		MARC is "880" AND
-		MARC."880"."6" match "730-.*" AND NOT
+		MARC."880"."6" match "730-.*" AND
 		MARC."880".ind"2"  equals "2"
 	then
 		set TEMP"1" to MARC."880"  excluding subfields without sorting "[0-9]|x|i|="
