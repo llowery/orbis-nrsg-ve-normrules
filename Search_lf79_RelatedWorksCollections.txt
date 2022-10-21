@@ -152,7 +152,7 @@ end
 
 rule "Primo VE Marc - Lsr79_960"
 	when
-		MARC "960" has any "t"
+		MARC is "960"
 	then
 		set TEMP"1" to MARC."960" excluding subfields without sorting "[0-9]|x|i|=|f"
 		create pnx."search"."lsr79" with TEMP"1"
@@ -160,7 +160,7 @@ end
 
 rule "Primo VE Marc - Lsr79_880-960"
 	when
-		MARC "880" has any "t" AND
+		MARC is "880" AND
 		MARC."880"."6" match "960-.*"
 	then
 		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|x|i|=|f"
