@@ -689,6 +689,127 @@ rule "Primo VE Marc - Lsr80_111/245_f"
 		create pnx."search"."lsr80" with TEMP"1"
 end
 
+#245 no 1XX 2nd indicator not 1-6
+rule "Primo VE Marc - Lsr80_245no1xx_a"
+
+	when
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND NOT
+		MARC."245".ind"2" equals "1" AND NOT
+		MARC."245".ind"2" equals "2" AND NOT
+		MARC."245".ind"2" equals "3" AND NOT
+		MARC."245".ind"2" equals "4" AND NOT
+		MARC."245".ind"2" equals "5" AND NOT
+		MARC."245".ind"2" equals "6"
+	then
+		set TEMP"1" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"1","(/|:|;|=|,| )+$")
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+#245 no 1XX 2nd indicator = 1
+rule "Primo VE Marc - Lsr80_245no1XX_b"
+
+	when
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		MARC."245".ind"2" equals "1"
+	then
+		set TEMP"1" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"1","(/|:|;|=|,| )+$")
+		# remove initial article from title
+		remove substring using regex (TEMP"1","^.")
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+#245 no 1XX 2nd indicator = 2
+rule "Primo VE Marc - Lsr80_245no1xx_c"
+
+	when
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		MARC."245".ind"2" equals "2"
+	then
+		set TEMP"1" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"1","(/|:|;|=|,| )+$")
+		# remove initial article from title
+		remove substring using regex (TEMP"1","^.{2}")
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+#245 no 1XX 2nd indicator = 3
+rule "Primo VE Marc - Lsr80_245no1xx_d"
+
+	when
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		MARC."245".ind"2" equals "3"
+	then
+		set TEMP"1" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"1","(/|:|;|=|,| )+$")
+		# remove initial article from title
+		remove substring using regex (TEMP"1","^.{3}")
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+#245 no 1xx 2nd indicator = 4
+rule "Primo VE Marc - Lsr80_245no1xx_e"
+
+	when
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		MARC."245".ind"2" equals "4"
+	then
+		set TEMP"1" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"1","(/|:|;|=|,| )+$")
+		# remove initial article from title
+		remove substring using regex (TEMP"1","^.{4}")
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+#245 no 1xx 2nd indicator = 5
+rule "Primo VE Marc - Lsr80_245no1xx_f"
+
+	when
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		MARC."245".ind"2" equals "5"
+	then
+		set TEMP"1" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"1","(/|:|;|=|,| )+$")
+		# remove initial article from title
+		remove substring using regex (TEMP"1","^.{5}")
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+#245 no 1xx 2nd indicator = 6
+rule "Primo VE Marc - Lsr80_245no1xx_g"
+
+	when
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		MARC."245".ind"2" equals "6"
+	then
+		set TEMP"1" to MARC."245" sub without sort "a,f,g,k,n,p,s"
+		# remove ending punctuation from title
+		remove substring using regex (TEMP"1","(/|:|;|=|,| )+$")
+		# remove initial article from title
+		remove substring using regex (TEMP"1","^.{6}")
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+#880-245 no 1XX
+rule "Primo VE Marc - Lsr80_880-245no1xx"
+
+	when
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		MARC is "880" AND
+		MARC."880"."6" match "245-.*"
+	then
+		set TEMP"1" to MARC."880" excluding subfields without sorting "[0-9]|f|="
+		create pnx."search"."lsr80" with TEMP"1"
+end
+
+#AGR name/titles for music:
 rule "Primo VE Marc - Lsr80_880-100/880-245_Music_a"
 
 #If no AGR form of name, use AGR form of title for display and search.
