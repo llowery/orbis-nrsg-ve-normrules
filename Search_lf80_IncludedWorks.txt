@@ -693,7 +693,7 @@ end
 rule "Primo VE Marc - Lsr80_245no1xx_a"
 
 	when
-		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND NOT
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111" AND NOT MARC is "130") AND NOT
 		MARC."245".ind"2" equals "1" AND NOT
 		MARC."245".ind"2" equals "2" AND NOT
 		MARC."245".ind"2" equals "3" AND NOT
@@ -711,7 +711,7 @@ end
 rule "Primo VE Marc - Lsr80_245no1XX_b"
 
 	when
-		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111" AND NOT MARC is "130") AND
 		MARC."245".ind"2" equals "1"
 	then
 		set TEMP"1" to MARC."245" sub without sort "a,f,g,k,n,p,s"
@@ -726,7 +726,7 @@ end
 rule "Primo VE Marc - Lsr80_245no1xx_c"
 
 	when
-		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111" AND NOT MARC is "130") AND
 		MARC."245".ind"2" equals "2"
 	then
 		set TEMP"1" to MARC."245" sub without sort "a,f,g,k,n,p,s"
@@ -741,7 +741,7 @@ end
 rule "Primo VE Marc - Lsr80_245no1xx_d"
 
 	when
-		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111" AND NOT MARC is "130") AND
 		MARC."245".ind"2" equals "3"
 	then
 		set TEMP"1" to MARC."245" sub without sort "a,f,g,k,n,p,s"
@@ -756,7 +756,7 @@ end
 rule "Primo VE Marc - Lsr80_245no1xx_e"
 
 	when
-		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111" AND NOT MARC is "130") AND
 		MARC."245".ind"2" equals "4"
 	then
 		set TEMP"1" to MARC."245" sub without sort "a,f,g,k,n,p,s"
@@ -771,7 +771,7 @@ end
 rule "Primo VE Marc - Lsr80_245no1xx_f"
 
 	when
-		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111" AND NOT MARC is "130") AND
 		MARC."245".ind"2" equals "5"
 	then
 		set TEMP"1" to MARC."245" sub without sort "a,f,g,k,n,p,s"
@@ -786,7 +786,7 @@ end
 rule "Primo VE Marc - Lsr80_245no1xx_g"
 
 	when
-		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111" AND NOT MARC is "130") AND
 		MARC."245".ind"2" equals "6"
 	then
 		set TEMP"1" to MARC."245" sub without sort "a,f,g,k,n,p,s"
@@ -801,7 +801,7 @@ end
 rule "Primo VE Marc - Lsr80_880-245no1xx"
 
 	when
-		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111") AND
+		(MARC is "245" AND NOT MARC is "240" AND NOT MARC is "100" AND NOT MARC is "110" AND NOT MARC is "111" AND NOT MARC is "130") AND
 		MARC is "880" AND
 		MARC."880"."6" match "245-.*"
 	then
