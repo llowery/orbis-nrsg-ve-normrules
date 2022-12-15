@@ -1,4 +1,8 @@
 rule "Primo VE - Lds47"
+# TO ADD/REMOVE VOCABULARIES (when customizing this rule for local use): 
+# 1) Ctrl+F on this string: fast|dtict|unbist|scgdst|bisacsh|netc|lctgm|local|homoit
+# 2) add/remove vocabulary codes as desired
+# 3) replace all occurrences of the string (so each stanza can be updated at once)
 	when
 		MARC."600" has any "a-z" AND
 		MARC."600".ind"2" equals "7" AND
