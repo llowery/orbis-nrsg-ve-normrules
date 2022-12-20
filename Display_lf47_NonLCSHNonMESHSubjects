@@ -1,8 +1,11 @@
 rule "Primo VE - Lds47"
-# TO ADD/REMOVE VOCABULARIES (when customizing this rule for local use): 
-# 1) Ctrl+F on this string: fast|dtict|unbist|scgdst|bisacsh|netc|lctgm|local|homoit
-# 2) add/remove vocabulary codes as desired
-# 3) replace all occurrences of the string (so each stanza can be updated at once)
+###Option One: TO ADD/REMOVE VOCABULARIES (if desired at your local institution): 
+# A) Find and replace on this string: fast|dtict|unbist|scgdst|bisacsh|netc|lctgm|local|homoit
+# B) Add/remove vocabulary codes as desired
+# C) Replace all occurrences of the string (so each stanza will be updated at once)
+###Option Two: TO MAKE THIS RULE DISPLAY SEPARATELY FROM LCSH SUBJECTS
+# A) Find and replace on this string: create pnx."display"."subject"
+# B) Replace with string: create pnx."display"."lds47" (so each stanza will be updated at once)
 	when
 		MARC."600" has any "a-z" AND
 		MARC."600".ind"2" equals "7" AND
