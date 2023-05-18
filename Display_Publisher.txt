@@ -3,9 +3,10 @@
 rule "Primo VE - publisher 260/3"
 	when
 		MARC."260" has any "a,b" AND
-		MARC."260".ind"1"  equals "3" 
+		MARC."260".ind"1"  equals "3"
 	then
 		set TEMP"1" to MARC."260" sub without sort "a,b"
+		set TEMP"2" to MARC."260" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -15,7 +16,10 @@ rule "Primo VE - publisher 260/3"
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		create pnx."display"."publisher" with TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		add prefix (TEMP"2","Current Publisher: ")
+		create pnx."display"."publisher" with TEMP"2"
 end
 
 rule "Primo VE - publisher 264/3/0"
@@ -25,6 +29,7 @@ rule "Primo VE - publisher 264/3/0"
 		MARC."264".ind"2"  equals "0" 
 	then
 		set TEMP"1" to MARC."264" sub without sort "a,b"
+		set TEMP"2" to MARC."264" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -34,8 +39,10 @@ rule "Primo VE - publisher 264/3/0"
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		add prefix (TEMP"1","Current Producer: ")
-		create  pnx."display"."publisher" with TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		add prefix (TEMP"2","Current Producer: ")
+		create  pnx."display"."publisher" with TEMP"2"
 end
 
 rule "Primo VE - publisher 264/3/1"
@@ -45,6 +52,7 @@ rule "Primo VE - publisher 264/3/1"
 		MARC."264".ind"2"  equals "1" 
 	then
 		set TEMP"1" to MARC."264" sub without sort "a,b"
+		set TEMP"2" to MARC."264" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -54,8 +62,10 @@ rule "Primo VE - publisher 264/3/1"
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		add prefix (TEMP"1","Current Producer: ")
-		create  pnx."display"."publisher" with TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		add prefix (TEMP"2","Current Producer: ")
+		create  pnx."display"."publisher" with TEMP"2"
 end
 
 rule "Primo VE - publisher 264/3/2"
@@ -65,6 +75,7 @@ rule "Primo VE - publisher 264/3/2"
 		MARC."264".ind"2"  equals "2" 
 	then
 		set TEMP"1" to MARC."264" sub without sort "a,b"
+		set TEMP"2" to MARC."264" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -74,8 +85,10 @@ rule "Primo VE - publisher 264/3/2"
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		add prefix (TEMP"1","Current Distributor: ")
-		create  pnx."display"."publisher" with TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		add prefix (TEMP"2","Current Distributor: ")
+		create  pnx."display"."publisher" with TEMP"2"
 end
 
 rule "Primo VE - publisher 264/3/3"
@@ -85,6 +98,7 @@ rule "Primo VE - publisher 264/3/3"
 		MARC."264".ind"2"  equals "3" 
 	then
 		set TEMP"1" to MARC."264" sub without sort "a,b"
+		set TEMP"2" to MARC."264" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -94,8 +108,10 @@ rule "Primo VE - publisher 264/3/3"
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		add prefix (TEMP"1","Current Manufacturer: ")
-		create  pnx."display"."publisher" with TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		add prefix (TEMP"2","Current Manufacturer: ")
+		create  pnx."display"."publisher" with TEMP"2"
 end
 
 rule "Primo VE - publisher 264/*/0"
@@ -105,6 +121,7 @@ rule "Primo VE - publisher 264/*/0"
 		MARC."264".ind"1"  equals "3"
 	then
 		set TEMP"1" to MARC."264" sub without sort "a,b"
+		set TEMP"2" to MARC."264" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -114,8 +131,10 @@ rule "Primo VE - publisher 264/*/0"
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		add prefix (TEMP"1","Producer: ")
-		create  pnx."display"."publisher" with TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		add prefix (TEMP"2","Producer: ")
+		create  pnx."display"."publisher" with TEMP"2"
 end
 
 rule "Primo VE - publisher 264/*/2"
@@ -125,6 +144,7 @@ rule "Primo VE - publisher 264/*/2"
 		MARC."264".ind"1"  equals "3"
 	then
 		set TEMP"1" to MARC."264" sub without sort "a,b"
+		set TEMP"2" to MARC."264" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -134,8 +154,10 @@ rule "Primo VE - publisher 264/*/2"
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		add prefix (TEMP"1","Distributor: ")
-		create  pnx."display"."publisher" with TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		add prefix (TEMP"2","Distributor: ")
+		create  pnx."display"."publisher" with TEMP"2"
 end
 
 rule "Primo VE - publisher 264/*/3"
@@ -145,6 +167,7 @@ rule "Primo VE - publisher 264/*/3"
 		MARC."264".ind"1"  equals "3"
 	then
 		set TEMP"1" to MARC."264" sub without sort "a,b"
+		set TEMP"2" to MARC."264" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -154,8 +177,10 @@ rule "Primo VE - publisher 264/*/3"
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		add prefix (TEMP"1","Manufacturer: ")
-		create  pnx."display"."publisher" with TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		add prefix (TEMP"2","Manufacturer: ")
+		create  pnx."display"."publisher" with TEMP"2"
 end
 
 rule "Primo VE - publisher 260"
@@ -163,6 +188,7 @@ rule "Primo VE - publisher 260"
 		MARC."260" has any "a,b" 
 	then
 		set TEMP"1" to MARC."260" sub without sort "a,b"
+		set TEMP"2" to MARC."260" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -172,7 +198,9 @@ rule "Primo VE - publisher 260"
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		create pnx."display"."publisher" with TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		create pnx."display"."publisher" with TEMP"2"
 end
 
 rule "Primo VE - publisher 264"
@@ -180,6 +208,7 @@ rule "Primo VE - publisher 264"
 		MARC."264" has any "a,b"
 	then
 		set TEMP"1" to MARC."264" sub without sort "a,b"
+		set TEMP"2" to MARC."264" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -189,7 +218,9 @@ rule "Primo VE - publisher 264"
 		remove leading and trailing spaces (TEMP"1")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		create pnx."display"."publisher" with TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		create pnx."display"."publisher" with TEMP"2"
 end
 
 rule "Primo VE - Publisher 502a"
@@ -216,6 +247,7 @@ priority 10
 		MARC."880".ind"1"  equals "3" 
 	then
 		set TEMP"1" to MARC."880" sub without sort "a,b"
+		set TEMP"2" to MARC."880" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -224,7 +256,9 @@ priority 10
 		remove string (TEMP"1","\\]")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		set pnx."display"."alternate_publisher" to TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		set pnx."display"."alternate_publisher" to TEMP"2"
 end
 
 rule "Primo VE - Alternate Publisher 880-264/3/1"
@@ -236,6 +270,7 @@ priority 20
 		MARC."880".ind"2"  equals "1" 
 	then
 		set TEMP"1" to MARC."880" sub without sort "a,b"
+		set TEMP"2" to MARC."880" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -244,16 +279,19 @@ priority 20
 		remove string (TEMP"1","\\]")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		set pnx."display"."alternate_publisher" to TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		set pnx."display"."alternate_publisher" to TEMP"2"
 end
 
 rule "Primo VE - Alternate Publisher 880-260"
 priority 30
 	when
 		MARC."880" has any "a,b" AND
-		MARC."880"."6" match "260-.*" 
+		MARC."880"."6" match "260-.*"
 	then
 		set TEMP"1" to MARC."880" sub without sort "a,b"
+		set TEMP"2" to MARC."880" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -262,7 +300,9 @@ priority 30
 		remove string (TEMP"1","\\]")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		set pnx."display"."alternate_publisher" to TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		set pnx."display"."alternate_publisher" to TEMP"2"
 end
 
 rule "Primo VE - Alternate Publisher 880-264"
@@ -272,6 +312,7 @@ priority 40
 		MARC."880"."6" match "264-.*" 
 	then
 		set TEMP"1" to MARC."880" sub without sort "a,b"
+		set TEMP"2" to MARC."880" subfields "3"
 		remove string (TEMP"1","<<")
 		remove string (TEMP"1",">>")
 		remove string (TEMP"1","\\(")
@@ -280,7 +321,9 @@ priority 40
 		remove string (TEMP"1","\\]")
 		remove substring using regex (TEMP"1","(/|:|;|=|,)+$")
 		replace spaces (TEMP"1"," ")
-		set pnx."display"."alternate_publisher" to TEMP"1"
+		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
+		replace string by string (TEMP"2","::",":")
+		set pnx."display"."alternate_publisher" to TEMP"2"
 end
 
 rule "Primo VE - publisher notes 362"
