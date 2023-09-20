@@ -51,7 +51,10 @@ rule "Primo VE - Lds78 694"
         create pnx."display"."lds78" with TEMP"1"
 end
 
+##########
+
 rule "Primo VE - Lds78 008/24 5"
+#Nature of contents
     when
         MARC.control."008"(24-25) equals "5" AND
         MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
@@ -239,6 +242,581 @@ rule "Primo VE - Lds78 008/24 z"
         create pnx."display"."lds78" with TEMP"1"
 end
 
+##########
+
+rule "Primo VE - Lds78 008/25 5"
+#Nature of contents
+    when
+        MARC.control."008"(25-26) equals "5" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Calendars-")
+        remove string (TEMP"1","-5")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 6"
+    when
+        MARC.control."008"(25-26) equals "6" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Graphic novels-")
+        remove string (TEMP"1","-6")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 c"
+    when
+        MARC.control."008"(25-26) equals "c" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Catalogs-")
+        remove string (TEMP"1","-c")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 d"
+    when
+        MARC.control."008"(25-26) equals "d" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Dictionaries-")
+        remove string (TEMP"1","-d")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 e"
+# nature of contents OCLC 1055568196
+    when
+        MARC.control."008"(25-26) equals "e" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Encyclopedias-")
+        remove string (TEMP"1","-e")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 f"
+    when
+        MARC.control."008"(25-26) equals "f" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Handbooks and manuals-")
+        remove string (TEMP"1","-f")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 i"
+    when
+        MARC.control."008"(25-26) equals "i" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Indexes-")
+        remove string (TEMP"1","-i")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 j"
+    when
+        MARC.control."008"(25-26) equals "j" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Patents-")
+        remove string (TEMP"1","-j")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 k"
+    when
+        MARC.control."008"(25-26) equals "k" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Discographies-")
+        remove string (TEMP"1","-k")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 o"
+    when
+        MARC.control."008"(25-26) equals "o" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Reviews-")
+        remove string (TEMP"1","-o")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 p"
+    when
+        MARC.control."008"(25-26) equals "p" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Programmed instructional materials-")
+        remove string (TEMP"1","-p")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 r"
+    when
+        MARC.control."008"(25-26) equals "r" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Directories-")
+        remove string (TEMP"1","-r")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 s"
+    when
+        MARC.control."008"(25-26) equals "s" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Statistics-")
+        remove string (TEMP"1","-s")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 t"
+    when
+        MARC.control."008"(25-26) equals "t" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Technical reports-")
+        remove string (TEMP"1","-t")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 w"
+    when
+        MARC.control."008"(25-26) equals "w" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Law digests-")
+        remove string (TEMP"1","-w")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 y"
+    when
+        MARC.control."008"(25-26) equals "y" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Yearbooks-")
+        remove string (TEMP"1","-y")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/25 z"
+    when
+        MARC.control."008"(25-26) equals "z" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",25-26)
+        add prefix (TEMP"1","Treaties-")
+        remove string (TEMP"1","-z")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+##########
+
+rule "Primo VE - Lds78 008/26 5"
+#Nature of contents
+    when
+        MARC.control."008"(26-27) equals "5" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Calendars-")
+        remove string (TEMP"1","-5")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 6"
+    when
+        MARC.control."008"(26-27) equals "6" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Graphic novels-")
+        remove string (TEMP"1","-6")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 c"
+    when
+        MARC.control."008"(26-27) equals "c" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Catalogs-")
+        remove string (TEMP"1","-c")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 d"
+    when
+        MARC.control."008"(26-27) equals "d" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Dictionaries-")
+        remove string (TEMP"1","-d")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 e"
+# nature of contents OCLC 1055568196
+    when
+        MARC.control."008"(26-27) equals "e" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Encyclopedias-")
+        remove string (TEMP"1","-e")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 f"
+    when
+        MARC.control."008"(26-27) equals "f" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Handbooks and manuals-")
+        remove string (TEMP"1","-f")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 i"
+    when
+        MARC.control."008"(26-27) equals "i" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Indexes-")
+        remove string (TEMP"1","-i")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 j"
+    when
+        MARC.control."008"(26-27) equals "j" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Patents-")
+        remove string (TEMP"1","-j")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 k"
+    when
+        MARC.control."008"(26-27) equals "k" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Discographies-")
+        remove string (TEMP"1","-k")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 o"
+    when
+        MARC.control."008"(26-27) equals "o" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Reviews-")
+        remove string (TEMP"1","-o")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 p"
+    when
+        MARC.control."008"(26-27) equals "p" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Programmed instructional materials-")
+        remove string (TEMP"1","-p")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 r"
+    when
+        MARC.control."008"(26-27) equals "r" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Directories-")
+        remove string (TEMP"1","-r")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 s"
+    when
+        MARC.control."008"(26-27) equals "s" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Statistics-")
+        remove string (TEMP"1","-s")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 t"
+    when
+        MARC.control."008"(26-27) equals "t" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Technical reports-")
+        remove string (TEMP"1","-t")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 w"
+    when
+        MARC.control."008"(26-27) equals "w" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Law digests-")
+        remove string (TEMP"1","-w")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 y"
+    when
+        MARC.control."008"(26-27) equals "y" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Yearbooks-")
+        remove string (TEMP"1","-y")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/26 z"
+    when
+        MARC.control."008"(26-27) equals "z" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",26-27)
+        add prefix (TEMP"1","Treaties-")
+        remove string (TEMP"1","-z")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+##########
+
+rule "Primo VE - Lds78 008/27 5"
+#Nature of contents
+    when
+        MARC.control."008"(27-28) equals "5" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Calendars-")
+        remove string (TEMP"1","-5")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 6"
+    when
+        MARC.control."008"(27-28) equals "6" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Graphic novels-")
+        remove string (TEMP"1","-6")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 c"
+    when
+        MARC.control."008"(27-28) equals "c" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Catalogs-")
+        remove string (TEMP"1","-c")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 d"
+    when
+        MARC.control."008"(27-28) equals "d" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Dictionaries-")
+        remove string (TEMP"1","-d")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 e"
+# nature of contents OCLC 1055568196
+    when
+        MARC.control."008"(27-28) equals "e" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Encyclopedias-")
+        remove string (TEMP"1","-e")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 f"
+    when
+        MARC.control."008"(27-28) equals "f" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Handbooks and manuals-")
+        remove string (TEMP"1","-f")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 i"
+    when
+        MARC.control."008"(27-28) equals "i" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Indexes-")
+        remove string (TEMP"1","-i")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 j"
+    when
+        MARC.control."008"(27-28) equals "j" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Patents-")
+        remove string (TEMP"1","-j")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 k"
+    when
+        MARC.control."008"(27-28) equals "k" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Discographies-")
+        remove string (TEMP"1","-k")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 o"
+    when
+        MARC.control."008"(27-28) equals "o" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Reviews-")
+        remove string (TEMP"1","-o")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 p"
+    when
+        MARC.control."008"(27-28) equals "p" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Programmed instructional materials-")
+        remove string (TEMP"1","-p")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 r"
+    when
+        MARC.control."008"(27-28) equals "r" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Directories-")
+        remove string (TEMP"1","-r")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 s"
+    when
+        MARC.control."008"(27-28) equals "s" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Statistics-")
+        remove string (TEMP"1","-s")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 t"
+    when
+        MARC.control."008"(27-28) equals "t" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Technical reports-")
+        remove string (TEMP"1","-t")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 w"
+    when
+        MARC.control."008"(27-28) equals "w" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Law digests-")
+        remove string (TEMP"1","-w")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 y"
+    when
+        MARC.control."008"(27-28) equals "y" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Yearbooks-")
+        remove string (TEMP"1","-y")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/27 z"
+    when
+        MARC.control."008"(27-28) equals "z" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",27-28)
+        add prefix (TEMP"1","Treaties-")
+        remove string (TEMP"1","-z")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+##########
+
 rule "Primo VE - Lds78 008/30 a"
     when 
         MARC.control."008"(30-31) equals "a" AND
@@ -405,6 +983,8 @@ rule "Primo VE - Lds78 008/30 t"
         create pnx."display"."lds78" with TEMP"1"
 end
 
+##########
+
 rule "Primo VE - Lds78 008/31 a"
     when
         (MARC.control."008"(31-32) equals "a" AND
@@ -566,5 +1146,123 @@ rule "Primo VE - Lds78 008/31 t"
         set TEMP"1" to position("008",31-32)
         add prefix (TEMP"1","Interviews-")
         remove string (TEMP"1","-t")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+##########
+
+rule "Primo VE - Lds78 008/33 1"
+# literary form OCLC 1057242876
+    when
+        MARC.control."008"(33-34) equals "1" AND         
+        MARC.control."LDR"(6-8) matches "ab|ai|as"
+ then
+        set TEMP"1" to position("008",33-34)
+        add prefix (TEMP"1","Fiction-")
+        remove string (TEMP"1","-1")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/33 d"
+    when
+        MARC.control."008"(33-34) equals "d" AND         
+        MARC.control."LDR"(6-8) matches "ab|ai|as"
+ then
+        set TEMP"1" to position("008",33-34)
+        add prefix (TEMP"1","Drama-")
+        remove string (TEMP"1","-d")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/33 e"
+    when
+        MARC.control."008"(33-34) equals "e" AND         
+        MARC.control."LDR"(6-8) matches "ab|ai|as"
+ then
+        set TEMP"1" to position("008",33-34)
+        add prefix (TEMP"1","Essays-")
+        remove string (TEMP"1","-e")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/33 f"
+    when
+        MARC.control."008"(33-34) equals "f" AND         
+        MARC.control."LDR"(6-8) matches "ab|ai|as"
+ then
+        set TEMP"1" to position("008",33-34)
+        add prefix (TEMP"1","Novels-")
+        remove string (TEMP"1","-f")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/33 j"
+    when
+        MARC.control."008"(33-34) equals "j" AND         
+        MARC.control."LDR"(6-8) matches "ab|ai|as"
+ then
+        set TEMP"1" to position("008",33-34)
+        add prefix (TEMP"1","Short stories-")
+        remove string (TEMP"1","-j")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/33 p"
+    when
+        MARC.control."008"(33-34) equals "p" AND         
+        MARC.control."LDR"(6-8) matches "ab|ai|as"
+ then
+        set TEMP"1" to position("008",33-34)
+        add prefix (TEMP"1","Poetry-")
+        remove string (TEMP"1","-p")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/33 s"
+    when
+        MARC.control."008"(33-34) equals "s" AND         
+        MARC.control."LDR"(6-8) matches "ab|ai|as"
+ then
+        set TEMP"1" to position("008",33-34)
+        add prefix (TEMP"1","Speeches-")
+        remove string (TEMP"1","-s")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+##########
+
+rule "Primo VE - Lds78 008/34 a"
+#biography
+    when
+        MARC.control."008"(34-35) equals "a" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",34-35)
+        add prefix (TEMP"1","Autobiographies-")
+        add suffix (TEMP"1","-a")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/34 b"
+#biography
+    when
+        MARC.control."008"(34-35) equals "b" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",34-35)
+        add prefix (TEMP"1","Biographies-")
+        add suffix (TEMP"1","-b")
+        create pnx."display"."lds78" with TEMP"1"
+end
+
+rule "Primo VE - Lds78 008/34 c"
+#biography
+    when
+        MARC.control."008"(34-35) equals "c" AND
+        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+    then
+        set TEMP"1" to position("008",34-35)
+        add prefix (TEMP"1","Biographies-")
+        add suffix (TEMP"1","-c")
         create pnx."display"."lds78" with TEMP"1"
 end
