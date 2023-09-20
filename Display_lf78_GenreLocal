@@ -1,5 +1,14 @@
-rule "Primo VE - Lds78"
 #655_7 lcgft OCLC 774607605 
+#655_7 fast OCLC 05264690 
+#655 _0 OCLC 43354922 
+#008/25 nature of contents e OCLC 1055568196
+#008/25 nature of contents p OCLC 71328147
+#008/30 lit text for sound recordings b OCLC 1197080110
+#008/33 literary form p OCLC 1057242876
+
+##########
+
+rule "Primo VE - Lds78"
     when
         MARC."655" has any "a" AND
         MARC."655".ind"2" equals "7" AND  
@@ -9,7 +18,6 @@ rule "Primo VE - Lds78"
 end
 
 rule "Primo VE - Lds78 655 #7 except lcgft"
-#655_7 fast OCLC 05264690 
     when
         MARC."655" has any "a" AND
         MARC."655".ind"2" equals "7" AND  
@@ -22,7 +30,6 @@ rule "Primo VE - Lds78 655 #7 except lcgft"
 end
 
 rule "Primo VE - Lds78 655 #0,4"
-#655 _0 OCLC 43354922 
     when
         MARC."655" has any "a" AND
         (MARC."655".ind"2" equals "0" OR		
@@ -51,10 +58,9 @@ rule "Primo VE - Lds78 694"
         create pnx."display"."lds78" with TEMP"1"
 end
 
-##########
+##########Nature of contents
 
 rule "Primo VE - Lds78 008/24 5"
-#Nature of contents
     when
         MARC.control."008"(24-25) equals "5" AND
         MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
@@ -99,7 +105,6 @@ rule "Primo VE - Lds78 008/24 d"
 end
 
 rule "Primo VE - Lds78 008/24 e"
-# nature of contents OCLC 1055568196
     when
         MARC.control."008"(24-25) equals "e" AND
         MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
@@ -242,10 +247,9 @@ rule "Primo VE - Lds78 008/24 z"
         create pnx."display"."lds78" with TEMP"1"
 end
 
-##########
+##########Nature of contents
 
 rule "Primo VE - Lds78 008/25 5"
-#Nature of contents
     when
         MARC.control."008"(25-26) equals "5" AND
         MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
@@ -290,7 +294,6 @@ rule "Primo VE - Lds78 008/25 d"
 end
 
 rule "Primo VE - Lds78 008/25 e"
-# nature of contents OCLC 1055568196
     when
         MARC.control."008"(25-26) equals "e" AND
         MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
@@ -433,10 +436,9 @@ rule "Primo VE - Lds78 008/25 z"
         create pnx."display"."lds78" with TEMP"1"
 end
 
-##########
+##########Nature of contents
 
 rule "Primo VE - Lds78 008/26 5"
-#Nature of contents
     when
         MARC.control."008"(26-27) equals "5" AND
         MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
@@ -481,7 +483,6 @@ rule "Primo VE - Lds78 008/26 d"
 end
 
 rule "Primo VE - Lds78 008/26 e"
-# nature of contents OCLC 1055568196
     when
         MARC.control."008"(26-27) equals "e" AND
         MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
@@ -624,10 +625,9 @@ rule "Primo VE - Lds78 008/26 z"
         create pnx."display"."lds78" with TEMP"1"
 end
 
-##########
+##########Nature of contents
 
 rule "Primo VE - Lds78 008/27 5"
-#Nature of contents
     when
         MARC.control."008"(27-28) equals "5" AND
         MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
@@ -672,7 +672,6 @@ rule "Primo VE - Lds78 008/27 d"
 end
 
 rule "Primo VE - Lds78 008/27 e"
-# nature of contents OCLC 1055568196
     when
         MARC.control."008"(27-28) equals "e" AND
         MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
@@ -815,21 +814,20 @@ rule "Primo VE - Lds78 008/27 z"
         create pnx."display"."lds78" with TEMP"1"
 end
 
-##########
+##########lit text - sound recordings 
 
 rule "Primo VE - Lds78 008/30 a"
     when 
         MARC.control."008"(30-31) equals "a" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
-        set TEMP"1" to position"008",30-31)
+        set TEMP"1" to position("008",30-31)
         add prefix (TEMP"1","Autobiographies-")
         remove string (TEMP"1","-a")
         create pnx."display"."lds78" with TEMP"1"
 end
 
 rule "Primo VE - Lds78 008/30 b"
-# lit text - sound recordings OCLC 1197080110
     when 
         MARC.control."008"(30-31) equals "b" AND
         MARC.control."LDR"(6-7) matches "i|j"
@@ -897,7 +895,7 @@ end
 
 rule "Primo VE - Lds78 008/30 i"
     when 
-        (MARC.control."008"(30-31) equals "i" AND
+        MARC.control."008"(30-31) equals "i" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",30-31)
@@ -908,7 +906,7 @@ end
 
 rule "Primo VE - Lds78 008/30 j"
     when 
-        (MARC.control."008"(30-31) equals "j" AND
+        MARC.control."008"(30-31) equals "j" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",30-31)
@@ -919,7 +917,7 @@ end
 
 rule "Primo VE - Lds78 008/30 k"
     when 
-        (MARC.control."008"(30-31) equals "k" AND
+        MARC.control."008"(30-31) equals "k" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",30-31)
@@ -930,7 +928,7 @@ end
 
 rule "Primo VE - Lds78 008/30 l"
     when 
-        (MARC.control."008"(30-31) equals "l" AND
+        MARC.control."008"(30-31) equals "l" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",30-31)
@@ -941,7 +939,7 @@ end
 
 rule "Primo VE - Lds78 008/30 m"
     when 
-        (MARC.control."008"(30-31) equals "m" AND
+        MARC.control."008"(30-31) equals "m" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",30-31)
@@ -952,7 +950,7 @@ end
 
 rule "Primo VE - Lds78 008/30 o"
     when 
-        (MARC.control."008"(30-31) equals "o" AND
+        MARC.control."008"(30-31) equals "o" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",30-31)
@@ -963,7 +961,7 @@ end
 
 rule "Primo VE - Lds78 008/30 p"
     when 
-        (MARC.control."008"(30-31) equals "p" AND
+        MARC.control."008"(30-31) equals "p" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",30-31)
@@ -974,7 +972,7 @@ end
 
 rule "Primo VE - Lds78 008/30 t"
     when 
-        (MARC.control."008"(30-31) equals "t" AND
+        MARC.control."008"(30-31) equals "t" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",30-31)
@@ -983,17 +981,18 @@ rule "Primo VE - Lds78 008/30 t"
         create pnx."display"."lds78" with TEMP"1"
 end
 
-##########
+##########lit text - sound recordings 
 
 rule "Primo VE - Lds78 008/31 a"
     when
-        (MARC.control."008"(31-32) equals "a" AND
+        MARC.control."008"(31-32) equals "a" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",31-32)
         add prefix (TEMP"1","Autobiographies-")
         remove string (TEMP"1","-a")
         create pnx."display"."lds78" with TEMP"1"
+end
 
 rule "Primo VE - Lds78 008/31 b"
     when 
@@ -1063,7 +1062,7 @@ end
 
 rule "Primo VE - Lds78 008/31 i"
     when 
-        (MARC.control."008"(31-32) equals "i" AND
+        MARC.control."008"(31-32) equals "i" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",31-32)
@@ -1074,7 +1073,7 @@ end
 
 rule "Primo VE - Lds78 008/31 j"
     when 
-        (MARC.control."008"(31-32) equals "j" AND
+        MARC.control."008"(31-32) equals "j" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",31-32)
@@ -1085,7 +1084,7 @@ end
 
 rule "Primo VE - Lds78 008/31 k"
     when 
-        (MARC.control."008"(31-32) equals "k" AND
+        MARC.control."008"(31-32) equals "k" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",31-32)
@@ -1096,7 +1095,7 @@ end
 
 rule "Primo VE - Lds78 008/31 l"
     when 
-        (MARC.control."008"(31-32) equals "l" AND
+        MARC.control."008"(31-32) equals "l" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",31-32)
@@ -1107,7 +1106,7 @@ end
 
 rule "Primo VE - Lds78 008/31 m"
     when 
-        (MARC.control."008"(31-32) equals "m" AND
+        MARC.control."008"(31-32) equals "m" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",31-32)
@@ -1118,7 +1117,7 @@ end
 
 rule "Primo VE - Lds78 008/31 o"
     when 
-        (MARC.control."008"(31-32) equals "o" AND
+        MARC.control."008"(31-32) equals "o" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",31-32)
@@ -1129,7 +1128,7 @@ end
 
 rule "Primo VE - Lds78 008/31 p"
     when 
-        (MARC.control."008"(31-32) equals "p" AND
+        MARC.control."008"(31-32) equals "p" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",31-32)
@@ -1140,7 +1139,7 @@ end
 
 rule "Primo VE - Lds78 008/31 t"
     when 
-        (MARC.control."008"(31-32) equals "t" AND
+        MARC.control."008"(31-32) equals "t" AND
         MARC.control."LDR"(6-7) matches "i|j"
     then
         set TEMP"1" to position("008",31-32)
@@ -1149,10 +1148,9 @@ rule "Primo VE - Lds78 008/31 t"
         create pnx."display"."lds78" with TEMP"1"
 end
 
-##########
+##########literary form
 
 rule "Primo VE - Lds78 008/33 1"
-# literary form OCLC 1057242876
     when
         MARC.control."008"(33-34) equals "1" AND         
         MARC.control."LDR"(6-8) matches "ab|ai|as"
@@ -1229,10 +1227,9 @@ rule "Primo VE - Lds78 008/33 s"
         create pnx."display"."lds78" with TEMP"1"
 end
 
-##########
+##########biography
 
 rule "Primo VE - Lds78 008/34 a"
-#biography
     when
         MARC.control."008"(34-35) equals "a" AND
         MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
@@ -1244,7 +1241,6 @@ rule "Primo VE - Lds78 008/34 a"
 end
 
 rule "Primo VE - Lds78 008/34 b"
-#biography
     when
         MARC.control."008"(34-35) equals "b" AND
         MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
@@ -1256,7 +1252,6 @@ rule "Primo VE - Lds78 008/34 b"
 end
 
 rule "Primo VE - Lds78 008/34 c"
-#biography
     when
         MARC.control."008"(34-35) equals "c" AND
         MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
