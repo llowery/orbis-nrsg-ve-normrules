@@ -1,3 +1,4 @@
+rule "Primo VE - Lds78"
 #655_7 lcgft OCLC 774607605 
 #655_7 fast OCLC 05264690 
 #655 _0 OCLC 43354922 
@@ -5,10 +6,6 @@
 #008/25 nature of contents p OCLC 71328147
 #008/30 lit text for sound recordings b OCLC 1197080110
 #008/33 literary form p OCLC 1057242876
-
-##########
-
-rule "Primo VE - Lds78"
     when
         MARC."655" has any "a" AND
         MARC."655".ind"2" equals "7" AND  
