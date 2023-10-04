@@ -280,16 +280,16 @@ rule "Primo VE - Lds78 008/25"
       create pnx."display"."lds78" with TEMP"1"
 end
 
-rule "Primo VE - Lds78 008/25 5"
-    when
-        MARC.control."008"(25-26) equals "5" AND
-        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
-    then
-        set TEMP"1" to position("008",25-26)
-        add prefix (TEMP"1","Calendars-")
-        remove string (TEMP"1","-5")
-        create pnx."display"."lds78" with TEMP"1"
-end
+#rule "Primo VE - Lds78 008/25 5"
+#    when
+#        MARC.control."008"(25-26) equals "5" AND
+#        MARC.control."LDR"(6-8) matches "aa|ac|ad|am"
+#    then
+#        set TEMP"1" to position("008",25-26)
+#        add prefix (TEMP"1","Calendars-")
+#        remove string (TEMP"1","-5")
+#        create pnx."display"."lds78" with TEMP"1"
+#end
 
 rule "Primo VE - Lds78 008/25 6"
     when
