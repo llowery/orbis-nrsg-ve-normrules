@@ -1,5 +1,6 @@
 rule "Primo VE - Lds79"
-#Field displays 7700, 710, 711, 952, 953, 954 with $t and 2ind not = 2 and corresponding 880s, plus 730s with 2ind not = 2 and corresponding 880.
+#Field displays 700, 710, 711, 952, 953, 954 with $t and 2nd ind not = 2 and corresponding 880s, plus 730s with 2nd ind not = 2 and corresponding 880, plus 960.
+# Field also displays 770, 762, 765, 767, 780, 785-787 with additional prima logic from OTB rule
 
 	when
 		MARC."700" has any "t" AND NOT
