@@ -3,7 +3,8 @@ rule "Primo VE - Format 300"
 		MARC is "300"
 	then
 	    set TEMP"1" to MARC."300" excluding num subfields without sort
-		create pnx."display"."format" with TEMP"1"
+            add prefix (TEMP"1","300 ")   
+	    create pnx."display"."format" with TEMP"1"
 end
 rule "Primo VE - Format 340_a"
 	when
