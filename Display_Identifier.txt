@@ -4,6 +4,8 @@ rule "Primo VE - Identifier 020"
 	then
 		set TEMP"1" to MARC "020"."a"
 		add prefix (TEMP"1","$$CISBN$$V")
+                set TEMP"2" to MARC "020" subfields "q"
+		concatenate with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -43,6 +45,8 @@ rule "Primo VE - Identifier 024 ind1-2"
 	then
 		set TEMP"1" to MARC "024"."a"
 		add prefix (TEMP"1","$$CISMN$$V")
+                set TEMP"2" to MARC "024" subfields "q"
+		concatenate with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -53,6 +57,8 @@ rule "Primo VE - Identifier 024 ind1-1"
 	then
 		set TEMP"1" to MARC "024"."a"
 		add prefix (TEMP"1","$$CUPC$$V")
+                set TEMP"2" to MARC "024" subfields "q"
+		concatenate with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
