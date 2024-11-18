@@ -64,7 +64,7 @@ rule "Primo VE - publisher 264/3/1"
 		replace spaces (TEMP"1"," ")
 		concatenate existing with delimiter (TEMP"2",TEMP"1",": ")
 		replace string by string (TEMP"2","::",":")
-		add prefix (TEMP"2","Current Producer: ")
+		add prefix (TEMP"2","Current Publisher: ")
 		create  pnx."display"."publisher" with TEMP"2"
 end
 
