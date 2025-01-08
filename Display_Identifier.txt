@@ -4,7 +4,16 @@ rule "Primo VE - Identifier 020"
 	then
 		set TEMP"1" to MARC "020"."a"
 		add prefix (TEMP"1","$$CISBN$$V")
-                set TEMP"2" to MARC "020" subfields "q"
+        	set TEMP"2" to MARC "020" sub without sort "q" wrap subfields
+		replace wrapping delimiters (TEMP"2","q","",":")
+		add prefix (TEMP"2","(")
+		add suffix (TEMP"2",")")
+# Replace ; with : to prevent line breaks after ;. This appears to only be an issue with OTB display fields.
+		replace string by string (TEMP"2",";",":")
+		replace string by string (TEMP"2","::",":")
+		replace string by string (TEMP"2",":\\)",")")
+		replace string by string (TEMP"2","\\(\\(","(")
+		replace string by string (TEMP"2","\\)\\)",")")
 		concatenate with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."display"."identifier" with TEMP"1"
 end
@@ -45,7 +54,16 @@ rule "Primo VE - Identifier 024 ind1-2"
 	then
 		set TEMP"1" to MARC "024"."a"
 		add prefix (TEMP"1","$$CISMN$$V")
-                set TEMP"2" to MARC "024" subfields "q"
+        set TEMP"2" to MARC "024" sub without sort "q" wrap subfields
+		replace wrapping delimiters (TEMP"2","q","",":")
+		add prefix (TEMP"2","(")
+		add suffix (TEMP"2",")")
+# Replace ; with : to prevent line breaks after ;. This appears to only be an issue with OTB display fields.
+		replace string by string (TEMP"2",";",":")
+		replace string by string (TEMP"2","::",":")
+		replace string by string (TEMP"2",":\\)",")")
+		replace string by string (TEMP"2","\\(\\(","(")
+		replace string by string (TEMP"2","\\)\\)",")")
 		concatenate with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."display"."identifier" with TEMP"1"
 end
@@ -57,7 +75,16 @@ rule "Primo VE - Identifier 024 ind1-1"
 	then
 		set TEMP"1" to MARC "024"."a"
 		add prefix (TEMP"1","$$CUPC$$V")
-                set TEMP"2" to MARC "024" subfields "q"
+        set TEMP"2" to MARC "024" sub without sort "q" wrap subfields
+		replace wrapping delimiters (TEMP"2","q","",":")
+		add prefix (TEMP"2","(")
+		add suffix (TEMP"2",")")
+# Replace ; with : to prevent line breaks after ;. This appears to only be an issue with OTB display fields.
+		replace string by string (TEMP"2",";",":")
+		replace string by string (TEMP"2","::",":")
+		replace string by string (TEMP"2",":\\)",")")
+		replace string by string (TEMP"2","\\(\\(","(")
+		replace string by string (TEMP"2","\\)\\)",")")
 		concatenate with delimiter (TEMP"1",TEMP"2"," ")
 		create pnx."display"."identifier" with TEMP"1"
 end
@@ -79,9 +106,9 @@ rule "Primo VE - Identifier 028"
 		add prefix (TEMP"1","$$CPUBNUM$$V")
 		set TEMP"2" to MARC "028" subfields "b"
 		add prefix (TEMP"2","(")
-                add suffix (TEMP"2",")")
+        	add suffix (TEMP"2",")")
 		set TEMP"3" to MARC "028" subfields "q"
 		concatenate with delimiter (TEMP"1",TEMP"2"," ")
-                concatenate with delimiter (TEMP"1",TEMP"3"," ")
+        	concatenate with delimiter (TEMP"1",TEMP"3"," ")
 		create pnx."display"."identifier" with TEMP"1"
 end
