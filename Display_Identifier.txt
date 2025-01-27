@@ -24,7 +24,7 @@ rule "Prima Display - ISBN 776"
     then
 		set TEMP"1" to MARC "776"."z"
 		add prefix (TEMP"1","$$CISBN$$V")
-		add suffix (TEMP"1"," (Additional Physical Format)")
+		add suffix (TEMP"1"," (Additional Format)")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
@@ -43,7 +43,7 @@ rule "Prima Display - ISSN 776"
 	then
 		set TEMP"1" to MARC "776"."x"
 		add prefix (TEMP"1","$$CISSN$$V")
-		add suffix (TEMP"1"," (Additional Physical Format)")
+		add suffix (TEMP"1"," (Additional Format)")
 		create pnx."display"."identifier" with TEMP"1"
 end
 
