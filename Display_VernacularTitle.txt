@@ -1,5 +1,9 @@
 rule "Primo Ve - Complete Title 880-245"
 #Remove $c, $h from display
+#Revised stanza by changing "subfields" to "sub without sort"
+# Ex: OCLC 1035137294
+# Last modified: 2/3/2025
+
 	when
 		MARC is "880" AND
 	    MARC."880"."6" match "245-.*"
