@@ -4,6 +4,7 @@ rule "Primo VE Marc - Lsr47"
 # A) Find and replace on this string: fast|dtict|unbist|scgdst|bisacsh|netc|lctgm|local|homoit
 # B) Add/remove vocabulary codes as desired
 # C) Replace all occurrences of the string (so each stanza will be updated at once)
+###Language Limiting: To limit display of vocabularies with multiple language options to English-language entries, change the wildcard form of the vocabulary code to the unqualified and desired language code. Example: Change "homoit.*" to "homoit|homoit/eng" in the vocabulary lines.
 	when
 		MARC."600" has any "a-z" AND
 		MARC."600".ind"2" equals "7" AND
