@@ -3,7 +3,7 @@ rule "Primo VE - Ispartof 773 without 9"
 		MARC."773" has any "t,w,x,z" AND
 		MARC."773"."9" not match ".*"
 	then
-		set TEMP"1" to MARC "773" excluding subfields without sorting or default "u|w|x|y|z|9"
+		set TEMP"1" to MARC "773" excluding subfields without sorting or default "u|w|x|y|z|9|7|6"
 		set TEMP"2" to MARC."773" sub without sort or empty "t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
@@ -23,7 +23,7 @@ rule "Primo VE - Ispartof 773 with 9"
 		MARC."773" has any "t,w,x,z" AND
 		MARC."773"."9" match ".*"
 	then
-		set TEMP"1" to MARC "773" excluding subfields without sorting or default "i|u|w|x|y|z|9"
+		set TEMP"1" to MARC "773" excluding subfields without sorting or default "i|u|w|x|y|z|9|7"
 		set TEMP"2" to MARC."773" sub without sort or empty "t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
@@ -48,7 +48,7 @@ rule "Primo VE - Ispartof 880-773 without 9"
         MARC."880"."6" match "773-.*" AND
 		MARC."880"."9" not match "773-.*"
 	then
-		set TEMP"1" to MARC "880" excluding subfields without sorting or default "u|w|x|y|z|9"
+		set TEMP"1" to MARC "880" excluding subfields without sorting or default "u|w|x|y|z|9|7|6"
 		set TEMP"2" to MARC."880" sub without sort or empty "t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
@@ -64,7 +64,7 @@ rule "Primo VE - Ispartof 880-773 with 9"
         MARC."880"."6" match "773-.*" AND
 		MARC."880"."9" match "773-.*"
 	then
-		set TEMP"1" to MARC "880" excluding subfields without sorting or default "i|u|w|x|y|z|9"
+		set TEMP"1" to MARC "880" excluding subfields without sorting or default "i|u|w|x|y|z|9|7"
 		set TEMP"2" to MARC."880" sub without sort or empty "t"
 		remove substring using regex (TEMP"2","(/|:|;|=|,)+$")
         add prefix (TEMP"2","$$Q")
