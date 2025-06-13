@@ -244,7 +244,7 @@ rule "Primo VE - Lds97m"
 		create pnx."display"."lds97" with TEMP"1"
 end
 
-##NRSG expanded and revised 880 rules for 246 (Varying Form of Title) and 247 (Former Title)
+##Expanded 880 rules(Lds97n1-n9) for MARC 246 (Varying Form of Title)
 
 rule "Primo VE - Lds97n1_880-246"
 ##880-246 ind 1 = 0 (Note, no added entry) or 1 (Note, added entry)
@@ -418,6 +418,8 @@ rule "Primo VE - Lds97n9_880-246"
     replace string by string (TEMP"1","<","&lt;")
     create pnx."display"."lds97" with TEMP"1"
 end
+
+## Revised 880 rules(Lds97o) for MARC 247 (Former title)
 
 rule "Primo VE - Lds97o_880-247"
 ## Handles 880 for 247, excluding ind2=1
