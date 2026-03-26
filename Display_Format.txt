@@ -1,4 +1,5 @@
 ## OCLC 1293912173
+## Added "Alternate Format MARC 880" for 880-300, 880-340, 880-348 fields.
 
 rule "Primo VE - Format 300"
 when
