@@ -61,7 +61,14 @@ rule "Primo VE - Lds78 380"
     when
         MARC."380" has any "a"
     then
-        create pnx."display"."lds78" with MARC "380" subfields "a" delimited by " " remove substring using regex "\\.+$"
+        set TEMP"1" to MARC."380" sub without sort "3,a"
+        remove substring using regex (TEMP"1","(/|:|;|=|,|\\.)+$")
+        set TEMP"2" to MARC."380" sub without sort "a"
+        remove substring using regex (TEMP"2","(/|:|;|=|,|\\.)+$")
+        add prefix (TEMP"2","$$Q")
+        remove substring using regex (TEMP"2","^\\$\\$Q$")
+        concatenate with delimiter (TEMP"1",TEMP"2","")
+        create pnx."display"."lds78" with TEMP"1"
 end
 
 rule "Primo VE - Lds78 694"
