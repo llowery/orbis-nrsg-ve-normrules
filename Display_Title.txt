@@ -1,8 +1,59 @@
 rule "Primo VE - Title"
+	# ex: no $c #40677599, no = in $c #1001258098)
+	priority 100
 	when
 		MARC is "245"."a"
 	then
-	    set TEMP"1" to MARC."245" sub without sort "a,b,f,g,k,n,p,s"
-        remove substring using regex (TEMP"1","(,|/|:|;|=)+$")
-		create pnx."display"."title" with TEMP"1"
+		set TEMP"1" to MARC."245" sub without sort "a,b,f,g,k,n,p,s"
+		remove substring using regex (TEMP"1","(,|/|:|;|=)+$")
+		# Use append (not create) so that rule 2's append below concatenates
+		# into the same value rather than producing a second one.
+		append TEMP"1" to pnx."display"."title" delimited by ""
+end
+
+rule "Primo VE - Title from 245c"
+	priority 50
+	# Process only MARC records that include 245$c with an =
+	# Append embedded parallel titles identified by = to title
+	
+	# Simple case: / SOR-A = Title-B / SOR-B (#1102479017)
+	# Simple case repeated: / SOR-A = Title-B / SOR-B = Title-C / SOR-C … (#16090636, #15135527)
+	
+	# The = punctuation is serving dual purposes. It is also used for parallel language versions of statements of responsibility. At least most of these are fixed by requiring a 2nd / in the 245$c.
+	# / SOR-A = SOR-B (#36414018, #227010984)
+	
+	# Some parallel titles are not flagged by the = ISBD punctuation because the title is preceded by a. rather than an =. This seems to be most common for music with non-collective titles (i.e., the title page gives a list of several titles each with their own statement of responsibility and there is no single overarching title for the resource). There are not very many of these, but they do come out garbled.
+	# / SOR1. Work2-title / SOR2 = Work2-titleB / SOR2-trans.. (#47054851, #815789870, 14074110)
+	
+	# Scripts written right to left get parsed in a strange way (#793224536)
+
+	when
+		MARC is "245"."c" AND MARC."245"."c" match ".* = .*"
+	then
+		set TEMP"1" to MARC."245" subfields "c"
+
+		# Blank TEMP"1" unless it contains an ISBD-spaced " = X / " pattern.
+		replace string by string (TEMP"1","^(?!.* = [^/]* / ).*$","")
+
+		# --- Multi-pass transform: keep all parallel titles, joined by " = " ----
+		# Pass 1: strip the leading SOR-before-first-equals.
+		#   "SOR1 = T2 / SOR2 = T3 / SOR3"  -->  " = T2 / SOR2 = T3 / SOR3"
+		replace string by string (TEMP"1","^[^=]* = "," = ")
+
+		# Pass 2: collapse each interior " / SOR = " into " = ", joining titles.
+		#   " = T2 / SOR2 = T3 / SOR3"  -->  " = T2 = T3 / SOR3"
+		replace string by string (TEMP"1"," / [^/=]+ = "," = ")
+
+		# Pass 3: strip any trailing " / SOR" that follows the last parallel title.
+		#   " = T2 = T3 / SOR3"  -->  " = T2 = T3"
+		replace string by string (TEMP"1"," / [^=]+$","")
+
+		# Pass 4: fail-safe. If the result still contains " / " anywhere, the
+		# multi-pass collapse didn't fit the structure cleanly and result in a
+		# string with embedded SORs. Blank rather than display broken output.
+		replace string by string (TEMP"1","^.* / .*$","")
+
+		# Append the parallel-title piece to the title rule 1 wrote.
+		# Delimiter is empty because TEMP"1" already starts with " = ".
+		append TEMP"1" to pnx."display"."title" delimited by ""
 end
