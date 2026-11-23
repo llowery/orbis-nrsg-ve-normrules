@@ -1,4 +1,12 @@
 rule "Primo VE - Lds42"
+##Included additional non-preferred terms for display, 11/12/2026
+##Ontario, Lake (N.Y. and Ont.)
+##Ontario, Lake, Region (N.Y. and Ont.)
+##Ontario, Lake, Watershed (N.Y. and Ont.)
+##Example: OCLC#02647697
+##Example: OCLC#806323295
+##Example: OCLC#1420462913
+
 	when
 		MARC is "XXX"."a"
 	then
@@ -179,4 +187,220 @@ rule "Primo VE Display - Subject 651_2_mountDEN"
 		set TEMP"3" to multilingual by "651" "lds42" "display"
 		concatenate with delimiter (TEMP"1",TEMP"3","")
 		create pnx."display"."lds42" with TEMP"1"
+end
+
+rule "Primo VE Display - Subject 600_1_lakeONTreg"
+    when
+        MARC."600" has any "a-z" AND
+        MARC."600"."z" match ".*America, Lake, Region \\(N\\.Y\\. and Ont\\.\\).*" AND
+        MARC."600".ind"2" equals "0" AND NOT
+        MARC."600"."9" match ".*"
+    then
+        set TEMP"1" to MARC."600" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+        set TEMP"2" to MARC."600" sub without sorting "v,x-z" delimited by " -- "
+        remove substring using regex (TEMP"2","\\.+$")
+        replace string by string (TEMP"2","America, Lake, Region \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake, Region (N.Y. and Ont.)")
+        concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+        set TEMP"3" to multilingual by "600" "lds42" "display"
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds42" with TEMP"1"
+end
+
+rule "Primo VE Display - Subject 600_2_lakeONT"
+    when
+        MARC."600" has any "a-z" AND
+        MARC."600"."z" match ".*America, Lake \\(N\\.Y\\. and Ont\\.\\).*" AND
+        MARC."600".ind"2" equals "0" AND NOT
+        MARC."600"."9" match ".*"
+    then
+        set TEMP"1" to MARC."600" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+        set TEMP"2" to MARC."600" sub without sorting "v,x-z" delimited by " -- "
+        remove substring using regex (TEMP"2","\\.+$")
+        replace string by string (TEMP"2","America, Lake \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake (N.Y. and Ont.)")
+        concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+        set TEMP"3" to multilingual by "600" "lds42" "display"
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds42" with TEMP"1"
+end
+
+rule "Primo VE Display - Subject 600_3_lakeONTwatershed"
+    when
+        MARC."600" has any "a-z" AND
+        MARC."600"."z" match ".*America, Lake, Watershed \\(N\\.Y\\. and Ont\\.\\).*" AND
+        MARC."600".ind"2" equals "0" AND NOT
+        MARC."600"."9" match ".*"
+    then
+        set TEMP"1" to MARC."600" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+        set TEMP"2" to MARC."600" sub without sorting "v,x-z" delimited by " -- "
+        remove substring using regex (TEMP"2","\\.+$")
+        replace string by string (TEMP"2","America, Lake, Watershed \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake, Watershed (N.Y. and Ont.)")
+        concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+        set TEMP"3" to multilingual by "600" "lds42" "display"
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds42" with TEMP"1"
+end
+
+rule "Primo VE Display - Subject 610_1_lakeONTreg"
+    when
+        MARC."610" has any "a-z" AND
+        MARC."610"."z" match ".*America, Lake, Region \\(N\\.Y\\. and Ont\\.\\).*" AND
+        MARC."610".ind"2" equals "0" AND NOT
+        MARC."610"."9" match ".*"
+    then
+        set TEMP"1" to MARC."610" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+        set TEMP"2" to MARC."610" sub without sorting "v,x-z" delimited by " -- "
+        remove substring using regex (TEMP"2","\\.+$")
+        replace string by string (TEMP"2","America, Lake, Region \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake, Region (N.Y. and Ont.)")
+        concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+        set TEMP"3" to multilingual by "610" "lds42" "display"
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds42" with TEMP"1"
+end
+
+rule "Primo VE Display - Subject 610_2_lakeONT"
+    when
+        MARC."610" has any "a-z" AND
+        MARC."610"."z" match ".*America, Lake \\(N\\.Y\\. and Ont\\.\\).*" AND
+        MARC."610".ind"2" equals "0" AND NOT
+        MARC."610"."9" match ".*"
+    then
+        set TEMP"1" to MARC."610" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+        set TEMP"2" to MARC."610" sub without sorting "v,x-z" delimited by " -- "
+        remove substring using regex (TEMP"2","\\.+$")
+        replace string by string (TEMP"2","America, Lake \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake (N.Y. and Ont.)")
+        concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+        set TEMP"3" to multilingual by "610" "lds42" "display"
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds42" with TEMP"1"
+end
+
+rule "Primo VE Display - Subject 610_3_lakeONTwatershed"
+    when
+        MARC."610" has any "a-z" AND
+        MARC."610"."z" match ".*America, Lake, Watershed \\(N\\.Y\\. and Ont\\.\\).*" AND
+        MARC."610".ind"2" equals "0" AND NOT
+        MARC."610"."9" match ".*"
+    then
+        set TEMP"1" to MARC."610" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+        set TEMP"2" to MARC."610" sub without sorting "v,x-z" delimited by " -- "
+        remove substring using regex (TEMP"2","\\.+$")
+        replace string by string (TEMP"2","America, Lake, Watershed \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake, Watershed (N.Y. and Ont.)")
+        concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+        set TEMP"3" to multilingual by "610" "lds42" "display"
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds42" with TEMP"1"
+end
+
+rule "Primo VE Display - Subject 650_1_lakeONTreg"
+    when
+        MARC."650" has any "a-z" AND
+        (MARC."650"."a" match ".*America, Lake, Region \\(N\\.Y\\. and Ont\\.\\).*" OR
+        MARC."650"."z" match ".*America, Lake, Region \\(N\\.Y\\. and Ont\\.\\).*") AND
+        MARC."650".ind"2" equals "0" AND NOT
+        MARC."650"."9" match ".*"
+    then
+        set TEMP"1" to MARC."650" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+        replace string by string (TEMP"1","America, Lake, Region \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake, Region (N.Y. and Ont.)")
+        set TEMP"2" to MARC."650" sub without sorting "v,x-z" delimited by " -- "
+        remove substring using regex (TEMP"2","\\.+$")
+        replace string by string (TEMP"2","America, Lake, Region \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake, Region (N.Y. and Ont.)")
+        concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+        set TEMP"3" to multilingual by "650" "lds42" "display"
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds42" with TEMP"1"
+end
+
+rule "Primo VE Display - Subject 650_2_lakeONT"
+    when
+        MARC."650" has any "a-z" AND
+        (MARC."650"."a" match ".*America, Lake \\(N\\.Y\\. and Ont\\.\\).*" OR
+        MARC."650"."z" match ".*America, Lake \\(N\\.Y\\. and Ont\\.\\).*") AND
+        MARC."650".ind"2" equals "0" AND NOT
+        MARC."650"."9" match ".*"
+    then
+        set TEMP"1" to MARC."650" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+        replace string by string (TEMP"1","America, Lake \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake (N.Y. and Ont.)")
+        set TEMP"2" to MARC."650" sub without sorting "v,x-z" delimited by " -- "
+        remove substring using regex (TEMP"2","\\.+$")
+        replace string by string (TEMP"2","America, Lake \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake (N.Y. and Ont.)")
+        concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+        set TEMP"3" to multilingual by "650" "lds42" "display"
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds42" with TEMP"1"
+end
+
+rule "Primo VE Display - Subject 650_3_lakeONTwatershed"
+    when
+        MARC."650" has any "a-z" AND
+        (MARC."650"."a" match ".*America, Lake, Watershed \\(N\\.Y\\. and Ont\\.\\).*" OR
+        MARC."650"."z" match ".*America, Lake, Watershed \\(N\\.Y\\. and Ont\\.\\).*") AND
+        MARC."650".ind"2" equals "0" AND NOT
+        MARC."650"."9" match ".*"
+    then
+        set TEMP"1" to MARC."650" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+        replace string by string (TEMP"1","America, Lake, Watershed \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake, Watershed (N.Y. and Ont.)")
+        set TEMP"2" to MARC."650" sub without sorting "v,x-z" delimited by " -- "
+        remove substring using regex (TEMP"2","\\.+$")
+        replace string by string (TEMP"2","America, Lake, Watershed \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake, Watershed (N.Y. and Ont.)")
+        concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+        set TEMP"3" to multilingual by "650" "lds42" "display"
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds42" with TEMP"1"
+end
+
+rule "Primo VE Display - Subject 651_1_lakeONTreg"
+    when
+        MARC."651" has any "a-z" AND
+        (MARC."651"."a" match ".*America, Lake, Region \\(N\\.Y\\. and Ont\\.\\).*" OR
+        MARC."651"."z" match ".*America, Lake, Region \\(N\\.Y\\. and Ont\\.\\).*") AND
+        MARC."651".ind"2" equals "0" AND NOT
+        MARC."651"."9" match ".*"
+    then
+        set TEMP"1" to MARC."651" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+        replace string by string (TEMP"1","America, Lake, Region \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake, Region (N.Y. and Ont.)")
+        set TEMP"2" to MARC."651" sub without sorting "v,x-z" delimited by " -- "
+        remove substring using regex (TEMP"2","\\.+$")
+        replace string by string (TEMP"2","America, Lake, Region \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake, Region (N.Y. and Ont.)")
+        concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+        set TEMP"3" to multilingual by "651" "lds42" "display"
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds42" with TEMP"1"
+end
+
+rule "Primo VE Display - Subject 651_2_lakeONT"
+    when
+        MARC."651" has any "a-z" AND
+        (MARC."651"."a" match ".*America, Lake \\(N\\.Y\\. and Ont\\.\\).*" OR
+        MARC."651"."z" match ".*America, Lake \\(N\\.Y\\. and Ont\\.\\).*") AND
+        MARC."651".ind"2" equals "0" AND NOT
+        MARC."651"."9" match ".*"
+    then
+        set TEMP"1" to MARC."651" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+        replace string by string (TEMP"1","America, Lake \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake (N.Y. and Ont.)")
+        set TEMP"2" to MARC."651" sub without sorting "v,x-z" delimited by " -- "
+        remove substring using regex (TEMP"2","\\.+$")
+        replace string by string (TEMP"2","America, Lake \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake (N.Y. and Ont.)")
+        concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+        set TEMP"3" to multilingual by "651" "lds42" "display"
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds42" with TEMP"1"
+end
+
+rule "Primo VE Display - Subject 651_3_lakeONTwatershed"
+    when
+        MARC."651" has any "a-z" AND
+        (MARC."651"."a" match ".*America, Lake, Watershed \\(N\\.Y\\. and Ont\\.\\).*" OR
+        MARC."651"."z" match ".*America, Lake, Watershed \\(N\\.Y\\. and Ont\\.\\).*") AND
+        MARC."651".ind"2" equals "0" AND NOT
+        MARC."651"."9" match ".*"
+    then
+        set TEMP"1" to MARC."651" subfields "a-u,w" delimited by " " remove substring using regex "\\.+$"
+        replace string by string (TEMP"1","America, Lake, Watershed \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake, Watershed (N.Y. and Ont.)")
+        set TEMP"2" to MARC."651" sub without sorting "v,x-z" delimited by " -- "
+        remove substring using regex (TEMP"2","\\.+$")
+        replace string by string (TEMP"2","America, Lake, Watershed \\(N\\.Y\\. and Ont\\.\\)","Ontario, Lake, Watershed (N.Y. and Ont.)")
+        concatenate with delimiter (TEMP"1",TEMP"2"," -- ")
+        set TEMP"3" to multilingual by "651" "lds42" "display"
+        concatenate with delimiter (TEMP"1",TEMP"3","")
+        create pnx."display"."lds42" with TEMP"1"
 end
